@@ -1,0 +1,142 @@
+.row-card {
+  display: flex;
+  flex-direction: row;
+}
+
+.row-card .card-item {
+  width: 24%;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 10px #ddd;
+}
+
+.row-card .card-item + .card-item {
+  margin-left: 10px;
+}
+
+.row-card .card-item h1 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #999;
+}
+
+.row-card .card-item p {
+  font-size: 16px;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+.row-card .card-item span {
+  display: block;
+  font-size: 12px;
+  color: #999;
+}
+
+.row-card2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 5px;
+}
+
+.row-card2 .card2-content {
+  width: 31%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  box-shadow: 0 0 5px #999;
+  border-radius: 5px;
+}
+
+.row-card2 .card2-content h1 {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 22px;
+}
+
+.row-card2 .card2-content .card2-item {
+  width: 90%;
+  background: #fff;
+  box-shadow: 0 0 20px #999;
+  margin-left: 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 5px;
+}
+
+.row-card2 .card2-content .card2-foot {
+  border-top: 1px solid #999;
+  padding: 10px 0 10px 22px;
+}
+
+.row-card2 .card2-content .card2-foot span {
+  margin: 0 10px;
+  font-size: 26px;
+  color: red;
+}
+
+.row-card3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 5px;
+  margin-top: 30px;
+}
+
+.row-card3 .row-card3-left {
+  width: 65.5%;
+  box-shadow: 0 0 5px #999;
+  background: #fff;
+}
+
+.row-card3 .row-card3-right {
+  width: 31%;
+  height: auto;
+  box-shadow: 0 0 5px #999;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.row-card3 .row-card3-right .card3-head {
+  font-size: 16px;
+  color: #999;
+  padding: 10px;
+}
+
+.row-card3 .row-card3-right .card3-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row-card3 .row-card3-right .card3-foot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px 0 10px 20px;
+}
+
+.row-card3 .row-card3-right .card3-foot p {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.row-card3 .row-card3-right .card3-foot .online {
+  background: green;
+}
+
+.row-card3 .row-card3-right .card3-foot .fail {
+  background: red;
+}
+
+.row-card3 .row-card3-right .card3-foot .offline {
+  background: orange;
+}

@@ -1,0 +1,141 @@
+{% extends 'base/admin_base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
+{% endblock %}
+
+
+{% block title %}
+    <title>项目用户</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-center">
+        <div class="container-card">
+            <div class="head">
+                <p>项目用户</p>
+            </div>
+            <div class="devices-group">
+                <select class="pub-select">
+                    <option value="0">Volvo</option>
+                    <option value="1">Saab</option>
+                    <option value="2">Opel</option>
+                    <option value="3">Audi</option>
+                </select>
+                <select class="pub-select">
+                    <option value="0">共享充电宝</option>
+                    <option value="1">Saab</option>
+                    <option value="2">Opel</option>
+                    <option value="3">Audi</option>
+                </select>
+                <select class="pub-select">
+                    <option value="0">全部</option>
+                    <option value="1">Saab</option>
+                    <option value="2">Opel</option>
+                    <option value="3">Audi</option>
+                </select>
+                <div class="search-group">
+                    <div class="search-group-left" style="margin-left:20px;">
+                        <div class="search-input">
+                            <input type="text" placeholder="请输入手机号码/账号">
+                            <div class="pub-button-group">
+                                <div class="pub-button pub-button-primary ">
+                                    搜索
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container-full">
+                <form action="" method="">
+                    <div class="search-group">
+                        <div class="search-group-left">
+                            <div class="search-title">用户信息</div>
+                        </div>
+                    </div>
+
+                    <table cellspacing="0" class="container-table">
+                        <tr>
+                            <th>序列</th>
+                            <th>手机号码/账号</th>
+                            <th>密码</th>
+                            <th>姓名</th>
+                            <th>微信号</th>
+                            <th>所属项目</th>
+                            <th>注册时间</th>
+                            <th>最后登录时间</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <div class="pub-button-group">
+                                    <div class="pub-button pub-button-primary" onclick="layer.open({
+                        type: 2,
+                        area: ['30%', '30%'],
+                        title: '绑定设备',
+                        content: '{{ url_for('admin.binding_device') }}', //这里content是一个普通的String
+                    });">
+                                        绑定设备
+                                    </div>
+                                    <div class="pub-button pub-button-danger" onclick="return del()">
+                                        删除
+                                    </div>
+                                </div>
+                            </td>
+
+
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+
+<script src="{{ url_for('static',filename='js/layui/layui.all.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#g-6').addClass('list-item1-active');
+            $('#g-6-1').addClass('tog-active');
+            $('#g-6-2').addClass('toggle-item');
+            $('#g-6-4').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+        });
+    </script>
+{% endblock %}

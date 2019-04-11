@@ -1,0 +1,182 @@
+{% extends 'base/admin_base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./js/layui/css/layui.css') }}" media="all">
+{% endblock %}
+
+
+{% block title %}
+    <title>系统用户</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-center">
+        <div class="container-card">
+            <div class="head">
+                <p>系统用户</p>
+            </div>
+            <div class="devices-group">
+                <select class="pub-select">
+                    <option value="0">Volvo</option>
+                    <option value="1">Saab</option>
+                    <option value="2">Opel</option>
+                    <option value="3">Audi</option>
+                </select>
+                <select class="pub-select">
+                    <option value="0">共享充电宝</option>
+                    <option value="1">Saab</option>
+                    <option value="2">Opel</option>
+                    <option value="3">Audi</option>
+                </select>
+                <select class="pub-select">
+                    <option value="0">全部</option>
+                    <option value="1">Saab</option>
+                    <option value="2">Opel</option>
+                    <option value="3">Audi</option>
+                </select>
+                <div class="search-group">
+                    <div class="search-group-left" style="margin-left:20px;">
+                        <div class="search-input">
+                            <input type="text" placeholder="请输入手机号码/账号">
+                            <div class="pub-button-group">
+                                <div class="pub-button pub-button-primary ">
+                                    搜索
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-group-right">
+                        <div class="pub-button-group">
+                            <div class="pub-button pub-button-primary pub-button-margin" id="creat"
+                                 style="margin-left: 35%">
+                                创建用户
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-full">
+                <form action="" method="">
+                    <div class="search-group">
+                        <div class="search-group-left">
+                            <div class="search-title">用户信息</div>
+                        </div>
+                    </div>
+                    <table cellspacing="0" class="container-table">
+                        <tr>
+                            <th>序列</th>
+                            <th>管理员/操作员账号</th>
+                            <th>密码</th>
+                            <th>姓名</th>
+                            <th>所属项目</th>
+                            <th>注册时间</th>
+                            <th>最后登录时间</th>
+                            <th>权限</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>
+                                <div class="layui-btn layui-btn-normal" id="power">权限</div>
+                                </p>
+                            </td>
+                            <td>
+                                <p><a href="" class="layui-btn layui-btn-primary" id="button">禁用</a></p>
+                            </td>
+                            <td>
+                                <div class="pub-button-group">
+                                    <div class="pub-button pub-button-danger" onclick="return del()">
+                                        删除
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{{ url_for('static',filename='./js/layui/layui.all.js') }}"></script>
+
+    <script>
+        $(document).ready(
+            function () {
+                $("#power").click(function () {
+                    layer.open({
+                        type: 2,
+                        area: ['60%', '70%'],
+                        title: '修改权限',
+                        content: '{{ url_for('admin.power_form') }}', //这里content是一个普通的String
+                    });
+                });
+
+            }
+        )
+    </script>
+
+    <script>
+        $(document).ready(
+            function () {
+                $("#creat").click(function () {
+                    layer.open({
+                        type: 2,
+                        area: ['60%', '70%'],
+                        title: '添加用户/编辑',
+                        content: '{{ url_for('admin.admin_form') }}', //这里content是一个普通的String
+                    });
+                });
+
+            }
+        )
+    </script>
+
+    <script>
+        //Demo
+        layui.use('form', function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+//            layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#g-6').addClass('list-item1-active');
+            $('#g-6-1').addClass('tog-active');
+            $('#g-6-2').addClass('toggle-item');
+            $('#g-6-3').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ZH-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/public.css') }}">
+    <link rel="icon" href="{{ url_for('static',filename='./assets/favicon.ico') }}" type="image/x-icon">
+
+    {% block css %} {% endblock %}
+
+    {% block title %} {% endblock %}
+
+</head>
+
+<body>
+<div class="">
+    <div class="containerd">
+        {% include 'base/admin_left.html' %}
+
+        {% block content %} {% endblock %}
+
+    </div>
+</div>
+
+{#<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="#}
+{#        crossorigin="anonymous"></script>#}
+<script src="{{ url_for('static',filename='./vendor/jquery/jquery.js') }}"></script>
+<script src="{{ url_for('static',filename='./js/public.js') }}"></script>
+
+
+{% block js %} {% endblock %}
+<script>
+
+function del() {
+    if(confirm("确定要删除吗？"))
+
+    {
+
+        return true;
+
+    }
+
+    else
+
+    {
+
+        return false;
+
+    }
+
+}
+
+</script>
+</body>
+</html>
+
+

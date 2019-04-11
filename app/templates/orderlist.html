@@ -1,0 +1,177 @@
+{% extends 'base/admin_base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
+{% endblock %}
+
+
+{% block title %}
+    <title>订单统计</title>
+{% endblock %}
+
+6i9km
+{% block content %}
+    <div class="container-center">
+        <div class="container-card" style="display:flex;flex-direction: row;">
+            <h1 style="min-width:8%;display: flex;justify-content: center;align-items: center;">订单统计</h1>
+            <div class="row-card" style="flex:1;">
+
+                <div class="card-item">
+                    <h1>1451212</h1>
+                    <p>本月收益</p>
+                    <span>100%</span>
+                    <div class="Bar">
+                        <div style="width:70%;" class="bar1">
+                        </div>
+                    </div>
+                    <span>本月增长10个用户</span>
+                </div>
+                <div class="card-item">
+                    <h1>1451212</h1>
+                    <p>订单数量</p>
+                    <span>100%</span>
+                    <div class="Bar">
+                        <div style="width:30%;" class="bar2">
+                        </div>
+                    </div>
+                    <span>本月增长10个用户</span>
+                </div>
+                <div class="card-item">
+                    <h1>1451212</h1>
+                    <p>累计收益(元)</p>
+                    <span>100%</span>
+                    <div class="Bar">
+                        <div style="width:70%;" class="bar3">
+                        </div>
+                    </div>
+                    <span>本月增长10个用户</span>
+                </div>
+                <div class="card-item">
+                    <h1>1451212</h1>
+                    <p>注册用户数量</p>
+                    <span>100%</span>
+                    <div class="Bar">
+                        <div style="width:70%;" class="bar4">
+                        </div>
+                    </div>
+                    <span>本月增长10个用户</span>
+                </div>
+            </div>
+        </div>
+        <div class="container-card">
+            <!-- <div class="head">
+                <p>项目用户</p>
+            </div> -->
+            <div class="devices-group">
+                <select class="pub-select">
+                    <option value="0">全部项目</option>
+                    <option value="1">星辰共享充电宝</option>
+                </select>
+                <select class="pub-select">
+                    <option value="0">一小时</option>
+                    <option value="1">一天</option>
+                    <option value="2">一周</option>
+                    <option value="3">本月</option>
+                    <option value="4">本年</option>
+                </select>
+                <select class="pub-select">
+                    <option value="0">未支付</option>
+                    <option value="1">已支付</option>
+                    <option value="2">退款中</option>
+                    <option value="3">完成退款</option>
+                </select>
+                <select class="pub-select">
+                    <option value="0">微信支付</option>
+                    <option value="1">支付宝</option>
+                </select>
+                <div class="search-group">
+                    <div class="search-group-left" style="margin-left:20px;">
+                        <div class="search-input">
+                            <input type="text" placeholder="请输入客户姓名">
+                            <div class="pub-button-group">
+                                <div class="pub-button pub-button-primary ">
+                                    查询
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container-full">
+                <form action="" method="">
+                    <div class="search-group">
+                        <div class="search-group-left">
+                            <div class="search-title">设备收益排行</div>
+                        </div>
+                    </div>
+
+                    <table cellspacing="0" class="container-table">
+                        <tr>
+                            <th>订单编号</th>
+                            <th>项目/公司</th>
+                            <th>产品</th>
+                            <th>DevicesName</th>
+                            <th>订单金额</th>
+                            <th>生成时间</th>
+                            <th>结束时间</th>
+                            <th>状态</th>
+                            <th>客户</th>
+                            <th>支付方式</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>微信</p>
+                            </td>
+
+
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        $(document).ready(function () {
+            $('#g-5').addClass('list-item1-active');
+            $('#g-5-1').addClass('tog-active');
+            $('#g-5-2').addClass('toggle-item');
+            $('#g-5-3').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+        });
+    </script>
+{% endblock %}

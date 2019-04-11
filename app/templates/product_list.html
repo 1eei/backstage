@@ -1,0 +1,225 @@
+{% extends 'base/admin_base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./js/layui/css/layui.css') }}" media="all">
+{% endblock %}
+
+
+{% block title %}
+    <title>产品列表</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-center">
+        <div class="container-card">
+            <div class="head">
+                <p>产品列表</p>
+            </div>
+
+            <div class="container-full">
+                <form action="" method="">
+                    <div class="search-group">
+                        <div class="search-group-left">
+                            <div class="search-title">产品列表</div>
+                            <div class="search-input">
+
+                                <input type="text" placeholder="请输入产品名称查询">
+                                <div class="pub-button-group">
+                                    <div class="pub-button pub-button-primary ">
+                                        搜索
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-group-right">
+                            <div class="pub-button-group">
+                                <div class="pub-button pub-button-empty ">
+                                    刷新
+                                </div>
+                                <div class="pub-button pub-button-primary pub-button-margin" id="creat">
+                                    创建产品
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table cellspacing="0" class="container-table">
+                        <tr>
+                            <th>产品名称</th>
+                            <th>ProductKey</th>
+                            <th>节点类型</th>
+                            <th>设备数</th>
+                            <th>添加时间</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+
+
+                            <td>
+                                <div class="pub-button-group">
+                                    <div class="pub-button pub-button-primary" onclick="layer.open({
+                        type: 2,
+                        area: ['60%', '70%'],
+                        title: '编辑产品',
+                        content: '{{ url_for('admin.product_edit') }}', //这里content是一个普通的String
+                    });">编辑</div>
+                                    <div class="pub-button pub-button-danger" onclick="return del()">删除</div>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <div class="pub-button-group">
+                                    <div class="pub-button pub-button-primary" onclick="layer.open({
+                        type: 2,
+                        area: ['60%', '70%'],
+                        title: '编辑产品',
+                        content: '{{ url_for('admin.product_edit') }}', //这里content是一个普通的String
+                    });">编辑</div>
+                                    <div class="pub-button pub-button-danger" onclick="return del()">删除</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+
+                            <td>
+                                <div class="pub-button-group">
+                                    <div class="pub-button pub-button-primary" onclick="layer.open({
+                        type: 2,
+                        area: ['60%', '70%'],
+                        title: '编辑产品',
+                        content: '{{ url_for('admin.product_edit') }}', //这里content是一个普通的String
+                    });">编辑</div>
+                                    <div class="pub-button pub-button-danger" onclick="return del()">删除</div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <!-- <div class="pub-button-group">
+                <div class="pub-button pub-button-primary">
+                    发送指令
+                </div>
+                <div class="pub-button pub-button-empty pub-button-margin">
+                    重置
+                </div>
+            </div>
+
+            <select class="pub-select">
+                <option value="0">Volvo</option>
+                <option value="1">Saab</option>
+                <option value="2">Opel</option>
+                <option value="3">Audi</option>
+            </select>
+
+            <ul class="pub-pageTurning">
+                <p>共有999条</p>
+                <li>&lt;</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>&gt;</li>
+                <p>每页显示:</p>
+                <select class="pub-pageSelect">
+                    <option value="0">1</option>
+                    <option value="1">2</option>
+                    <option value="2">3</option>
+                    <option value="3">4</option>
+                </select>
+            </ul> -->
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{{ url_for('static',filename='./js/layui/layui.all.js') }}"></script>
+
+    <script>
+        $(document).ready(
+            function () {
+                $("#creat").click(function () {
+                    layer.open({
+                        type: 2,
+                        area: ['60%', '70%'],
+                        title: '创建产品',
+                        content: '{{ url_for('admin.product_form') }}', //这里content是一个普通的String
+                    });
+                })
+            }
+        )
+    </script>
+
+    <script>
+        //Demo
+        layui.use('form', function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#g-3').addClass('list-item1-active');
+            $('#g-3-1').addClass('tog-active');
+            $('#g-3-2').addClass('toggle-item');
+            $('#g-3-3').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+        });
+    </script>
+{% endblock %}

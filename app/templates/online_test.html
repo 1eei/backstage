@@ -1,0 +1,112 @@
+{% extends 'base/admin_base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
+{% endblock %}
+
+
+{% block title %}
+    <title>在线测试</title>
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-center">
+        <div class="container-card">
+            <div class="head">
+                <p>在线测试</p>
+            </div>
+            <div class="devices-group">
+                调试设备：
+                <select class="pub-select">
+                    <option value="0">全部产品</option>
+                    <option value="1">Saab</option>
+                    <option value="2">Opel</option>
+                    <option value="3">Audi</option>
+                </select>
+                <select class="pub-select">
+                    <option value="0">全部产品</option>
+                    <option value="1">Saab</option>
+                    <option value="2">Opel</option>
+                    <option value="3">Audi</option>
+                </select>
+            </div>
+
+            <div class="container-center">
+                <form action="" method="" style="display:flex;">
+                    <div class="container-card"
+                         style="width:30%;margin-right: 50px;border-radius: 10px;border:1px solid #eee;">
+                        <div
+                                style="padding:10px;border-bottom: 1px solid #eee;margin-bottom: 10px;font-size: 18px;">
+                            编辑指令
+                        </div>
+                        <div>
+                            <textarea name="" id="" style="width:100%;margin:0 auto;height:300px;"></textarea>
+                        </div>
+                        <div class="pub-button-group">
+                            <div class="pub-button pub-button-primary">发送指令</div>
+                            <div class="pub-button pub-button-empty">重置</div>
+                        </div>
+                    </div>
+                    <div class="container"
+                         style="width:59%;border-radius: 10px;border:1px solid #eee;padding:10px;">
+                        <div style="width:100%;display: flex;justify-content: space-between;">
+                            <p style="font-size:18px;">实时日志</p>
+                            <div class="pub-button-group">
+                                <div class="pub-button pub-button-primary">刷新</div>
+                                <div class="pub-button pub-button-empty">清屏</div>
+                            </div>
+                        </div>
+                        <table cellspacing="0" class="container-table" style="border:1px solid #eee;">
+                            <tr>
+                                <th style="width:20%">类型/时间</th>
+                                <th>内容</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>121</p>
+                                </td>
+                                <td>
+                                    <p>121</p>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </form>
+                <ul class="pub-pageTurning">
+                    <p>共有999条</p>
+                    <li>&lt;</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>&gt;</li>
+                    <p>每页显示:</p>
+                    <select class="pub-pageSelect">
+                        <option value="0">1</option>
+                        <option value="1">2</option>
+                        <option value="2">3</option>
+                        <option value="3">4</option>
+                    </select>
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        $(document).ready(function () {
+            $('#g-4').addClass('list-item1-active');
+            $('#g-4-1').addClass('tog-active');
+            $('#g-4-2').addClass('toggle-item');
+            $('#g-4-4').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+        });
+    </script>
+{% endblock %}

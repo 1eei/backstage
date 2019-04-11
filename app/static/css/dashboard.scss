@@ -1,0 +1,158 @@
+.row-card {
+    display: flex;
+    flex-direction: row;
+
+
+    .card-item {
+        width: 24%;
+        // height: 200px;
+        background: #fff;
+        border-radius: 8px;
+        padding: 10px 15px;
+        // border: 1px solid #999;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 1px 1px 10px #ddd;
+
+
+        &+.card-item {
+            margin-left: 10px;
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: bold;
+            color: #999;
+        }
+
+        p {
+            font-size: 16px;
+            color: #999;
+            margin-bottom: 20px;
+
+        }
+
+        span {
+            display: block;
+            font-size: 12px;
+            color: #999;
+        }
+    }
+}
+
+.row-card2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 5px;
+    // background: #999;
+
+    .card2-content {
+        width: 31%;
+        background: #fff;
+        display: flex;
+        // padding-left: 10px;
+        flex-direction: column;
+        margin-top: 40px;
+        box-shadow: 0 0 5px #999;
+        border-radius: 5px;
+        
+
+
+        h1 {
+            margin-top: 20px;
+            margin-left: 20px;
+            font-size: 22px;
+        }
+
+        .card2-item {
+            width: 90%;
+            background: #fff;
+            box-shadow: 0 0 20px #999;
+            margin-left: 20px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            border-radius: 5px;
+
+        }
+
+        .card2-foot {
+            border-top: 1px solid #999;
+            padding: 10px 0 10px 22px;
+
+            span {
+                margin: 0 10px;
+                font-size: 26px;
+                color: red;
+            }
+        }
+    }
+}
+
+.row-card3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 5px;
+    margin-top: 30px;
+    
+
+
+    .row-card3-left {
+        width: 65.5%;
+        // height: 400px;
+        box-shadow: 0 0 5px #999;
+        background: #fff;
+    }
+
+    .row-card3-right {
+        width: 31%;
+        height: auto;
+        box-shadow: 0 0 5px #999;
+        border-radius: 5px;
+        background: #fff;
+
+
+
+        .card3-head {
+            font-size: 16px;
+            color: #999;
+            padding: 10px;
+        }
+
+        .card3-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .card3-foot {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 20px 0 10px 20px;
+
+            p {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                margin-left: 5px;
+            }
+
+            .online {
+                background: green
+            }
+
+            .fail {
+                background: red;
+            }
+
+            .offline {
+                background: orange;
+            }
+        }
+    }
+}

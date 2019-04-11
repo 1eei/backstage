@@ -1,0 +1,160 @@
+{% extends 'base/admin_base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./js/layui/css/layui.css') }}" media="all">
+{% endblock %}
+
+
+{% block title %}
+    <title>分组管理</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-center">
+        <div class="container-card">
+            <div class="head">
+                <p>分组管理</p>
+            </div>
+            <div class="devices-group">
+                <select class="pub-select">
+                    <option value="0">全部产品</option>
+                    <option value="1">Saab</option>
+                    <option value="2">Opel</option>
+                    <option value="3">Audi</option>
+                </select>
+                <div class="devices-info">
+                    <div>
+                        <p>设备总数</p>
+                        <p>0</p>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="circular"></div>
+                            <div>激活设备</div>
+                        </div>
+                        <p>0</p>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="circular"></div>
+                            <div>设备在线</div>
+                        </div>
+                        <p>0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-full">
+                <form action="" method="">
+                    <div class="search-group">
+                        <div class="search-group-left">
+                            <div class="search-title">分组列表</div>
+                            <div class="search-input">
+
+                                <input type="text" placeholder="请输入分组名称查询">
+                                <div class="pub-button-group">
+                                    <div class="pub-button pub-button-primary ">
+                                        搜索
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-group-right">
+                            <div class="pub-button-group">
+                                <div class="pub-button pub-button-primary" style="margin-right:50px;" id="creat">
+                                    添加分组
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table cellspacing="0" class="container-table">
+                        <tr>
+                            <th>分组名称</th>
+                            <th>分组ID</th>
+                            <th>添加时间</th>
+                            <th>设备数(总数/激活/在线)</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <div class="pub-button-group">
+                                    <div class="pub-button pub-button-primary" onclick="layer.open({
+                        type: 2,
+                        area: ['60%', '70%'],
+                        title: '编辑分组',
+                        content: '{{ url_for('admin.group_edit') }}', //这里content是一个普通的String
+                    });">编辑</div>
+                                    <div class="pub-button pub-button-danger">删除</div>
+
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+
+            <ul class="pub-pageTurning">
+                <p>共有999条</p>
+                <li>&lt;</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>&gt;</li>
+                <p>每页显示:</p>
+                <select class="pub-pageSelect">
+                    <option value="0">1</option>
+                    <option value="1">2</option>
+                    <option value="2">3</option>
+                    <option value="3">4</option>
+                </select>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{{ url_for('static',filename='./js/layui/layui.all.js') }}"></script>
+
+    <script>
+        $(document).ready(
+            function () {
+                $("#creat").click(function () {
+                    layer.open({
+                        type: 2,
+                        area: ['60%', '70%'],
+                        title: '新建分组',
+                        content: '{{ url_for('admin.group_form') }}', //这里content是一个普通的String
+                    });
+                })
+            }
+        )
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#g-3').addClass('list-item1-active');
+            $('#g-3-1').addClass('tog-active');
+            $('#g-3-2').addClass('toggle-item');
+            $('#g-3-5').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+        });
+    </script>
+{% endblock %}

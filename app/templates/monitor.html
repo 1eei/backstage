@@ -1,0 +1,181 @@
+{% extends 'base/admin_base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
+
+    <style>
+        #canvas {
+            margin: 5% auto;
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block title %}
+    <title>实时监控</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-center">
+        <div class="container-card">
+            <div class="head">
+                <p>实时监控</p>
+            </div>
+            <div class="devices-group">
+                <select class="pub-select">
+                    <option value="0">Volvo</option>
+                    <option value="1">Saab</option>
+                    <option value="2">Opel</option>
+                    <option value="3">Audi</option>
+                </select>
+                <div class="devices-info">
+                    <div>
+                        <p>设备总数</p>
+                        <p>0</p>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="circular"></div>
+                            <div>激活设备</div>
+                        </div>
+                        <p>0</p>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="circular"></div>
+                            <div>设备在线</div>
+                        </div>
+                        <p>0</p>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 80%;height: auto" id="canvas">
+                <h3>实时在线设备</h3>
+                <canvas id="line" width="600" height="200"></canvas>
+            </div>
+            <div style="width: 80%;height: auto" id="canvas">
+                <h3>发送到平台的消息量</h3>
+                <canvas id="line1" width="600" height="200"></canvas>
+            </div>
+            <div style="width: 80%;height: auto" id="canvas">
+                <h3>平台发出的消息量</h3>
+                <canvas id="line2" width="600" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{{ url_for('static',filename='./vendor/chart.js/Chart.bundle.js') }}"></script>
+
+    <script>
+        var MonitorData;
+        var MonitorResult;
+        $.ajax({
+            url: "/post_monitor_data",
+            type: 'get',
+            dataType: "json",
+            cache: false,
+            async: false,
+            success: function (MonitorData) {
+                MonitorData0 = MonitorData[0].data[0]
+                MonitorData1 = MonitorData[0].data[1]
+                MonitorData2 = MonitorData[0].data[2]
+                MonitorResult = [MonitorData0, MonitorData1, MonitorData2];
+            }
+        });
+        $(function () {
+            var data = { //折线图需要为每个数据点设置一标签。这是显示在X轴上。
+                labels: ["9:00", "10:00", "11:00", "11:00", "12:00"],
+                //数据集（y轴数据范围随数据集合中的data中的最大或最小数据而动态改变的）
+                datasets: [{
+                    label: '实时在线设备',
+                    backgroundColor: "#6beb81", //背景填充色
+                    borderColor: "#fff", //路径颜色
+                    pointBackgroundColor: "#ccc", //数据点颜色
+                    pointBorderColor: "#fff", //数据点边框颜色
+                    data: MonitorResult[0] //对应的值
+                }]
+            };
+            var ctx = document.getElementById("line").getContext('2d');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    title: {
+                        display: true,
+                        text: '实时在线设备' //标题
+                    }
+                }
+            });
+
+        });
+
+        $(function () {
+            var data = { //折线图需要为每个数据点设置一标签。这是显示在X轴上。
+                labels: ["13:00", "14:00", "15:00", "16:00", "17:00"],
+                //数据集（y轴数据范围随数据集合中的data中的最大或最小数据而动态改变的）
+                datasets: [{
+                    label: '发送到平台的消息量',
+                    backgroundColor: "#eb9737", //背景填充色
+                    borderColor: "#fff", //路径颜色
+                    pointBackgroundColor: "#ccc", //数据点颜色
+                    pointBorderColor: "#fff", //数据点边框颜色
+                    data: MonitorResult[1] //对应的值
+                }]
+            };
+            var ctx = document.getElementById("line1").getContext('2d');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    title: {
+                        display: true,
+                        text: '发送到平台的消息量' //标题
+                    }
+                }
+            });
+
+        });
+
+        $(function () {
+            var data = { //折线图需要为每个数据点设置一标签。这是显示在X轴上。
+                labels: ["18:00", "19:00", "20:00", "21:00", "22:00"],
+                //数据集（y轴数据范围随数据集合中的data中的最大或最小数据而动态改变的）
+                datasets: [{
+                    label: '发送到平台的消息量',
+                    backgroundColor: "#36A2EB", //背景填充色
+                    borderColor: "#fff", //路径颜色
+                    pointBackgroundColor: "#ccc", //数据点颜色
+                    pointBorderColor: "#fff", //数据点边框颜色
+                    data: MonitorResult[2] //对应的值
+                }]
+            };
+            var ctx = document.getElementById("line2").getContext('2d');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    title: {
+                        display: true,
+                        text: '发送到平台的消息量' //标题
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#g-4').addClass('list-item1-active');
+            $('#g-4-1').addClass('tog-active');
+            $('#g-4-2').addClass('toggle-item');
+            $('#g-4-3').css({"background": "-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)", "color": "#fff"});
+        });
+    </script>
+{% endblock %}

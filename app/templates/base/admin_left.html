@@ -1,0 +1,95 @@
+<div class="index-head container-full">
+    <div class="index-head-left">
+        <img src="{{ url_for('static',filename='./assets/logo.png') }}" alt="">
+        <p>
+            <span>滴咚科技</span>
+            <span>DIDONGTECH</span>
+        </p>
+        <div class="X">
+            <img src="{{ url_for('static',filename='./assets/control.png') }}" alt="">
+        </div>
+    </div>
+    <div class="index-head-right">
+        <img src="{{ url_for('static',filename='./assets/dingdang.png') }}" alt="">
+        <div class="index-head-user">
+            <img src="{{ url_for('static',filename='./assets/user.jpg') }}" alt="">
+            <p>
+                <span>张三</span>
+                <span>超级管理员</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="index-control">
+    <div class="index-control-title ">
+        <img src="{{ url_for('static',filename='./assets/user.jpg') }}" alt="">
+        <p>控制台</p>
+    </div>
+    <div class="index-control-content">
+        <div class="control-list ">
+            <div id="g-1" class="list-item1">
+                <i class="fa fa-home"></i>
+                <a href="{{ url_for('admin.index') }}"><span>仪表盘</span></a>
+                <i class="" style="font-size:12px;"></i>
+            </div>
+        </div>
+        <div class="control-list ">
+            <div id="g-2" class="list-item1">
+                <i class="fa fa-product-hunt"></i>
+                <span>项目管理</span>
+                <p id="g-2-1"><i class="fa fa-sort-asc"></i></p>
+            </div>
+            <p id="g-2-2" class="list-item2">
+                <a href="{{ url_for('admin.project_list') }}"><span id="g-2-3">项目列表</span></a>
+            </p>
+        </div>
+        <div class="control-list">
+            <div id="g-3" class="list-item1">
+                <i class="fa fa-rocket"></i>
+                <span>设备管理</span>
+                <p id="g-3-1"><i class="fa fa-sort-asc"></i></p>
+
+            </div>
+            <p id="g-3-2" class="list-item2">
+                <a href="{{ url_for('admin.product_list') }}"><span id="g-3-3">产品列表</span></a>
+                <a href="{{ url_for('admin.devices_list') }}"><span id="g-3-4">设备列表</span></a>
+                <a href="{{ url_for('admin.group') }}"><span id="g-3-5">分组管理</span></a>
+            </p>
+        </div>
+        <div class="control-list">
+            <div id="g-4" class="list-item1">
+                <i class="fa fa-connectdevelop"></i>
+                <span>监控运维</span>
+                <p id="g-4-1" ><i class="fa fa-sort-asc"></i></p>
+            </div>
+            <p id="g-4-2" class="list-item2">
+                <a href="{{ url_for('admin.monitor') }}"><span id="g-4-3">实时监控</span></a>
+                <a href="{{ url_for('admin.online_test') }}"><span id="g-4-4">在线测试</span></a>
+                <a href="{{ url_for('admin.log_server') }}"><span id="g-4-5">日志服务</span></a>
+            </p>
+        </div>
+        <div class="control-list">
+            <div id="g-5" class="list-item1">
+                <i class="fa fa-line-chart"></i>
+                <span>财务统计</span>
+                <p id="g-5-1"><i class="fa fa-sort-asc"></i></p>
+            </div>
+            <p id="g-5-2" class="list-item2">
+                <a href="{{ url_for('admin.orderlist') }}"><span id="g-5-3">订单统计</span></a>
+            </p>
+        </div>
+        <div class="control-list">
+            <div id="g-6" class="list-item1">
+                <i class="fa fa-street-view"></i>
+                <span>用户管理</span>
+                <p id="g-6-1"><i class="fa fa-sort-asc"></i></p>
+
+            </div>
+            <p id="g-6-2" class="list-item2">
+                <a href="{{ url_for('admin.admin_user') }}"><span id="g-6-3">系统用户</span></a>
+                <a href="{{ url_for('admin.project_user') }}"><span id="g-6-4">项目用户</span></a>
+            </p>
+        </div>
+    </div>
+</div>

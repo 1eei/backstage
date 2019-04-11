@@ -1,0 +1,131 @@
+{% extends 'base/admin_base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
+{% endblock %}
+
+
+{% block title %}
+    <title>日志服务</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-center">
+        <div class="container-card">
+            <div class="head">
+                <p>日志服务</p>
+            </div>
+            <div class="devices-group">
+                <select class="pub-select">
+                    <option value="0">Volvo</option>
+                    <option value="1">Saab</option>
+                    <option value="2">Opel</option>
+                    <option value="3">Audi</option>
+                </select>
+                <div class="devices-info">
+                    <div>
+                        <p>设备总数</p>
+                        <p>0</p>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="circular"></div>
+                            <div>异常总数</div>
+                        </div>
+                        <p>0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-full">
+                <form action="" method="">
+                    <div class="search-group">
+                        <div class="search-group-left">
+                            <div class="search-title">日志服务</div>
+                            <div class="search-input">
+
+                                <input type="text" placeholder="请输入项目名称查询">
+                                <div class="pub-button-group">
+                                    <div class="pub-button pub-button-primary ">
+                                        搜索
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table cellspacing="0" class="container-table">
+                        <tr>
+                            <th>DevicesNames</th>
+                            <th>上报时间</th>
+                            <th>内容</th>
+                            <th>状态以及原因分析</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+                            <td>
+                                <p>121</p>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+            <!-- <div class="pub-button-group">
+                <div class="pub-button pub-button-primary">
+                    发送指令
+                </div>
+                <div class="pub-button pub-button-empty pub-button-margin">
+                    重置
+                </div>
+            </div>
+
+            <select class="pub-select">
+                <option value="0">Volvo</option>
+                <option value="1">Saab</option>
+                <option value="2">Opel</option>
+                <option value="3">Audi</option>
+            </select>
+
+            <ul class="pub-pageTurning">
+                <p>共有999条</p>
+                <li>&lt;</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>&gt;</li>
+                <p>每页显示:</p>
+                <select class="pub-pageSelect">
+                    <option value="0">1</option>
+                    <option value="1">2</option>
+                    <option value="2">3</option>
+                    <option value="3">4</option>
+                </select>
+            </ul> -->
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        $(document).ready(function () {
+            $('#g-4').addClass('list-item1-active');
+            $('#g-4-1').addClass('tog-active');
+            $('#g-4-2').addClass('toggle-item');
+            $('#g-4-5').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+        });
+    </script>
+{% endblock %}

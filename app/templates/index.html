@@ -1,0 +1,198 @@
+{% extends 'base/admin_base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
+{% endblock %}
+
+
+{% block title %}
+    <title>首页</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-center">
+        <div class="container-card">
+            <div class="row-card">
+                <div class="card-item">
+                    <h1>1451212</h1>
+                    <p>设备数量</p>
+                    <span>100%</span>
+                    <div class="Bar">
+                        <div style="width:70%;" class="bar1">
+                        </div>
+                    </div>
+                    <span>本月增长10个用户</span>
+                </div>
+                <div class="card-item">
+                    <h1>1451212</h1>
+                    <p>设备数量</p>
+                    <span>100%</span>
+                    <div class="Bar">
+                        <div style="width:30%;" class="bar2">
+                        </div>
+                    </div>
+                    <span>本月增长10个用户</span>
+                </div>
+                <div class="card-item">
+                    <h1>1451212</h1>
+                    <p>设备数量</p>
+                    <span>100%</span>
+                    <div class="Bar">
+                        <div style="width:70%;" class="bar3">
+                        </div>
+                    </div>
+                    <span>本月增长10个用户</span>
+                </div>
+                <div class="card-item">
+                    <h1>1451212</h1>
+                    <p>设备数量</p>
+                    <span>100%</span>
+                    <div class="Bar">
+                        <div style="width:70%;" class="bar4">
+                        </div>
+                    </div>
+                    <span>本月增长10个用户</span>
+                </div>
+            </div>
+
+            <div class="row-card2">
+                <div class="card2-content">
+                    <div class="card2-item">
+                        <canvas id="myChart" width="400" height="330"></canvas>
+                    </div>
+                    <h1>设备使用率</h1>
+                    <div class="card2-foot">
+                        <p>
+                            本周增<span>20</span>
+                            台
+                        </p>
+                    </div>
+                </div>
+                <div class="card2-content">
+                    <div class="card2-item">
+                        <canvas id="myLineChart" width="400" height="330"></canvas>
+
+                    </div>
+                    <h1>设备在线时长</h1>
+                    <div class="card2-foot">
+                        <p>
+                            本周增<span>20</span>
+                            台
+                        </p>
+                    </div>
+                </div>
+                <div class="card2-content">
+                    <div class="card2-item">
+                        <canvas id="myBubbleChart" width="400" height="330"></canvas>
+
+                    </div>
+                    <h1>设备分布</h1>
+                    <div class="card2-foot">
+                        <p>
+                            本周增<span>20</span>
+                            台
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-card3">
+                <div class="row-card3-left">
+                    <div class="container-full">
+                        <form action="" method="">
+
+                            <table cellspacing="0" class="container-table">
+                                <tr>
+                                    <th>项目名称</th>
+                                    <th>创建时间</th>
+                                    <th>设备量</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>121</p>
+                                    </td>
+                                    <td>
+                                        <p>121</p>
+                                    </td>
+                                    <td>
+                                        <div class="Bar">
+                                            <div style="width:70%;" class="bar4">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>121</p>
+                                    </td>
+                                    <td>
+                                        <p>121</p>
+                                    </td>
+                                    <td>
+                                        <div class="Bar">
+                                            <div style="width:70%;" class="bar4">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>121</p>
+                                    </td>
+                                    <td>
+                                        <p>121</p>
+                                    </td>
+                                    <td>
+                                        <div class="Bar">
+                                            <div style="width:70%;" class="bar4">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <div class="row-card3-right">
+                    <div class="card3-head">
+                        设备运行状态
+                    </div>
+                    <div class="card3-item">
+                        <canvas id="myAreaChart" width="400" height="330"></canvas>
+                    </div>
+                    <div class="card3-foot">
+                        <div>
+                            <p class="online"></p>
+                            在线
+                        </div>
+                        <div>
+                            <p class="fail"></p>
+                            故障
+                        </div>
+                        <div>
+                            <p class="offline"></p>
+                            离线
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{{ url_for('static',filename='./vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='./vendor/chart.js/echarts.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#g-1').addClass('list-item1-active');
+        });
+    </script>
+{% endblock %}
