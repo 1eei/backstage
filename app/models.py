@@ -2,10 +2,12 @@
 # -*-coding:utf-8 -*-
 
 from datetime import datetime
+from flask_login import LoginManager
 import pymysql
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
+from flask_login import UserMixin
 from flask_script import Manager
 
 app = Flask(__name__)
@@ -20,7 +22,7 @@ manager.add_command('db', MigrateCommand)
 
 
 # 用户表
-class User(db.Model):
+class User(db.Model,UserMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 编号
     name = db.Column(db.String(16), unique=True, nullable=False)  # 用户名
@@ -41,7 +43,7 @@ class User(db.Model):
 
 
 # 管理员表
-class Admin(db.Model):
+class Admin(db.Model,UserMixin):
     __tablename__ = 'admin'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=True)
@@ -54,6 +56,31 @@ class Admin(db.Model):
     def check_password(self, password):
         from werkzeug.security import check_password_hash
         return check_password_hash(self.password, password)
+
+
+
+    '''
+    UserMixin已经实现以下方法
+    def is_active(self):
+        return True
+
+    def is_authenticated(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        """用户登陆获取id"""
+        return str(self.id)
+    
+    在User模型中必须实现
+    is_authenticated: 属性，用来判断是否是已经授权了，如果通过授权就会返回true
+    is_active:属性，判断是否已经激活
+    is_anonymous:属性，判断是否是匿名用户
+    get_id方法:
+    '''
+
 
 
 # 管理员日志表

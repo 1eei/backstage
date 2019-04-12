@@ -4,10 +4,12 @@
 import os
 from app.admin import admin as admin_blueprint
 from flask import Flask, render_template
+from flask_login import LoginManager
 from flask_wtf.csrf import CSRFError
 from config import config
 import json
 from flask_sqlalchemy import SQLAlchemy
+from app.models import Admin
 
 db = SQLAlchemy()
 
@@ -17,11 +19,19 @@ def create_app(config_name=None):
         config_name = os.getenv('FLASK_CONFIG', 'development')
 
     app = Flask(__name__)
-
     app.config.from_object(config[config_name])
+    #实例化login_user
+    login_manager = LoginManager(app)
+    login_manager.login_view = 'admin.login'
+    login_manager.init_app(app=app)
 
+    '''
+    通过session的id获取用户信息：,不获取id值无法登录
+    '''
+    @login_manager.user_loader
+    def load_user(id):
+        return Admin.query.get(id)
     db.init_app(app)
-
     register_blueprints(app)
     register_errorhandlers(app)
 

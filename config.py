@@ -11,7 +11,7 @@ class BaseConfig:
 
     # 数据库配置
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:qq111111@127.0.0.1:3306/lot_db'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:123456@127.0.0.1:3306/lot_db'
 
 
 # 开发阶段下的数据库：开发
