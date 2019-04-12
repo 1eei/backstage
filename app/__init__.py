@@ -1,46 +1,40 @@
-# ！/usr/bin/env python
-# -*-coding:utf-8 -*-
-
-import os
-from app.admin import admin as admin_blueprint
-from flask import Flask, render_template
-from flask_login import LoginManager
-from flask_wtf.csrf import CSRFError
-from config import config
 import json
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-from app.models import Admin
+from flask_wtf.csrf import CSRFProtect, CSRFError
+from flask_login import LoginManager
+from config import config
 
 db = SQLAlchemy()
 
 
-def create_app(config_name=None):
-    if config_name is None:
-        config_name = os.getenv('FLASK_CONFIG', 'development')
-
+def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
-    #实例化login_user
-    login_manager = LoginManager(app)
+    config[config_name].init_app(app)
+    db.init_app(app)
+
+    # 实例化login_user
+    from app.models import Admin
+    login_manager = LoginManager()
     login_manager.login_view = 'admin.login'
     login_manager.init_app(app=app)
 
-    '''
-    通过session的id获取用户信息：,不获取id值无法登录
-    '''
+    # 通过session的id获取用户信息：,不获取id值无法登录
     @login_manager.user_loader
     def load_user(id):
         return Admin.query.get(id)
-    db.init_app(app)
-    register_blueprints(app)
-    register_errorhandlers(app)
 
+    register_errorhandlers(app)
+    CSRFProtect(app)
+    register_blueprints(app)
     ajax_api(app)
 
     return app
 
 
 def register_blueprints(app):
+    from app.admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint, url_prefix='/admin')
 
 

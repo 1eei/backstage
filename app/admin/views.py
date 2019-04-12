@@ -2,13 +2,22 @@
 # -*-coding:utf-8 -*-
 
 from . import admin
-from flask import Flask, render_template, redirect, url_for, flash, request,session
-from functools import wraps
+from app import db
+from flask import render_template, redirect, url_for, flash, request, session
 from app.admin.forms import AdminForm
-from app.models import Admin
-from flask_login import login_user, logout_user, login_required
-from flask_login import login_required,login_user
-# 进行登录限制
+from app.models import Admin, Role
+from flask_login import login_required, login_user, logout_user
+
+
+@admin.route('/data_add/')
+def add():
+    from werkzeug.security import generate_password_hash
+    admin = Admin(name='admin', pwd=generate_password_hash('admin'), _locked=True)
+    role = Role(name='admin', auth='admin')
+    db.session.add(admin)
+    db.session.add(role)
+    db.session.commit()
+    return '添加成功'
 
 
 @admin.route('/')
@@ -23,7 +32,7 @@ def login():
     if form.validate_on_submit():
         data = form.data
         admin = Admin.query.filter_by(name=data['name']).first()
-        if not admin.check_password(data['password']):
+        if not admin.check_pwd(data['password']):
             flash('密码错误!', 'err')
             return redirect(url_for('admin.login'))
         '''
@@ -44,9 +53,10 @@ def login():
         当用户点击记住密码，在下次打开浏览器时无需登录，
         否则，就要登录
         '''
-        login_user(admin,form.remember_me.data)
+        login_user(admin, form.remember_me.data)
         return redirect(request.args.get('next') or url_for('admin.index'))
     return render_template('Login.html', form=form)
+
 
 @admin.route('/logout')
 def logout():

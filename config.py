@@ -2,27 +2,24 @@
 # -*-coding:utf-8 -*-
 
 import os
-
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 class BaseConfig:
-    # 表单配置
-    WTF_CSRF_ENDABLE = True
-    SECRET_KEY = os.getenv('SECRET_KEY', 'secret string')
+    # WTF_CSRF_ENDABLE = True
+    SECRET_KEY = os.environ.get('SECRET_KEY') or os.urandom(24)
 
     # 数据库配置
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:123456@127.0.0.1:3306/lot_db'
 
+    @staticmethod
+    def init_app(app):
+        pass
+
 
 # 开发阶段下的数据库：开发
 class DevelopConfig(BaseConfig):
     DEBUG = True
-
-
-# 测试模式下的数据库：测试
-class TestConfig(BaseConfig):
-    TEST = True
-
 
 # 上线产品阶段数据库：运维
 class ProductConfig(BaseConfig):
@@ -31,6 +28,5 @@ class ProductConfig(BaseConfig):
 
 config = {
     'development': DevelopConfig,
-    'testing': TestConfig,
     'production': ProductConfig,
 }
