@@ -2,7 +2,9 @@
 # -*-coding:utf-8 -*-
 
 import os
+
 basedir = os.path.abspath(os.path.dirname(__file__))
+
 
 class BaseConfig:
     # WTF_CSRF_ENDABLE = True
@@ -10,7 +12,7 @@ class BaseConfig:
 
     # 数据库配置
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:qq111111@127.0.0.1:3306/lot_db'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:123456@127.0.0.1:3306/lot_db'
 
     @staticmethod
     def init_app(app):
@@ -20,6 +22,7 @@ class BaseConfig:
 # 开发阶段下的数据库：开发
 class DevelopConfig(BaseConfig):
     DEBUG = True
+
 
 # 上线产品阶段数据库：运维
 class ProductConfig(BaseConfig):

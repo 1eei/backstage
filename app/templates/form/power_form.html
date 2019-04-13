@@ -3,38 +3,38 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static',filename='js/layui/css/layui.css') }}"  media="all">
-    </head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='js/layui/css/layui.css') }}" media="all">
+</head>
 <body>
 <form class="layui-form" action="">
     <div class="layui-form-item">
-    <label class="layui-form-label">修改权限</label>
-    <div class="layui-input-block">
-      <p><input type="checkbox" name="like[write]" title="产品列表"></p>
-      <p><input type="checkbox" name="like[read]" title="设备列表"></p>
-      <p><input type="checkbox" name="like[dai]" title="设备详情"></p>
-      <p><input type="checkbox" name="like[dai]" title="实时监控"></p>
+        <label class="layui-form-label">修改权限</label>
+        <div class="layui-input-block">
+            <p><input type="checkbox" name="like[write]" title="产品列表"></p>
+            <p><input type="checkbox" name="like[read]" title="设备列表"></p>
+            <p><input type="checkbox" name="like[dai]" title="设备详情"></p>
+            <p><input type="checkbox" name="like[dai]" title="实时监控"></p>
+        </div>
     </div>
-  </div>
     <div class="layui-form-item">
-    <div class="layui-input-block">
-      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
     </div>
-  </div>
 </form>
-    <script src="{{ url_for('static',filename='js/layui/layui.all.js') }}"></script>
+<script src="{{ url_for('static',filename='js/layui/layui.all.js') }}"></script>
 <script>
-//Demo
-layui.use('form', function(){
-  var form = layui.form;
+    //Demo
+    layui.use('form', function () {
+        var form = layui.form;
 
-  //监听提交
-  form.on('submit(formDemo)', function(data){
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
 //    layer.msg(JSON.stringify(data.field));
-    return false;
-  });
-});
+            return false;
+        });
+    });
 </script>
 
 </body>

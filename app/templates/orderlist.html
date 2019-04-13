@@ -1,5 +1,5 @@
 {% extends 'base/admin_base.html' %}
-
+{% import 'base/page.html' as pg %}
 
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static',filename='./css/dashboard.css') }}">
@@ -122,43 +122,45 @@
                             <th>客户</th>
                             <th>支付方式</th>
                         </tr>
-                        <tr>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>微信</p>
-                            </td>
-
-
-                        </tr>
-
+                        {% for v in page_data.items %}
+                            <tr>
+                                <td>
+                                    <p>{{ v.id }}</p>
+                                </td>
+                                <td>
+                                    <p>公司1</p>
+                                </td>
+                                <td>
+                                    <p>product1</p>
+                                </td>
+                                <td>
+                                    <p>devices1</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.money }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.start_time }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.end_time }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.stats }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.admin_id }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.pay_method }}</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </table>
                 </form>
+            </div>
+            <div class="box-footer clearfix" style="margin-right: 30px">
+                {{ pg.page(page_data,'admin.orderlist') }}
             </div>
         </div>
     </div>
@@ -171,7 +173,7 @@
             $('#g-5').addClass('list-item1-active');
             $('#g-5-1').addClass('tog-active');
             $('#g-5-2').addClass('toggle-item');
-            $('#g-5-3').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+            $('#g-5-3').css({"background": "-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)", "color": "#fff"});
         });
     </script>
 {% endblock %}

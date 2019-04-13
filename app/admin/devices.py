@@ -1,18 +1,25 @@
 from . import admin
-from flask import Flask, render_template
+from flask import render_template
 from flask_login import login_required
-import json
+from app.models import Device
 
 
-@admin.route('/devices_list', methods=["GET"])
+@admin.route('/devices_list/<int:page>', methods=["GET"])
 @login_required
-def devices_list():
-    return render_template('devices_list.html')
+def devices_list(page):
+    if page is None:
+        page = 1
+    page_data = Device.query.order_by(
+        Device.id.asc()
+    ).paginate(page=page, per_page=1)
+    return render_template('devices_list.html', page_data=page_data)
+
 
 @admin.route('/device_form')
 @login_required
 def device_form():
     return render_template('form/device_form.html')
+
 
 @admin.route('/device_edit')
 @login_required

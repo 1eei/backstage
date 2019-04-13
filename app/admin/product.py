@@ -1,17 +1,25 @@
 from . import admin
-from flask import Flask, render_template
+from flask import render_template
 from flask_login import login_required
-import json
+from app.models import Product
 
-@admin.route('/product_list', methods=["GET"])
+
+@admin.route('/product_list/<int:page>', methods=["GET"])
 @login_required
-def product_list():
-    return render_template('product_list.html')
+def product_list(page):
+    if page is None:
+        page = 1
+    page_data = Product.query.order_by(
+        Product.id.asc()
+    ).paginate(page=page, per_page=1)
+    return render_template('product_list.html', page_data=page_data)
 
-@admin.route('/product_edit', methods=["GET","POST"])
+
+@admin.route('/product_edit', methods=["GET", "POST"])
 @login_required
 def product_edit():
     return render_template('edit/product_edit.html')
+
 
 @admin.route('/product_form')
 @login_required

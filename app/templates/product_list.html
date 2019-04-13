@@ -1,5 +1,5 @@
 {% extends 'base/admin_base.html' %}
-
+{% import 'base/page.html' as pg %}
 
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
@@ -55,130 +55,44 @@
                             <th>添加时间</th>
                             <th>操作</th>
                         </tr>
-                        <tr>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
+                        {% for v in page_data.items %}
+                            <tr>
+                                <td>
+                                    <p>{{ v.name }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.product_id }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.node }}</p>
+                                </td>
+                                <td>
+                                    <p>99</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.create_time }}</p>
+                                </td>
+                                <td>
+                                    <div class="pub-button-group">
+                                        <div class="pub-button pub-button-primary" onclick="layer.open({
+                                                type: 2,
+                                                area: ['60%', '70%'],
+                                                title: '编辑产品',
+                                                content: '{{ url_for('admin.product_edit') }}',
+                                                });">编辑
+                                        </div>
+                                        <div class="pub-button pub-button-danger" onclick="return del()">删除</div>
 
-
-                            <td>
-                                <div class="pub-button-group">
-                                    <div class="pub-button pub-button-primary" onclick="layer.open({
-                        type: 2,
-                        area: ['60%', '70%'],
-                        title: '编辑产品',
-                        content: '{{ url_for('admin.product_edit') }}', //这里content是一个普通的String
-                    });">编辑</div>
-                                    <div class="pub-button pub-button-danger" onclick="return del()">删除</div>
-
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <div class="pub-button-group">
-                                    <div class="pub-button pub-button-primary" onclick="layer.open({
-                        type: 2,
-                        area: ['60%', '70%'],
-                        title: '编辑产品',
-                        content: '{{ url_for('admin.product_edit') }}', //这里content是一个普通的String
-                    });">编辑</div>
-                                    <div class="pub-button pub-button-danger" onclick="return del()">删除</div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-
-                            <td>
-                                <div class="pub-button-group">
-                                    <div class="pub-button pub-button-primary" onclick="layer.open({
-                        type: 2,
-                        area: ['60%', '70%'],
-                        title: '编辑产品',
-                        content: '{{ url_for('admin.product_edit') }}', //这里content是一个普通的String
-                    });">编辑</div>
-                                    <div class="pub-button pub-button-danger" onclick="return del()">删除</div>
-
-                                </div>
-                            </td>
-                        </tr>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </table>
                 </form>
             </div>
-            <!-- <div class="pub-button-group">
-                <div class="pub-button pub-button-primary">
-                    发送指令
-                </div>
-                <div class="pub-button pub-button-empty pub-button-margin">
-                    重置
-                </div>
+            <div class="box-footer clearfix" style="margin-right: 30px">
+                {{ pg.page(page_data,'admin.product_list') }}
             </div>
-
-            <select class="pub-select">
-                <option value="0">Volvo</option>
-                <option value="1">Saab</option>
-                <option value="2">Opel</option>
-                <option value="3">Audi</option>
-            </select>
-
-            <ul class="pub-pageTurning">
-                <p>共有999条</p>
-                <li>&lt;</li>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>&gt;</li>
-                <p>每页显示:</p>
-                <select class="pub-pageSelect">
-                    <option value="0">1</option>
-                    <option value="1">2</option>
-                    <option value="2">3</option>
-                    <option value="3">4</option>
-                </select>
-            </ul> -->
         </div>
     </div>
 {% endblock %}
@@ -195,7 +109,7 @@
                         type: 2,
                         area: ['60%', '70%'],
                         title: '创建产品',
-                        content: '{{ url_for('admin.product_form') }}', //这里content是一个普通的String
+                        content: '{{ url_for('admin.product_form') }}',
                     });
                 })
             }
@@ -219,7 +133,7 @@
             $('#g-3').addClass('list-item1-active');
             $('#g-3-1').addClass('tog-active');
             $('#g-3-2').addClass('toggle-item');
-            $('#g-3-3').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+            $('#g-3-3').css({"background": "-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)", "color": "#fff"});
         });
     </script>
 {% endblock %}

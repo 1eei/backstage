@@ -1,5 +1,5 @@
 {% extends 'base/admin_base.html' %}
-
+{% import 'base/page.html' as pg %}
 
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
@@ -63,57 +63,29 @@
                             <th>内容</th>
                             <th>状态以及原因分析</th>
                         </tr>
-                        <tr>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
+                        {% for v in page_data.items %}
+                            <tr>
+                                <td>
+                                    <p>{{ v.id }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.report_time }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.content }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.cause }}</p>
+                                </td>
 
-                        </tr>
-
+                            </tr>
+                        {% endfor %}
                     </table>
                 </form>
             </div>
-            <!-- <div class="pub-button-group">
-                <div class="pub-button pub-button-primary">
-                    发送指令
-                </div>
-                <div class="pub-button pub-button-empty pub-button-margin">
-                    重置
-                </div>
+            <div class="box-footer clearfix" style="margin-right: 30px">
+                {{ pg.page(page_data,'admin.log_server') }}
             </div>
-
-            <select class="pub-select">
-                <option value="0">Volvo</option>
-                <option value="1">Saab</option>
-                <option value="2">Opel</option>
-                <option value="3">Audi</option>
-            </select>
-
-            <ul class="pub-pageTurning">
-                <p>共有999条</p>
-                <li>&lt;</li>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>&gt;</li>
-                <p>每页显示:</p>
-                <select class="pub-pageSelect">
-                    <option value="0">1</option>
-                    <option value="1">2</option>
-                    <option value="2">3</option>
-                    <option value="3">4</option>
-                </select>
-            </ul> -->
         </div>
     </div>
 {% endblock %}
@@ -125,7 +97,7 @@
             $('#g-4').addClass('list-item1-active');
             $('#g-4-1').addClass('tog-active');
             $('#g-4-2').addClass('toggle-item');
-            $('#g-4-5').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+            $('#g-4-5').css({"background": "-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)", "color": "#fff"});
         });
     </script>
 {% endblock %}
