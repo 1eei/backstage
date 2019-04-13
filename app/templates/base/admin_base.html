@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='./css/public.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='./js/layui/css/layui.css') }}">
     <link rel="icon" href="{{ url_for('static',filename='./assets/favicon.ico') }}" type="image/x-icon">
@@ -29,6 +30,7 @@
 {#        crossorigin="anonymous"></script>#}
 <script src="{{ url_for('static',filename='./vendor/jquery/jquery.js') }}"></script>
 <script src="{{ url_for('static',filename='./js/public.js') }}"></script>
+<script src="{{ url_for('static',filename='./js/bootstrap.min.js') }}"></script>
 
 
 {% block js %} {% endblock %}

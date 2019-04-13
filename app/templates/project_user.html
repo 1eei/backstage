@@ -1,5 +1,5 @@
 {% extends 'base/admin_base.html' %}
-
+{% import 'base/page.html' as pg %}
 
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
@@ -72,55 +72,57 @@
                             <th>状态</th>
                             <th>操作</th>
                         </tr>
-                        <tr>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <p>121</p>
-                            </td>
-                            <td>
-                                <div class="pub-button-group">
-                                    <div class="pub-button pub-button-primary" onclick="layer.open({
-                        type: 2,
-                        area: ['30%', '30%'],
-                        title: '绑定设备',
-                        content: '{{ url_for('admin.binding_device') }}', //这里content是一个普通的String
-                    });">
-                                        绑定设备
+                        {% for v in page_data.items %}
+                            <tr>
+                                <td>
+                                    <p>{{ v.id }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.acount }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.pwd }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.name }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.wechat }}</p>
+                                </td>
+                                <td>
+                                    <p>porject1</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.regist_time }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.login_time }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v._locked }}</p>
+                                </td>
+                                <td>
+                                    <div class="pub-button-group">
+                                        <div class="pub-button pub-button-primary" onclick="layer.open({
+                                                type: 2,
+                                                area: ['30%', '30%'],
+                                                title: '绑定设备',
+                                                content: '{{ url_for('admin.binding_device') }}', //这里content是一个普通的String
+                                                });">
+                                            绑定设备
+                                        </div>
+                                        <div class="pub-button pub-button-danger" onclick="return del()">
+                                            删除
+                                        </div>
                                     </div>
-                                    <div class="pub-button pub-button-danger" onclick="return del()">
-                                        删除
-                                    </div>
-                                </div>
-                            </td>
-
-
-                        </tr>
-
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </table>
                 </form>
+            </div>
+            <div class="box-footer clearfix" style="margin-right: 30px">
+                {{ pg.page(page_data,'admin.project_user') }}
             </div>
         </div>
     </div>
@@ -128,14 +130,14 @@
 
 
 {% block js %}
+    <script src="{{ url_for('static',filename='js/layui/layui.all.js') }}"></script>
 
-<script src="{{ url_for('static',filename='js/layui/layui.all.js') }}"></script>
     <script>
         $(document).ready(function () {
             $('#g-6').addClass('list-item1-active');
             $('#g-6-1').addClass('tog-active');
             $('#g-6-2').addClass('toggle-item');
-            $('#g-6-4').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+            $('#g-6-4').css({"background": "-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)", "color": "#fff"});
         });
     </script>
 {% endblock %}

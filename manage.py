@@ -13,8 +13,11 @@ manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
 if __name__ == '__main__':
+
     # 启动项目
+
     app.run(host='127.0.0.1', port=7777)
 
     # 迁移数据库
+
     # manager.run()

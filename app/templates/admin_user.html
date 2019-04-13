@@ -1,5 +1,5 @@
 {% extends 'base/admin_base.html' %}
-
+{% import 'base/page.html' as pg %}
 
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="container-full">
-                <form action="" method="">
+                <form action="" method="post" id="form-data" novalidate>
                     <div class="search-group">
                         <div class="search-group-left">
                             <div class="search-title">用户信息</div>
@@ -78,27 +78,28 @@
                             <th>状态</th>
                             <th>操作</th>
                         </tr>
-                        <tr>
+                        {% for v in page_data.items %}
+                            <tr></tr>
                             <td>
-                                <p>121</p>
+                                <p>{{ v.id }}</p>
                             </td>
                             <td>
-                                <p>121</p>
+                                <p>{{ v.name }}</p>
                             </td>
                             <td>
-                                <p>121</p>
+                                <p>{{ v.pwd }}</p>
                             </td>
                             <td>
-                                <p>121</p>
+                                <p>admin</p>
                             </td>
                             <td>
-                                <p>121</p>
+                                <p>project1</p>
                             </td>
                             <td>
-                                <p>121</p>
+                                <p>{{ v.regist_time }}</p>
                             </td>
                             <td>
-                                <p>121</p>
+                                <p>{{ v.login_time }}</p>
                             </td>
                             <td>
                                 <p>
@@ -115,9 +116,13 @@
                                     </div>
                                 </div>
                             </td>
-                        </tr>
+                            </tr>
+                        {% endfor %}
                     </table>
                 </form>
+            </div>
+            <div class="box-footer clearfix" style="margin-right: 30px">
+                {{ pg.page(page_data,'admin.admin_user') }}
             </div>
         </div>
     </div>
@@ -176,7 +181,7 @@
             $('#g-6').addClass('list-item1-active');
             $('#g-6-1').addClass('tog-active');
             $('#g-6-2').addClass('toggle-item');
-            $('#g-6-3').css({"background":"-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)","color":"#fff"});
+            $('#g-6-3').css({"background": "-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)", "color": "#fff"});
         });
     </script>
 {% endblock %}
