@@ -2,12 +2,10 @@
 # -*-coding:utf-8 -*-
 
 from . import admin
-from app import db
 from flask import render_template, redirect, url_for, flash, request, session
 from app.admin.forms import AdminForm
-from app.models import Admin, User, testlog, Order, Role, Project, Product, Device, Device_group, testlog
+from app.models import Admin, User, Order, testlog
 from flask_login import login_required, login_user, logout_user
-from werkzeug.security import generate_password_hash
 
 
 @admin.route('/')
@@ -127,37 +125,3 @@ def power_form():
 @login_required
 def binding_device():
     return render_template('form/binding_device.html')
-
-
-@admin.route('/data_add/')
-def add():
-    admin = Admin(name='admin', pwd=generate_password_hash('admin'), _locked=True)
-
-    role = Role(name='admin', auth='admin')
-
-    user = User(acount='user', pwd=generate_password_hash('user'), phone='11111111111', _locked=True)
-
-    project = Project(name='project1')
-
-    product = Product(name='product1')
-
-    device = Device(name='device1', _online=1, _active=1)
-
-    group = Device_group(name='group1')
-
-    log = testlog(content='log2')
-
-    order = Order(admin_id=1, money='777', pay_method='支付宝')
-
-    db.session.add(admin)
-    db.session.add(role)
-    db.session.add(user)
-    db.session.add(project)
-    db.session.add(product)
-    db.session.add(device)
-    db.session.add(group)
-    db.session.add(log)
-    db.session.add(order)
-
-    db.session.commit()
-    return '添加数据成功'

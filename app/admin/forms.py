@@ -5,8 +5,10 @@ from app.models import Admin
 
 
 class AdminForm(FlaskForm):
-    name = StringField('name', validators=[DataRequired(message="请输入用户名")], render_kw={'placeholder': '请输入用户名'})
-    password = PasswordField('password', validators=[DataRequired(message="请输入密码")], render_kw={'placeholder': '请输入密码'})
+    name = StringField('name', validators=[DataRequired(message="请输入用户名")],
+                       render_kw={'placeholder': '请输入用户名', 'autocomplete': "off"})
+    password = PasswordField('password', validators=[DataRequired(message="请输入密码")],
+                             render_kw={'placeholder': '请输入密码', 'autocomplete': "off"})
     remember_me = BooleanField('remember_Me', default=False)
     submit = SubmitField('登录')
 

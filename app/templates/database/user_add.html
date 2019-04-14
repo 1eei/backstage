@@ -1,0 +1,79 @@
+{% extends 'database/base/database_base.html' %}
+
+{% block content %}
+    {% for msg in get_flashed_messages(category_filter=['ok']) %}
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+            </button>
+            {{ msg }}
+        </div>
+    {% endfor %}
+    <form class="layui-form" method="post" id="form-data" novalidate>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">account:</label>
+            <div class="layui-input-block">
+                {{ form.acount }}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">pwd:</label>
+            <div class="layui-input-block">
+                {{ form.pwd }}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">phone:</label>
+            <div class="layui-input-block">
+                {{ form.phone }}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">name:</label>
+            <div class="layui-input-block">
+                {{ form.name }}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">face:</label>
+            <div class="layui-input-block">
+                {{ form.face }}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">wechat:</label>
+            <div class="layui-input-block">
+                {{ form.wechat }}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">_locked:</label>
+            <div class="layui-input-block">
+                {{ form.locked }}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                {{ form.submit }}
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                {{ form.csrf_token }}
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        $(document).ready(function () {
+            $('#user').addClass('layui-this');
+        });
+    </script>
+{% endblock %}
