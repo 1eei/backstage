@@ -11,7 +11,7 @@ def devices_list(page):
         page = 1
     page_data = Device.query.order_by(
         Device.id.asc()
-    ).paginate(page=page, per_page=1)
+    ).paginate(page=page, per_page=5)
     return render_template('devices_list.html', page_data=page_data)
 
 

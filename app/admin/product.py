@@ -11,7 +11,7 @@ def product_list(page):
         page = 1
     page_data = Product.query.order_by(
         Product.id.asc()
-    ).paginate(page=page, per_page=1)
+    ).paginate(page=page, per_page=5)
     return render_template('product_list.html', page_data=page_data)
 
 

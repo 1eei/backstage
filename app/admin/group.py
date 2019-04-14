@@ -11,7 +11,7 @@ def group(page):
         page = 1
     page_data = Device_group.query.order_by(
         Device_group.id.asc()
-    ).paginate(page=page, per_page=1)
+    ).paginate(page=page, per_page=5)
     return render_template('group.html', page_data=page_data)
 
 

@@ -8,6 +8,7 @@ from app.models import Admin, User, Project, Product, Device, Device_group, Auth
 from app.templates.database.forms import AdminDataForm, UserDataForm, ProjectDataForm, ProductDataForm, DeviceDataForm, \
     DeviceGroupDataForm, AuthDataForm, RoleDataForm, OrderDataForm, TestLogDataForm
 from werkzeug.security import generate_password_hash
+from datetime import datetime
 
 
 @admin.route('/admin_add', methods=['GET', 'POST'])
@@ -180,7 +181,7 @@ def order_add():
     if form.validate_on_submit():
         admin_id = form.admin_id.data
         number = form.number.data
-        money = form.money.data
+        money = int(form.money.data)
         pay_method = form.pay_method.data
         stats = form.stats.data
 
@@ -203,9 +204,11 @@ def testlog_add():
     if form.validate_on_submit():
         content = form.content.data
         cause = form.cause.data
+        report_time = datetime.now()
 
         Testlog = testlog(content=content,
-                          cause=cause)
+                          cause=cause,
+                          report_time=report_time)
 
         db.session.add(Testlog)
         db.session.commit()

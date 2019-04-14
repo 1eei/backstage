@@ -54,13 +54,24 @@ def logout():
 
 @admin.route('/admin_user/<int:page>', methods=['GET', 'POST'])
 @login_required
-def admin_user(page=None):
+def admin_user(page):
     if page is None:
         page = 1
     page_data = Admin.query.order_by(
         Admin.id.asc()
-    ).paginate(page=page, per_page=1)
+    ).paginate(page=page, per_page=5)
     return render_template('admin_user.html', page_data=page_data)
+
+
+@admin.route('/project_user/<int:page>', methods=['GET', 'POST'])
+@login_required
+def project_user(page):
+    if page is None:
+        page = 1
+    page_data = User.query.order_by(
+        User.id.asc()
+    ).paginate(page=page, per_page=5)
+    return render_template('project_user.html', page_data=page_data)
 
 
 @admin.route('/log_server/<int:page>', methods=["GET"])
@@ -70,7 +81,7 @@ def log_server(page):
         page = 1
     page_data = testlog.query.order_by(
         testlog.id.asc()
-    ).paginate(page=page, per_page=1)
+    ).paginate(page=page, per_page=5)
     return render_template('log_server.html', page_data=page_data)
 
 
@@ -93,19 +104,8 @@ def orderlist(page):
         page = 1
     page_data = Order.query.order_by(
         Order.id.asc()
-    ).paginate(page=page, per_page=1)
+    ).paginate(page=page, per_page=5)
     return render_template('orderlist.html', page_data=page_data)
-
-
-@admin.route('/project_user/<int:page>', methods=["GET"])
-@login_required
-def project_user(page):
-    if page is None:
-        page = 1
-    page_data = User.query.order_by(
-        User.id.asc()
-    ).paginate(page=page, per_page=1)
-    return render_template('project_user.html', page_data=page_data)
 
 
 @admin.route('/admin_form')

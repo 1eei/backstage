@@ -79,43 +79,43 @@
                             <th>操作</th>
                         </tr>
                         {% for v in page_data.items %}
-                            <tr></tr>
-                            <td>
-                                <p>{{ v.id }}</p>
-                            </td>
-                            <td>
-                                <p>{{ v.name }}</p>
-                            </td>
-                            <td>
-                                <p>{{ v.pwd }}</p>
-                            </td>
-                            <td>
-                                <p>admin</p>
-                            </td>
-                            <td>
-                                <p>project1</p>
-                            </td>
-                            <td>
-                                <p>{{ v.regist_time }}</p>
-                            </td>
-                            <td>
-                                <p>{{ v.login_time }}</p>
-                            </td>
-                            <td>
-                                <p>
-                                <div class="layui-btn layui-btn-normal" id="power">权限</div>
-                                </p>
-                            </td>
-                            <td>
-                                <p><a href="" class="layui-btn layui-btn-primary" id="button">禁用</a></p>
-                            </td>
-                            <td>
-                                <div class="pub-button-group">
-                                    <div class="pub-button pub-button-danger" onclick="return del()">
-                                        删除
+                            <tr>
+                                <td>
+                                    <p>{{ v.id }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.name }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.pwd }}</p>
+                                </td>
+                                <td>
+                                    <p>admin</p>
+                                </td>
+                                <td>
+                                    <p>project1</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.regist_time }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ v.login_time }}</p>
+                                </td>
+                                <td>
+                                    <p>
+                                    <div class="layui-btn layui-btn-normal" id="power">权限</div>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p><a href="" class="layui-btn layui-btn-primary" id="button">禁用</a></p>
+                                </td>
+                                <td>
+                                    <div class="pub-button-group">
+                                        <div class="pub-button pub-button-danger" onclick="return del()">
+                                            删除
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
+                                </td>
                             </tr>
                         {% endfor %}
                     </table>
