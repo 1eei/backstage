@@ -73,25 +73,25 @@
 
                     <table cellspacing="0" class="container-table">
                         <tr>
-                            <th>分组名称</th>
-                            <th>分组ID</th>
-                            <th>添加时间</th>
-                            <th>设备数(总数/激活/在线)</th>
-                            <th>操作</th>
+                            <th class="layui-elip">分组名称</th>
+                            <th class="layui-elip">分组ID</th>
+                            <th class="layui-elip">添加时间</th>
+                            <th class="layui-elip">设备数(总数/激活/在线)</th>
+                            <th class="layui-elip">操作</th>
                         </tr>
                         {% for v in page_data.items %}
                             <tr>
                                 <td>
-                                    <p>{{ v.name }}</p>
+                                    <p class="layui-elip">{{ v.name }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.id }}</p>
+                                    <p class="layui-elip">{{ v.id }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.create_time }}</p>
+                                    <p class="layui-elip">{{ v.create_time }}</p>
                                 </td>
                                 <td>
-                                    <p style="color: red">设备数</p>
+                                    <p class="layui-elip" style="color: red">设备数</p>
                                 </td>
                                 <td>
                                     <div class="pub-button-group">

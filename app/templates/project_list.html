@@ -47,45 +47,45 @@
 
                     <table cellspacing="0" class="container-table">
                         <tr>
-                            <th>序列</th>
-                            <th>项目名称</th>
-                            <th>类型</th>
-                            <th>公司</th>
-                            <th>project_id</th>
-                            <th>项目管理员</th>
-                            <th>管理员密码</th>
-                            <th>设备数</th>
-                            <th>添加时间</th>
-                            <th>操作</th>
+                            <th class="layui-elip">序列</th>
+                            <th class="layui-elip">项目名称</th>
+                            <th class="layui-elip">类型</th>
+                            <th class="layui-elip">公司</th>
+                            <th class="layui-elip">项目id</th>
+                            <th class="layui-elip">项目管理员</th>
+                            <th class="layui-elip">管理员密码</th>
+                            <th class="layui-elip">设备数</th>
+                            <th class="layui-elip">添加时间</th>
+                            <th class="layui-elip">操作</th>
                         </tr>
                         {% for v in page_data.items %}
                             <tr>
                                 <td>
-                                    <p>{{ v.id }}</p>
+                                    <p class="layui-elip">{{ v.id }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.name }}</p>
+                                    <p class="layui-elip">{{ v.name }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.type }}</p>
+                                    <p class="layui-elip">{{ v.type }}</p>
                                 </td>
                                 <td>
-                                    <p>公司</p>
+                                    <p class="layui-elip">公司</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.id }}</p>
+                                    <p class="layui-elip">{{ v.id }}</p>
                                 </td>
                                 <td>
-                                    <p style="color: red">项目管理员</p>
+                                    <p class="layui-elip" style="color: red">项目管理员</p>
                                 </td>
                                 <td>
                                     <p style="color: red">管理员密码</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.number }}</p>
+                                    <p class="layui-elip">{{ v.number }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.create_time }}</p>
+                                    <p class="layui-elip">{{ v.create_time }}</p>
                                 </td>
                                 <td>
                                     <div class="pub-button-group">

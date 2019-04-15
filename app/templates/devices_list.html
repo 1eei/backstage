@@ -74,33 +74,33 @@
 
                     <table cellspacing="0" class="container-table">
                         <tr>
-                            <th>编码</th>
-                            <th>DeviceName</th>
-                            <th>设备所属产品</th>
-                            <th>节点类型</th>
-                            <th>状态/启用状态</th>
-                            <th>最后上线时间</th>
-                            <th>操作</th>
+                            <th class="layui-elip">编码</th>
+                            <th class="layui-elip">设备名称</th>
+                            <th class="layui-elip">设备所属产品</th>
+                            <th class="layui-elip">节点类型</th>
+                            <th class="layui-elip">状态/启用状态</th>
+                            <th class="layui-elip">最后上线时间</th>
+                            <th class="layui-elip">操作</th>
                         </tr>
                         {% for v in page_data.items %}
                             <tr>
                                 <td>
-                                    <p>{{ v.id }}</p>
+                                    <p class="layui-elip">{{ v.id }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.name }}</p>
+                                    <p class="layui-elip">{{ v.name }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.product_id }}</p>
+                                    <p class="layui-elip">{{ v.product_id }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.node }}</p>
+                                    <p class="layui-elip">{{ v.node }}</p>
                                 </td>
                                 <td>
-                                    <p><a href="" class="layui-btn" id="button">启用</a></p>
+                                    <p class="layui-elip"><a href="" class="layui-btn" id="button">启用</a></p>
                                 </td>
                                 <td>
-                                    <p>{{ v.online_time }}</p>
+                                    <p class="layui-elip">{{ v.online_time }}</p>
                                 </td>
 
                                 <td>

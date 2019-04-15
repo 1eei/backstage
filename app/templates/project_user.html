@@ -61,45 +61,45 @@
 
                     <table cellspacing="0" class="container-table">
                         <tr>
-                            <th>序列</th>
-                            <th>手机号码/账号</th>
-                            <th>密码</th>
-                            <th>姓名</th>
-                            <th>微信号</th>
-                            <th>所属项目</th>
-                            <th>注册时间</th>
-                            <th>最后登录时间</th>
-                            <th>状态</th>
-                            <th>操作</th>
+                            <th class="layui-elip">序列</th>
+                            <th class="layui-elip">手机号码/账号</th>
+                            <th class="layui-elip">密码</th>
+                            <th class="layui-elip">姓名</th>
+                            <th class="layui-elip">微信号</th>
+                            <th class="layui-elip">所属项目</th>
+                            <th class="layui-elip">注册时间</th>
+                            <th class="layui-elip">最后登录时间</th>
+                            <th class="layui-elip"v>状态</th>
+                            <th class="layui-elip">操作</th>
                         </tr>
                         {% for v in page_data.items %}
                             <tr>
                                 <td>
-                                    <p>{{ v.id }}</p>
+                                    <p class="layui-elip">{{ v.id }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.acount }}</p>
+                                    <p class="layui-elip">{{ v.account }}</p>
+                                </td>
+                                <td style="width: 200px">
+                                    <p style="width: 200px">{{ v.pwd }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.pwd }}</p>
+                                    <p class="layui-elip">{{ v.name }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.name }}</p>
+                                    <p class="layui-elip">{{ v.wechat }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.wechat }}</p>
+                                    <p class="layui-elip" style="color: red">所属项目</p>
                                 </td>
                                 <td>
-                                    <p style="color: red">所属项目</p>
+                                    <p class="layui-elip">{{ v.regist_time }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.regist_time }}</p>
+                                    <p class="layui-elip">{{ v.login_time }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.login_time }}</p>
-                                </td>
-                                <td>
-                                    <p>{{ v._locked }}</p>
+                                    <p class="layui-elip">{{ v._locked }}</p>
                                 </td>
                                 <td>
                                     <div class="pub-button-group">
@@ -107,7 +107,7 @@
                                                 type: 2,
                                                 area: ['30%', '30%'],
                                                 title: '绑定设备',
-                                                content: '{{ url_for('admin.binding_device') }}', //这里content是一个普通的String
+                                                content: '{{ url_for('admin.binding_device') }}',
                                                 });">
                                             绑定设备
                                         </div>

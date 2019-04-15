@@ -58,24 +58,24 @@
 
                     <table cellspacing="0" class="container-table">
                         <tr>
-                            <th>DevicesNames</th>
-                            <th>上报时间</th>
-                            <th>内容</th>
-                            <th>状态以及原因分析</th>
+                            <th class="layui-elip">设备名称</th>
+                            <th class="layui-elip">上报时间</th>
+                            <th class="layui-elip">内容</th>
+                            <th class="layui-elip">状态以及原因分析</th>
                         </tr>
                         {% for v in page_data.items %}
                             <tr>
                                 <td>
-                                    <p>{{ v.id }}</p>
+                                    <p class="layui-elip">{{ v.id }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.report_time }}</p>
+                                    <p class="layui-elip">{{ v.report_time }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.content }}</p>
+                                    <p class="layui-elip">{{ v.content }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.cause }}</p>
+                                    <p class="layui-elip">{{ v.cause }}</p>
                                 </td>
 
                             </tr>

@@ -110,48 +110,48 @@
 
                     <table cellspacing="0" class="container-table">
                         <tr>
-                            <th>订单编号</th>
-                            <th>项目/公司</th>
-                            <th>产品</th>
-                            <th>DevicesName</th>
-                            <th>订单金额</th>
-                            <th>生成时间</th>
-                            <th>结束时间</th>
-                            <th>状态</th>
-                            <th>客户</th>
-                            <th>支付方式</th>
+                            <th class="layui-elip">订单编号</th>
+                            <th class="layui-elip">项目/公司</th>
+                            <th class="layui-elip">产品</th>
+                            <th class="layui-elip">设备名称</th>
+                            <th class="layui-elip">订单金额</th>
+                            <th class="layui-elip">生成时间</th>
+                            <th class="layui-elip">结束时间</th>
+                            <th class="layui-elip">状态</th>
+                            <th class="layui-elip">客户</th>
+                            <th class="layui-elip">支付方式</th>
                         </tr>
                         {% for v in page_data.items %}
                             <tr>
                                 <td>
-                                    <p>{{ v.id }}</p>
+                                    <p class="layui-elip">{{ v.id }}</p>
                                 </td>
                                 <td>
-                                    <p>公司</p>
+                                    <p class="layui-elip">公司</p>
                                 </td>
                                 <td>
-                                    <p>产品</p>
+                                    <p class="layui-elip">产品</p>
                                 </td>
                                 <td>
-                                    <p style="color: red">DevicesName</p>
+                                    <p class="layui-elip" style="color: red">设备名称</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.money }}</p>
+                                    <p class="layui-elip">{{ v.money }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.start_time }}</p>
+                                    <p class="layui-elip">{{ v.start_time }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.end_time }}</p>
+                                    <p class="layui-elip">{{ v.end_time }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.stats }}</p>
+                                    <p class="layui-elip">{{ v.stats }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.admin_id }}</p>
+                                    <p class="layui-elip">{{ v.admin_id }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.pay_method }}</p>
+                                    <p class="layui-elip">{{ v.pay_method }}</p>
                                 </td>
                             </tr>
                         {% endfor %}

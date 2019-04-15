@@ -48,29 +48,29 @@
 
                     <table cellspacing="0" class="container-table">
                         <tr>
-                            <th>产品名称</th>
-                            <th>ProductKey</th>
-                            <th>节点类型</th>
-                            <th>设备数</th>
-                            <th>添加时间</th>
-                            <th>操作</th>
+                            <th class="layui-elip">产品名称</th>
+                            <th class="layui-elip">产品id</th>
+                            <th class="layui-elip">节点类型</th>
+                            <th class="layui-elip">设备数</th>
+                            <th class="layui-elip">添加时间</th>
+                            <th class="layui-elip">操作</th>
                         </tr>
                         {% for v in page_data.items %}
                             <tr>
                                 <td>
-                                    <p>{{ v.name }}</p>
+                                    <p class="layui-elip">{{ v.name }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.product_id }}</p>
+                                    <p class="layui-elip">{{ v.product_id }}</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.node }}</p>
+                                    <p class="layui-elip">{{ v.node }}</p>
                                 </td>
                                 <td>
-                                    <p style="color: red">项目数</p>
+                                    <p style="color: red">设备数</p>
                                 </td>
                                 <td>
-                                    <p>{{ v.create_time }}</p>
+                                    <p class="layui-elip">{{ v.create_time }}</p>
                                 </td>
                                 <td>
                                     <div class="pub-button-group">
