@@ -7,7 +7,7 @@ from wtforms.validators import DataRequired
 
 
 class AdminDataForm(FlaskForm):
-    name = StringField('name', validators=[DataRequired(message="请输入name")],
+    account = StringField('account', validators=[DataRequired(message="请输入name")],
                        render_kw={'placeholder': '请输入name', 'class': "layui-input",
                                   'autocomplete': "off"})
 

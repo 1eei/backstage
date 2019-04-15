@@ -4,7 +4,7 @@
 from . import admin
 from app import db
 from flask import render_template, flash
-from app.models import Admin, User, Project, Product, Device, Device_group, Auth, Role, Order, testlog
+from app.models import Admin, User, Project, Product, Device, Device_group, Auth, Role, OrderTable, testlog
 from app.templates.database.forms import AdminDataForm, UserDataForm, ProjectDataForm, ProductDataForm, DeviceDataForm, \
     DeviceGroupDataForm, AuthDataForm, RoleDataForm, OrderDataForm, TestLogDataForm
 from werkzeug.security import generate_password_hash
@@ -15,13 +15,14 @@ from datetime import datetime
 def admin_add():
     form = AdminDataForm()
     if form.validate_on_submit():
-        name = form.name.data
+        account = form.account.data
         pwd = form.pwd.data
         _locked = int(form.locked.data)
 
-        admin = Admin(name=name,
+        admin = Admin(account=account,
                       pwd=generate_password_hash(pwd),
-                      _locked=_locked)
+                      _locked=_locked
+                      )
 
         db.session.add(admin)
         db.session.commit()

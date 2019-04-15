@@ -4,7 +4,7 @@
 from . import admin
 from flask import render_template, redirect, url_for, flash, request, session
 from app.admin.forms import AdminForm
-from app.models import Admin, User, Order, testlog
+from app.models import Admin, User, OrderTable, testlog
 from flask_login import login_required, login_user, logout_user
 
 
@@ -19,8 +19,8 @@ def login():
     form = AdminForm()
     if form.validate_on_submit():
         data = form.data
-        admin = Admin.query.filter_by(name=data['name']).first()
-        if not admin.check_pwd(data['password']):
+        admin = Admin.query.filter_by(account=data['account']).first()
+        if not admin.check_pwd(data['pwd']):
             flash('密码错误!', 'err')
             return redirect(url_for('admin.login'))
         '''
@@ -102,8 +102,8 @@ def online_test():
 def orderlist(page):
     if page is None:
         page = 1
-    page_data = Order.query.order_by(
-        Order.id.asc()
+    page_data = OrderTable.query.order_by(
+        OrderTable.id.asc()
     ).paginate(page=page, per_page=5)
     return render_template('orderlist.html', page_data=page_data)
 

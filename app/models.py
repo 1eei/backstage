@@ -7,7 +7,7 @@ from flask_login import UserMixin
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)  # 编号
-    acount = db.Column(db.String(16), unique=True, nullable=False)  # 用户名
+    account = db.Column(db.String(16), unique=True, nullable=False)  # 用户名
     pwd = db.Column(db.String(128), nullable=False)  # 密码
     name = db.Column(db.String(64))  # 客户姓名
     phone = db.Column(db.String(11), unique=True, nullable=False)  # 手机
@@ -17,7 +17,8 @@ class User(db.Model, UserMixin):
     login_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 最后登陆时间
     _locked = db.Column(db.SmallInteger, nullable=False, default=True)  # 禁用/启用
 
-    order_id = db.relationship('Order', backref='user')
+    projects = db.relationship('Project', backref='project', uselist=False)
+    order_tables = db.relationship('OrderTable', backref='user')
 
     def __repr__(self):
         return 'name:%r' % self.name
@@ -28,8 +29,8 @@ class User(db.Model, UserMixin):
 
 
 # 订单表
-class Order(db.Model):
-    __tablename__ = 'order'
+class OrderTable(db.Model):
+    __tablename__ = 'order_table'
     id = db.Column(db.Integer, primary_key=True)  # 序号
     admin_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     number = db.Column(db.String(64), unique=True)  # 订单编号
@@ -62,11 +63,15 @@ class Admin(db.Model, UserMixin):
     __tablename__ = 'admin'
     id = db.Column(db.Integer, primary_key=True)  # 编号
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
-    name = db.Column(db.String(16), unique=True, nullable=False)  # 管理员账号
+    account = db.Column(db.String(16), unique=True, nullable=False)  # 管理员账号
     pwd = db.Column(db.String(128), nullable=False)  # 管理员密码
+    name = db.Column(db.String(128))  # 管理员姓名
     regist_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 注册时间
     login_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 最后登陆时间
-    _locked = db.Column(db.Boolean, nullable=False)  # 禁用/启用
+    _locked = db.Column(db.SmallInteger, nullable=False)  # 禁用/启用
+
+    projects = db.relationship('Project', backref='admin', uselist=False)
+
 
     def __repr__(self):
         return 'name:%r' % self.name
@@ -95,7 +100,7 @@ class Device_group(db.Model):
     name = db.Column(db.String(16), unique=True, nullable=False)  # 设备组名
     create_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 创建时间
 
-    device_id = db.relationship('Device', backref='Device_group')
+    devices = db.relationship('Device', backref='Device_group')
 
     def __repr__(self):
         return 'name:%r' % self.name
@@ -121,7 +126,7 @@ class Device(db.Model):
 
 
 # 测试日志
-class testlog(db.Model):
+class Testlog(db.Model):
     __tablename__ = 'testlog'
     id = db.Column(db.Integer, primary_key=True)  # 序号
     content = db.Column(db.String(255))  # 内容
@@ -141,7 +146,7 @@ class Product(db.Model):
     node = db.Column(db.String(25))  # 产品类型
     create_time = db.Column(db.DateTime, index=True, default=datetime.now)
 
-    device_id = db.relationship('Device', backref='product')
+    devices = db.relationship('Device', backref='product')
 
     def __repr__(self):
         return 'name:%r' % self.name
@@ -151,17 +156,20 @@ class Product(db.Model):
 class Project(db.Model):
     __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True)  # 序号
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
     number = db.Column(db.String(50), unique=True)  # 项目编号
     name = db.Column(db.String(16), unique=True, nullable=False)  # 项目名
     type = db.Column(db.String(20))  # 项目类型
     commpy = db.Column(db.String(50))  # 项目所属公司
     create_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 添加时间
 
-    device_id = db.relationship('Device', backref='project')
+    users = db.relationship('User')
+    admins = db.relationship('Admin')
+    devices = db.relationship('Device', backref='project')
 
     def __repr__(self):
         return 'name:%r' % self.name
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     db.create_all()
