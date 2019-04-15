@@ -26,17 +26,44 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md2" style="margin-top: 7px">project_id:</div>
-            <div class="layui-col-md10">{{ form.project_id }}</div>
+            <div class="layui-col-md10">
+                {{ form.project_id }}
+                {% for err in form.project_id.errors %}
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
+                        <font style="color: red">
+                            {{ err }}
+                        </font>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
 
         <div class="layui-form-item">
             <div class="layui-col-md2" style="margin-top: 7px">product_id:</div>
-            <div class="layui-col-md10">{{ form.product_id }}</div>
+            <div class="layui-col-md10">
+                {{ form.product_id }}
+                {% for err in form.product_id.errors %}
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
+                        <font style="color: red">
+                            {{ err }}
+                        </font>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
 
         <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">Device_group_id:</div>
-            <div class="layui-col-md10">{{ form.Device_group_id }}</div>
+            <div class="layui-col-md2" style="margin-top: 7px">devicegroup_id:</div>
+            <div class="layui-col-md10">
+                {{ form.devicegroup_id }}
+                {% for err in form.devicegroup_id.errors %}
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
+                        <font style="color: red">
+                            {{ err }}
+                        </font>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
 
         <div class="layui-form-item">

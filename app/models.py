@@ -72,7 +72,6 @@ class Admin(db.Model, UserMixin):
 
     projects = db.relationship('Project', backref='admin', uselist=False)
 
-
     def __repr__(self):
         return 'name:%r' % self.name
 
@@ -85,7 +84,7 @@ class Admin(db.Model, UserMixin):
 class Auth(db.Model):
     __tablename__ = 'auth'
     id = db.Column(db.Integer, primary_key=True)  # 编号
-    name = db.Column(db.String(64))  # 权限名称
+    name = db.Column(db.String(64), nullable=False)  # 权限名称
     url = db.Column(db.String(64))  # 权限地址
     create_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 创建时间
 
@@ -94,13 +93,13 @@ class Auth(db.Model):
 
 
 # 设备组表
-class Device_group(db.Model):
-    __tablename__ = 'Device_group'
+class DeviceGroup(db.Model):
+    __tablename__ = 'device_group'
     id = db.Column(db.Integer, primary_key=True)  # 设备组编号
     name = db.Column(db.String(16), unique=True, nullable=False)  # 设备组名
     create_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 创建时间
 
-    devices = db.relationship('Device', backref='Device_group')
+    devices = db.relationship('Device', backref='DeviceGroup')
 
     def __repr__(self):
         return 'name:%r' % self.name
@@ -108,11 +107,11 @@ class Device_group(db.Model):
 
 # 设备表
 class Device(db.Model):
-    __tablename__ = 'Device'
+    __tablename__ = 'device'
     id = db.Column(db.Integer, primary_key=True)  # 设备编号
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
-    Device_group_id = db.Column(db.Integer, db.ForeignKey('Device_group.id'))
+    devicegroup_id = db.Column(db.Integer, db.ForeignKey('device_group.id'))
     number = db.Column(db.String(64))  # 设备编号
     name = db.Column(db.String(16), unique=True, nullable=False)  # 设备名
     node = db.Column(db.String(25))  # 设备类型
@@ -126,8 +125,8 @@ class Device(db.Model):
 
 
 # 测试日志
-class Testlog(db.Model):
-    __tablename__ = 'testlog'
+class TestLog(db.Model):
+    __tablename__ = 'test_log'
     id = db.Column(db.Integer, primary_key=True)  # 序号
     content = db.Column(db.String(255))  # 内容
     cause = db.Column(db.String(255))  # 原因
@@ -170,6 +169,7 @@ class Project(db.Model):
 
     def __repr__(self):
         return 'name:%r' % self.name
+
 
 if __name__ == '__main__':
     db.create_all()

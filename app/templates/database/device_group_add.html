@@ -12,7 +12,16 @@
 
         <div class="layui-form-item">
             <div class="layui-col-md2" style="margin-top: 7px">name:</div>
-            <div class="layui-col-md10">{{ form.name }}</div>
+            <div class="layui-col-md10">
+                {{ form.name }}
+                {% for err in form.name.errors %}
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
+                        <font style="color: red">
+                            {{ err }}
+                        </font>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
 
         <div class="layui-row layui-col-space30">

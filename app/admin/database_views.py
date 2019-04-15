@@ -4,7 +4,7 @@
 from . import admin
 from app import db
 from flask import render_template, flash
-from app.models import Admin, User, Project, Product, Device, Device_group, Auth, Role, OrderTable, Testlog
+from app.models import Admin, User, Project, Product, Device, DeviceGroup, Auth, Role, OrderTable, TestLog
 from app.templates.database.forms import AdminDataForm, UserDataForm, ProjectDataForm, ProductDataForm, DeviceDataForm, \
     DeviceGroupDataForm, AuthDataForm, RoleDataForm, OrderDataForm, TestLogDataForm
 from werkzeug.security import generate_password_hash
@@ -17,10 +17,11 @@ def admin_add():
     if form.validate_on_submit():
         account = form.account.data
         pwd = form.pwd.data
+        role_id = form.role_id.data
         _locked = int(form.locked.data)
-
         admin = Admin(account=account,
                       pwd=generate_password_hash(pwd),
+                      role_id=role_id,
                       _locked=_locked
                       )
 
@@ -63,11 +64,15 @@ def project_add():
     form = ProjectDataForm()
     if form.validate_on_submit():
         name = form.name.data
+        user_id = form.user_id.data
+        admin_id = form.admin_id.data
         number = form.number.data
         type = form.type.data
         commpy = form.commpy.data
 
         project = Project(name=name,
+                          user_id=user_id,
+                          admin_id=admin_id,
                           number=number,
                           type=type,
                           commpy=commpy)
@@ -105,7 +110,7 @@ def device_add():
         name = form.name.data
         project_id = int(form.project_id.data)
         product_id = int(form.product_id.data)
-        Device_group_id = int(form.Device_group_id.data)
+        devicegroup_id = int(form.devicegroup_id.data)
         number = form.number.data
         node = form.node.data
         _online = int(form.online.data)
@@ -114,7 +119,7 @@ def device_add():
         device = Device(name=name,
                         project_id=project_id,
                         product_id=product_id,
-                        Device_group_id=Device_group_id,
+                        devicegroup_id=devicegroup_id,
                         number=number,
                         node=node,
                         _online=_online,
@@ -133,7 +138,7 @@ def device_group_add():
     if form.validate_on_submit():
         name = form.name.data
 
-        device_group = Device_group(name=name)
+        device_group = DeviceGroup(name=name)
 
         db.session.add(device_group)
         db.session.commit()
@@ -187,10 +192,10 @@ def order_add():
         stats = form.stats.data
 
         order = OrderTable(admin_id=admin_id,
-                      number=number,
-                      money=money,
-                      pay_method=pay_method,
-                      stats=stats)
+                           number=number,
+                           money=money,
+                           pay_method=pay_method,
+                           stats=stats)
 
         db.session.add(order)
         db.session.commit()
@@ -207,7 +212,7 @@ def testlog_add():
         cause = form.cause.data
         report_time = datetime.now()
 
-        testlog = Testlog(content=content,
+        testlog = TestLog(content=content,
                           cause=cause,
                           report_time=report_time)
 

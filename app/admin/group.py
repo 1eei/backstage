@@ -1,7 +1,7 @@
 from . import admin
 from flask import render_template
 from flask_login import login_required
-from app.models import Device_group
+from app.models import DeviceGroup
 
 
 @admin.route('/group/<int:page>', methods=["GET"])
@@ -9,8 +9,8 @@ from app.models import Device_group
 def group(page):
     if page is None:
         page = 1
-    page_data = Device_group.query.order_by(
-        Device_group.id.asc()
+    page_data = DeviceGroup.query.order_by(
+        DeviceGroup.id.asc()
     ).paginate(page=page, per_page=5)
     return render_template('group.html', page_data=page_data)
 
