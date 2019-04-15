@@ -82,25 +82,25 @@
                         {% for v in page_data.items %}
                             <tr>
                                 <td>
-                                    <p class="layui-elip">{{ v.id }}</p>
+                                    <p class="layui-elip">{{ v.admin.id }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip">{{ v.account }}</p>
+                                    <p class="layui-elip">{{ v.admin.account }}</p>
                                 </td>
                                 <td style="width:200px">
-                                    <p style="width:200px">{{ v.pwd }}</p>
+                                    <p style="width:200px">{{ v.admin.pwd }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip">{{ v.name }}</p>
+                                    <p class="layui-elip">{{ v.admin.name }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip" style="color: red">所属项目</p>
+                                    <p class="layui-elip" style="color: red">{{ v.name }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip">{{ v.regist_time }}</p>
+                                    <p class="layui-elip">{{ v.admin.regist_time }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip">{{ v.login_time }}</p>
+                                    <p class="layui-elip">{{ v.admin.login_time }}</p>
                                 </td>
                                 <td>
                                     <div class="layui-btn layui-btn-normal" id="power">权限</div>

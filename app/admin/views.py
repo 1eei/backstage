@@ -1,6 +1,3 @@
-# ！/usr/bin/env python
-# -*-coding:utf-8 -*-
-
 from . import admin
 from flask import render_template, redirect, url_for, flash, request, session
 from app.admin.forms import LoginForm
@@ -58,7 +55,9 @@ def logout():
 def admin_user(page):
     if page is None:
         page = 1
-    page_data = Admin.query.order_by(
+    page_data = Project.query.join(Admin).filter(
+        Project.admin_id == Admin.id
+    ).order_by(
         Admin.id.asc()
     ).paginate(page=page, per_page=5)
     return render_template('admin_user.html', page_data=page_data)

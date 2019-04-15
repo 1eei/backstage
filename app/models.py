@@ -164,7 +164,7 @@ class Project(db.Model):
     create_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 添加时间
 
     users = db.relationship('User')
-    admins = db.relationship('Admin')
+    admins = db.relationship('Admin', backref='project')
     devices = db.relationship('Device', backref='project')
 
     def __repr__(self):

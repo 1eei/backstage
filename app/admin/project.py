@@ -1,7 +1,7 @@
 from . import admin
 from flask import render_template
 from flask_login import login_required
-from app.models import Project
+from app.models import Project, Admin
 
 
 @admin.route('/project_list/<int:page>', methods=["GET"])
@@ -9,8 +9,10 @@ from app.models import Project
 def project_list(page):
     if page is None:
         page = 1
-    page_data = Project.query.order_by(
-        Project.id.asc()
+    page_data = Project.query.join(Admin).filter(
+        Project.admin_id == Admin.id
+    ).order_by(
+        Admin.id.asc()
     ).paginate(page=page, per_page=5)
     return render_template('project_list.html', page_data=page_data)
 
