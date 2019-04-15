@@ -3,20 +3,21 @@
 
 from . import admin
 from flask import render_template, redirect, url_for, flash, request, session
-from app.admin.forms import AdminForm
-from app.models import Admin, User, OrderTable, TestLog
+from app.admin.forms import LoginForm
+from app.models import Admin, User, OrderTable, TestLog, Project
 from flask_login import login_required, login_user, logout_user
 
 
 @admin.route('/')
 @login_required
 def index():
-    return render_template('index.html')
+    data = Project.query.all()
+    return render_template('index.html', data=data)
 
 
 @admin.route('/login', methods=['GET', 'POST'])
 def login():
-    form = AdminForm()
+    form = LoginForm()
     if form.validate_on_submit():
         data = form.data
         admin = Admin.query.filter_by(account=data['account']).first()

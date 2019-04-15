@@ -106,52 +106,25 @@
 
                             <table cellspacing="0" class="container-table">
                                 <tr>
-                                    <th>项目名称</th>
-                                    <th>创建时间</th>
-                                    <th>设备量</th>
+                                    <th class="layui-elip">项目名称</th>
+                                    <th class="layui-elip">创建时间</th>
+                                    <th class="layui-elip">设备量</th>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <p>121</p>
-                                    </td>
-                                    <td>
-                                        <p>121</p>
-                                    </td>
-                                    <td>
-                                        <div class="Bar">
-                                            <div style="width:70%;" class="bar4">
+                                {% for v in data %}
+                                    <tr>
+                                        <td>
+                                            <p class="layui-elip">{{ v.name }}</p>
+                                        </td>
+                                        <td>
+                                            <p class="layui-elip">{{ v.create_time }}</p>
+                                        </td>
+                                        <td>
+                                            <div class="Bar">
+                                                <div style="width:70%;" class="bar4"></div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>121</p>
-                                    </td>
-                                    <td>
-                                        <p>121</p>
-                                    </td>
-                                    <td>
-                                        <div class="Bar">
-                                            <div style="width:70%;" class="bar4">
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>121</p>
-                                    </td>
-                                    <td>
-                                        <p>121</p>
-                                    </td>
-                                    <td>
-                                        <div class="Bar">
-                                            <div style="width:70%;" class="bar4">
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </table>
                         </form>
                     </div>
