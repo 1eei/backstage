@@ -19,9 +19,3 @@ def product_list(page):
 @login_required
 def product_edit():
     return render_template('edit/product_edit.html')
-
-
-@admin.route('/product_form')
-@login_required
-def product_form():
-    return render_template('form/product_form.html')

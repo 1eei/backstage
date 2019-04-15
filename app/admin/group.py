@@ -15,12 +15,6 @@ def group(page):
     return render_template('group.html', page_data=page_data)
 
 
-@admin.route('/group_form')
-@login_required
-def group_form():
-    return render_template('form/group_form.html')
-
-
 @admin.route('/group_edit')
 @login_required
 def group_edit():

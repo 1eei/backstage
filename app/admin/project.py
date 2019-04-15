@@ -15,12 +15,6 @@ def project_list(page):
     return render_template('project_list.html', page_data=page_data)
 
 
-@admin.route('/creat_project_form')
-@login_required
-def creat_project_form():
-    return render_template('form/creat_project_form.html')
-
-
 @admin.route('/project_edit')
 @login_required
 def project_edit():

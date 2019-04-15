@@ -109,12 +109,6 @@ def orderlist(page):
     return render_template('orderlist.html', page_data=page_data)
 
 
-@admin.route('/admin_form')
-@login_required
-def admin_form():
-    return render_template('form/admin_form.html')
-
-
 @admin.route('/power_form')
 @login_required
 def power_form():

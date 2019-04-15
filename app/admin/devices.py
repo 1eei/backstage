@@ -15,12 +15,6 @@ def devices_list(page):
     return render_template('devices_list.html', page_data=page_data)
 
 
-@admin.route('/device_form')
-@login_required
-def device_form():
-    return render_template('form/device_form.html')
-
-
 @admin.route('/device_edit')
 @login_required
 def device_edit():
