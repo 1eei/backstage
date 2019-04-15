@@ -11,11 +11,11 @@
     <form class="layui-form" method="post" id="form-data" novalidate>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">name:</label>
-            <div class="layui-input-block">
+            <div class="layui-col-md2" style="margin-top: 7px">name:</div>
+            <div class="layui-col-md10">
                 {{ form.name }}
                 {% for err in form.name.errors %}
-                    <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
                         <font style="color: red">
                             {{ err }}
                         </font>
@@ -25,46 +25,36 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">project_id:</label>
-            <div class="layui-input-block">
-                {{ form.project_id }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">project_id:</div>
+            <div class="layui-col-md10">{{ form.project_id }}</div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">product_id:</label>
-            <div class="layui-input-block">
-                {{ form.product_id }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">product_id:</div>
+            <div class="layui-col-md10">{{ form.product_id }}</div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">Device_group_id:</label>
-            <div class="layui-input-block">
-                {{ form.Device_group_id }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">Device_group_id:</div>
+            <div class="layui-col-md10">{{ form.Device_group_id }}</div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">number:</label>
-            <div class="layui-input-block">
-                {{ form.number }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">number:</div>
+            <div class="layui-col-md10">{{ form.number }}</div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">node:</label>
-            <div class="layui-input-block">
-                {{ form.node }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">node:</div>
+            <div class="layui-col-md10">{{ form.node }}</div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">online:</label>
-            <div class="layui-input-block">
+            <div class="layui-col-md2" style="margin-top: 7px">online:</div>
+            <div class="layui-col-md10">
                 {{ form.online }}
                 {% for err in form.online.errors %}
-                    <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
                         <font style="color: red">
                             {{ err }}
                         </font>
@@ -74,11 +64,11 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">active:</label>
-            <div class="layui-input-block">
+            <div class="layui-col-md2" style="margin-top: 7px">active:</div>
+            <div class="layui-col-md10">
                 {{ form.active }}
                 {% for err in form.active.errors %}
-                    <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
                         <font style="color: red">
                             {{ err }}
                         </font>
@@ -87,13 +77,20 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <div class="layui-input-block">
+        <div class="layui-row layui-col-space30">
+            <div class="layui-col-md4"></div>
+
+            <div class="layui-col-md2">
                 {{ form.submit }}
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                {{ form.csrf_token }}
             </div>
+            <div class="layui-col-md2">
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+
+            <div class="layui-col-md4"></div>
+            {{ form.csrf_token }}
         </div>
+
     </form>
 {% endblock %}
 

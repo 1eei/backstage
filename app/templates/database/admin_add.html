@@ -11,26 +11,25 @@
     <form class="layui-form" method="post" id="form-data" novalidate>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">account:</label>
-            <div class="layui-input-block">
+            <div class="layui-col-md2" style="margin-top: 7px">account:</div>
+            <div class="layui-col-md10">
                 {{ form.account }}
                 {% for err in form.account.errors %}
-                    <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
                         <font style="color: red">
                             {{ err }}
                         </font>
                     </div>
                 {% endfor %}
             </div>
-
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">pwd:</label>
-            <div class="layui-input-block">
+            <div class="layui-col-md2" style="margin-top: 7px">pwd:</div>
+            <div class="layui-col-md10">
                 {{ form.pwd }}
                 {% for err in form.pwd.errors %}
-                    <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
                         <font style="color: red">
                             {{ err }}
                         </font>
@@ -40,11 +39,11 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">_locked:</label>
-            <div class="layui-input-block">
+            <div class="layui-col-md2" style="margin-top: 7px">_locked:</div>
+            <div class="layui-col-md10">
                 {{ form.locked }}
                 {% for err in form.locked.errors %}
-                    <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
                         <font style="color: red">
                             {{ err }}
                         </font>
@@ -53,12 +52,18 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <div class="layui-input-block">
+        <div class="layui-row layui-col-space30">
+            <div class="layui-col-md4"></div>
+
+            <div class="layui-col-md2">
                 {{ form.submit }}
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                {{ form.csrf_token }}
             </div>
+            <div class="layui-col-md2">
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+
+            <div class="layui-col-md4"></div>
+            {{ form.csrf_token }}
         </div>
     </form>
 {% endblock %}

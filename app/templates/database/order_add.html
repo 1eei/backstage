@@ -11,46 +11,42 @@
     <form class="layui-form" method="post" id="form-data" novalidate>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">admin_id:</label>
-            <div class="layui-input-block">
-                {{ form.admin_id }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">admin_id:</div>
+            <div class="layui-col-md10">{{ form.admin_id }}</div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">number:</label>
-            <div class="layui-input-block">
-                {{ form.number }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">number:</div>
+            <div class="layui-col-md10">{{ form.number }}</div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">money:</label>
-            <div class="layui-input-block">
-                {{ form.money }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">money:</div>
+            <div class="layui-col-md10">{{ form.money }}</div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">pay_method:</label>
-            <div class="layui-input-block">
-                {{ form.pay_method }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">pay_method:</div>
+            <div class="layui-col-md10">{{ form.pay_method }}</div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">stats:</label>
-            <div class="layui-input-block">
-                {{ form.stats }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">stats:</div>
+            <div class="layui-col-md10">{{ form.stats }}</div>
         </div>
 
-        <div class="layui-form-item">
-            <div class="layui-input-block">
+        <div class="layui-row layui-col-space30">
+            <div class="layui-col-md4"></div>
+
+            <div class="layui-col-md2">
                 {{ form.submit }}
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                {{ form.csrf_token }}
             </div>
+            <div class="layui-col-md2">
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+
+            <div class="layui-col-md4"></div>
+            {{ form.csrf_token }}
         </div>
     </form>
 {% endblock %}

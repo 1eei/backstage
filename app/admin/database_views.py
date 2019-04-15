@@ -4,7 +4,7 @@
 from . import admin
 from app import db
 from flask import render_template, flash
-from app.models import Admin, User, Project, Product, Device, Device_group, Auth, Role, OrderTable, testlog
+from app.models import Admin, User, Project, Product, Device, Device_group, Auth, Role, OrderTable, Testlog
 from app.templates.database.forms import AdminDataForm, UserDataForm, ProjectDataForm, ProductDataForm, DeviceDataForm, \
     DeviceGroupDataForm, AuthDataForm, RoleDataForm, OrderDataForm, TestLogDataForm
 from werkzeug.security import generate_password_hash
@@ -35,7 +35,7 @@ def admin_add():
 def user_add():
     form = UserDataForm()
     if form.validate_on_submit():
-        accout = form.acount.data
+        account = form.account.data
         pwd = form.pwd.data
         phone = form.phone.data
         name = form.name.data
@@ -43,7 +43,7 @@ def user_add():
         wechat = form.wechat.data
         _locked = int(form.locked.data)
 
-        user = User(acount=accout,
+        user = User(account=account,
                     pwd=generate_password_hash(pwd),
                     phone=phone,
                     name=name,
@@ -186,7 +186,7 @@ def order_add():
         pay_method = form.pay_method.data
         stats = form.stats.data
 
-        order = Order(admin_id=admin_id,
+        order = OrderTable(admin_id=admin_id,
                       number=number,
                       money=money,
                       pay_method=pay_method,
@@ -207,11 +207,11 @@ def testlog_add():
         cause = form.cause.data
         report_time = datetime.now()
 
-        Testlog = testlog(content=content,
+        testlog = Testlog(content=content,
                           cause=cause,
                           report_time=report_time)
 
-        db.session.add(Testlog)
+        db.session.add(testlog)
         db.session.commit()
         flash('Testlog数据添加成功!', 'ok')
 

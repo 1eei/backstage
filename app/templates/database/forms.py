@@ -23,7 +23,7 @@ class AdminDataForm(FlaskForm):
 
 
 class UserDataForm(FlaskForm):
-    acount = StringField('account', validators=[DataRequired(message="请输入account")],
+    account = StringField('account', validators=[DataRequired(message="请输入account")],
                          render_kw={'placeholder': '请输入account', 'class': "layui-input",
                                     'autocomplete': "off"})
 

@@ -66,14 +66,14 @@ body {
   margin-bottom: 5px;
 }
 
-.login-frame form #name {
+.login-frame form #account {
   width: 100%;
   height: 40px;
   margin: 10px auto;
   text-indent: .6em;
 }
 
-.login-frame form #password {
+.login-frame form #pwd {
   width: 100%;
   height: 40px;
   margin: 10px auto;

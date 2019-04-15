@@ -10,4 +10,4 @@ import app.admin.project
 import app.admin.product
 import app.admin.devices
 import app.admin.group
-import app.admin.database
+import app.admin.database_views

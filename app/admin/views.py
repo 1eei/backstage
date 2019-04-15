@@ -4,7 +4,7 @@
 from . import admin
 from flask import render_template, redirect, url_for, flash, request, session
 from app.admin.forms import AdminForm
-from app.models import Admin, User, OrderTable, testlog
+from app.models import Admin, User, OrderTable, Testlog
 from flask_login import login_required, login_user, logout_user
 
 
@@ -79,8 +79,8 @@ def project_user(page):
 def log_server(page):
     if page is None:
         page = 1
-    page_data = testlog.query.order_by(
-        testlog.id.asc()
+    page_data = Testlog.query.order_by(
+        Testlog.id.asc()
     ).paginate(page=page, per_page=5)
     return render_template('log_server.html', page_data=page_data)
 

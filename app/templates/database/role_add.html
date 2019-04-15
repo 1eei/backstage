@@ -11,11 +11,11 @@
     <form class="layui-form" method="post" id="form-data" novalidate>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">name:</label>
-            <div class="layui-input-block">
+            <div class="layui-col-md2" style="margin-top: 7px">name:</div>
+            <div class="layui-col-md10">
                 {{ form.name }}
                 {% for err in form.name.errors %}
-                    <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
                         <font style="color: red">
                             {{ err }}
                         </font>
@@ -25,18 +25,23 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">auth:</label>
-            <div class="layui-input-block">
-                {{ form.auth }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">auth:</div>
+            <div class="layui-col-md10">{{ form.auth }}</div>
         </div>
 
-        <div class="layui-form-item">
-            <div class="layui-input-block">
+        <div class="layui-row layui-col-space30">
+            <div class="layui-col-md4"></div>
+
+            <div class="layui-col-md2">
                 {{ form.submit }}
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                {{ form.csrf_token }}
             </div>
+            <div class="layui-col-md2">
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+
+            <div class="layui-col-md4"></div>
+            {{ form.csrf_token }}
+        </div>
         </div>
     </form>
 {% endblock %}

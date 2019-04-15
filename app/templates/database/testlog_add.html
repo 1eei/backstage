@@ -11,25 +11,27 @@
     <form class="layui-form" method="post" id="form-data" novalidate>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">content:</label>
-            <div class="layui-input-block">
-                {{ form.content }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">content:</div>
+            <div class="layui-col-md10">{{ form.content }}</div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">cause:</label>
-            <div class="layui-input-block">
-                {{ form.cause }}
-            </div>
+            <div class="layui-col-md2" style="margin-top: 7px">cause:</div>
+            <div class="layui-col-md10">{{ form.cause }}</div>
         </div>
 
-        <div class="layui-form-item">
-            <div class="layui-input-block">
+        <div class="layui-row layui-col-space30">
+            <div class="layui-col-md4"></div>
+
+            <div class="layui-col-md2">
                 {{ form.submit }}
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                {{ form.csrf_token }}
             </div>
+            <div class="layui-col-md2">
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+
+            <div class="layui-col-md4"></div>
+            {{ form.csrf_token }}
         </div>
     </form>
 {% endblock %}
