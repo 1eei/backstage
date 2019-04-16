@@ -48,3 +48,20 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('admin.login'))
+
+
+# @admin.route('/admin_form')
+# def admin_form():
+#     return render_template('edit/admin_form.html')
+#
+# @admin.route('/project_form')
+# def project_form():
+#     return render_template('edit/project_form.html')
+#
+# @admin.route('/device_form')
+# def device_form():
+#     return render_template('edit/device_form.html')
+#
+# @admin.route('/product_form')
+# def product_form():
+#     return render_template('edit/product_form.html')
