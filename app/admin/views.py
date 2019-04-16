@@ -6,7 +6,7 @@ from flask_login import login_required, login_user, logout_user
 
 
 @admin.route('/')
-@login_required
+#@login_required
 def index():
     data = Project.query.all()
     return render_template('index.html', data=data)
@@ -51,7 +51,7 @@ def logout():
 
 
 @admin.route('/admin_user/<int:page>', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def admin_user(page):
     if page is None:
         page = 1
@@ -64,7 +64,7 @@ def admin_user(page):
 
 
 @admin.route('/project_user/<int:page>', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def project_user(page):
     if page is None:
         page = 1
@@ -75,7 +75,7 @@ def project_user(page):
 
 
 @admin.route('/log_server/<int:page>', methods=["GET"])
-@login_required
+#@login_required
 def log_server(page):
     if page is None:
         page = 1
@@ -86,7 +86,7 @@ def log_server(page):
 
 
 @admin.route('/monitor', methods=["GET"])
-@login_required
+#@login_required
 def monitor():
     return render_template('monitor.html')
 
@@ -98,7 +98,7 @@ def online_test():
 
 
 @admin.route('/orderlist/<int:page>', methods=["GET"])
-@login_required
+#@login_required
 def orderlist(page):
     if page is None:
         page = 1
@@ -109,7 +109,7 @@ def orderlist(page):
 
 
 @admin.route('/power_form')
-@login_required
+#@login_required
 def power_form():
     return render_template('form/power_form.html')
 

@@ -5,7 +5,7 @@ from app.models import Product
 
 
 @admin.route('/product_list/<int:page>', methods=["GET"])
-@login_required
+#@login_required
 def product_list(page):
     if page is None:
         page = 1
@@ -16,6 +16,6 @@ def product_list(page):
 
 
 @admin.route('/product_edit', methods=["GET", "POST"])
-@login_required
+#@login_required
 def product_edit():
     return render_template('edit/product_edit.html')

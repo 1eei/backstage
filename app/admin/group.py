@@ -5,7 +5,7 @@ from app.models import DeviceGroup
 
 
 @admin.route('/group/<int:page>', methods=["GET"])
-@login_required
+#@login_required
 def group(page):
     if page is None:
         page = 1
@@ -16,6 +16,6 @@ def group(page):
 
 
 @admin.route('/group_edit')
-@login_required
+#@login_required
 def group_edit():
     return render_template('edit/group_edit.html')

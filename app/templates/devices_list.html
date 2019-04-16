@@ -48,12 +48,11 @@
             </div>
 
             <div class="container-full">
-                <form action="" method="">
+                <form action="" method="post">
                     <div class="search-group">
                         <div class="search-group-left">
                             <div class="search-title">设备列表</div>
                             <div class="search-input">
-
                                 <input type="text" placeholder="请输入设备名称查询">
                                 <div class="pub-button-group">
                                     <div class="pub-button pub-button-primary ">
@@ -97,7 +96,25 @@
                                     <p class="layui-elip">{{ v.node }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip"><a href="" class="layui-btn" id="button">启用</a></p>
+                                    {#                                    {% set id = v.id %}#}
+                                    {#                                    {% set _active = v._active %}#}
+                                    {#                                    {% set page = v._active %}#}
+                                    {#                                    {% if v._active == 1 %}#}
+                                    {#                                        <p class="layui-elip"><a#}
+                                    {#                                                href="{{ url_for('admin.devices_list',page=1,id=id,_active=_active) }}"#}
+                                    {#                                                class="layui-btn" id="button">启用中</a></p>#}
+                                    {#                                    {% elif v._active == 0 %}#}
+                                    {#                                        <p class="layui-elip"><a#}
+                                    {#                                                href="{{ url_for('admin.devices_list',page=1,id=id,_active=_active) }}"#}
+                                    {#                                                class="layui-btn layui-btn-danger" id="button">禁用中</a>#}
+                                    {#                                        </p>#}
+                                    {#                                    {% endif %}#}
+                                    <p class="layui-elip">
+                                        <a href="{{ url_for('admin.devices_list',page=1) }}"
+                                            class="layui-btn" id="button">启用中
+                                        </a>
+                                    </p>
+
                                 </td>
                                 <td>
                                     <p class="layui-elip">{{ v.online_time }}</p>

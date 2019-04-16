@@ -5,7 +5,7 @@ from app.models import Project, Admin
 
 
 @admin.route('/project_list/<int:page>', methods=["GET"])
-@login_required
+#@login_required
 def project_list(page):
     if page is None:
         page = 1
@@ -18,18 +18,18 @@ def project_list(page):
 
 
 @admin.route('/project_edit')
-@login_required
+#@login_required
 def project_edit():
     return render_template('edit/project_edit.html')
 
 
 @admin.route('/project_user_add')
-@login_required
+#@login_required
 def project_user_add():
     return render_template('add/project_user_add.html')
 
 
 @admin.route('/project_user_info')
-@login_required
+#@login_required
 def project_user_info():
     return render_template('info/project_user_info.html')
