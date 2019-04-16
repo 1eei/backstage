@@ -77,7 +77,7 @@
                             <th class="layui-elip">设备名称</th>
                             <th class="layui-elip">设备所属产品</th>
                             <th class="layui-elip">节点类型</th>
-                            <th class="layui-elip">状态/启用状态</th>
+                            <th class="layui-elip">启用/禁用状态</th>
                             <th class="layui-elip">最后上线时间</th>
                             <th class="layui-elip">操作</th>
                         </tr>
@@ -96,25 +96,24 @@
                                     <p class="layui-elip">{{ v.node }}</p>
                                 </td>
                                 <td>
-                                    {#                                    {% set id = v.id %}#}
-                                    {#                                    {% set _active = v._active %}#}
-                                    {#                                    {% set page = v._active %}#}
-                                    {#                                    {% if v._active == 1 %}#}
-                                    {#                                        <p class="layui-elip"><a#}
-                                    {#                                                href="{{ url_for('admin.devices_list',page=1,id=id,_active=_active) }}"#}
-                                    {#                                                class="layui-btn" id="button">启用中</a></p>#}
-                                    {#                                    {% elif v._active == 0 %}#}
-                                    {#                                        <p class="layui-elip"><a#}
-                                    {#                                                href="{{ url_for('admin.devices_list',page=1,id=id,_active=_active) }}"#}
-                                    {#                                                class="layui-btn layui-btn-danger" id="button">禁用中</a>#}
-                                    {#                                        </p>#}
-                                    {#                                    {% endif %}#}
-                                    <p class="layui-elip">
-                                        <a href="{{ url_for('admin.devices_list',page=1) }}"
-                                            class="layui-btn" id="button">启用中
-                                        </a>
-                                    </p>
-
+                                    {% set id = v.id %}
+                                    {% set _active = v._active %}
+                                    {% set page = page_data.page %}
+                                    {% if v._active == 1 %}
+                                        <p class="layui-elip">
+                                            <a href="{{ url_for('admin.devices_list',page=page,id=id,_active=_active) }}"
+                                               class="layui-btn" id="button">
+                                                启用中
+                                            </a>
+                                        </p>
+                                    {% elif v._active == 0 %}
+                                        <p class="layui-elip">
+                                            <a href="{{ url_for('admin.devices_list',page=page,id=id,_active=_active) }}"
+                                               class="layui-btn layui-btn-danger" id="button">
+                                                禁用中
+                                            </a>
+                                        </p>
+                                    {% endif %}
                                 </td>
                                 <td>
                                     <p class="layui-elip">{{ v.online_time }}</p>

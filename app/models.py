@@ -123,15 +123,6 @@ class Device(db.Model):
     def __repr__(self):
         return 'name:%r,_active:%r' % (self.name, self._active)
 
-    @property
-    def boutique_desc(self):
-        boutique_mapping = {
-            "0": "禁用中",
-            "1": "启用中"
-        }
-
-        return boutique_mapping[str(self._active)]
-
 
 # 测试日志
 class TestLog(db.Model):

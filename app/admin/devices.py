@@ -1,5 +1,5 @@
 from . import admin
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request
 from flask_login import login_required
 from app.models import Device
 from app import db
@@ -14,20 +14,20 @@ def devices_list(page):
         Device.id.asc()
     ).paginate(page=page, per_page=5)
 
-    # _active = request.args.get('_active')
-    # id = request.args.get('id')
-    # device = Device.query.filter_by(id=id).first()
+    _active = request.args.get('_active')
+    id = request.args.get('id')
+    device = Device.query.filter_by(id=id).first()
 
-    # if _active == '1':
-    #     _active = 0
-    #     device._active = _active
-    #     db.session.add(device)
-    #     db.session.commit()
-    # elif _active == '0':
-    #     _active = 1
-    #     device._active = _active
-    #     db.session.add(device)
-    #     db.session.commit()
+    if _active == '1':  # 1 = 启用
+        _active = 0
+        device._active = _active
+        db.session.add(device)
+        db.session.commit()
+    elif _active == '0':  # 0= 禁用
+        _active = 1
+        device._active = _active
+        db.session.add(device)
+        db.session.commit()
 
     return render_template('devices_list.html', page_data=page_data)
 
