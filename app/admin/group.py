@@ -1,11 +1,13 @@
 from . import admin
-from flask import render_template
-from flask_login import login_required
+from app import db
+from flask import render_template, flash
 from app.models import DeviceGroup
+from app.templates.database.forms import DeviceGroupDataForm
+from flask_login import login_required
 
 
 @admin.route('/group/<int:page>', methods=["GET"])
-#@login_required
+# @login_required
 def group(page):
     if page is None:
         page = 1
@@ -16,6 +18,23 @@ def group(page):
 
 
 @admin.route('/group_edit')
-#@login_required
+# @login_required
 def group_edit():
-    return render_template('edit/group_edit.html')
+    form = DeviceGroupDataForm()
+    return render_template('edit/group_edit.html', form=form)
+
+
+@admin.route('/device_group_add', methods=['GET', 'POST'])
+# @login_required
+def device_group_add():
+    form = DeviceGroupDataForm()
+    if form.validate_on_submit():
+        name = form.name.data
+
+        device_group = DeviceGroup(name=name)
+
+        db.session.add(device_group)
+        db.session.commit()
+        flash('DeviceGroup数据添加成功!', 'ok')
+
+    return render_template('database/device_group_add.html', form=form)

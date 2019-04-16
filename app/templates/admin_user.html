@@ -103,7 +103,7 @@
                                     <p class="layui-elip">{{ v.admin.login_time }}</p>
                                 </td>
                                 <td>
-                                    <div class="layui-btn layui-btn-normal" id="power">权限</div>
+                                    <div class="layui-btn layui-btn-normal power">权限</div>
                                 </td>
                                 <td>
                                     <div class="layui-btn layui-btn-primary">
@@ -136,12 +136,12 @@
     <script>
         $(document).ready(
             function () {
-                $("#power").click(function () {
+                $(".power").click(function () {
                     layer.open({
                         type: 2,
                         area: ['60%', '70%'],
                         title: '修改权限',
-                        content: '{{ url_for('admin.power_form') }}',
+                        content: '{{ url_for('admin.admin_power_form') }}',
                     });
                 });
 

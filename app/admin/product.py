@@ -1,11 +1,13 @@
 from . import admin
-from flask import render_template
-from flask_login import login_required
+from app import db
+from flask import render_template, flash
 from app.models import Product
+from app.templates.database.forms import ProductDataForm
+from flask_login import login_required
 
 
 @admin.route('/product_list/<int:page>', methods=["GET"])
-#@login_required
+# @login_required
 def product_list(page):
     if page is None:
         page = 1
@@ -16,6 +18,27 @@ def product_list(page):
 
 
 @admin.route('/product_edit', methods=["GET", "POST"])
-#@login_required
+# @login_required
 def product_edit():
-    return render_template('edit/product_edit.html')
+    form = ProductDataForm()
+    return render_template('edit/product_edit.html',form=form)
+
+
+@admin.route('/product_add', methods=['GET', 'POST'])
+# @login_required
+def product_add():
+    form = ProductDataForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        product_id = form.product_id.data
+        node = form.node.data
+
+        product = Product(name=name,
+                          product_id=product_id,
+                          node=node)
+
+        db.session.add(product)
+        db.session.commit()
+        flash('Product数据添加成功!', 'ok')
+
+    return render_template('database/product_add.html', form=form)

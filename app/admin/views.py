@@ -1,12 +1,12 @@
 from . import admin
 from flask import render_template, redirect, url_for, flash, request, session
 from app.admin.forms import LoginForm
-from app.models import Admin, User, OrderTable, TestLog, Project
+from app.models import Admin, Project
 from flask_login import login_required, login_user, logout_user
 
 
 @admin.route('/')
-#@login_required
+# @login_required
 def index():
     data = Project.query.all()
     return render_template('index.html', data=data)
@@ -48,74 +48,3 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('admin.login'))
-
-
-@admin.route('/admin_user/<int:page>', methods=['GET', 'POST'])
-#@login_required
-def admin_user(page):
-    if page is None:
-        page = 1
-    page_data = Project.query.join(Admin).filter(
-        Project.admin_id == Admin.id
-    ).order_by(
-        Admin.id.asc()
-    ).paginate(page=page, per_page=5)
-    return render_template('admin_user.html', page_data=page_data)
-
-
-@admin.route('/project_user/<int:page>', methods=['GET', 'POST'])
-#@login_required
-def project_user(page):
-    if page is None:
-        page = 1
-    page_data = User.query.order_by(
-        User.id.asc()
-    ).paginate(page=page, per_page=5)
-    return render_template('project_user.html', page_data=page_data)
-
-
-@admin.route('/log_server/<int:page>', methods=["GET"])
-#@login_required
-def log_server(page):
-    if page is None:
-        page = 1
-    page_data = TestLog.query.order_by(
-        TestLog.id.asc()
-    ).paginate(page=page, per_page=5)
-    return render_template('log_server.html', page_data=page_data)
-
-
-@admin.route('/monitor', methods=["GET"])
-#@login_required
-def monitor():
-    return render_template('monitor.html')
-
-
-@admin.route('/online_test', methods=["GET"])
-@login_required
-def online_test():
-    return render_template('online_test.html')
-
-
-@admin.route('/orderlist/<int:page>', methods=["GET"])
-#@login_required
-def orderlist(page):
-    if page is None:
-        page = 1
-    page_data = OrderTable.query.order_by(
-        OrderTable.id.asc()
-    ).paginate(page=page, per_page=5)
-    return render_template('orderlist.html', page_data=page_data)
-
-
-@admin.route('/power_form')
-#@login_required
-def power_form():
-    return render_template('form/power_form.html')
-
-
-# 绑定设备
-@admin.route('/binding_device')
-@login_required
-def binding_device():
-    return render_template('form/binding_device.html')

@@ -168,7 +168,8 @@ class Project(db.Model):
     devices = db.relationship('Device', backref='project')
 
     def __repr__(self):
-        return 'name:%r' % self.name
+        return 'user_id:%r,admin_id:%r,number:%r,name:%r,type:%r,commpy:%r' % (
+            self.user_id, self.admin_id, self.number, self.name, self.type, self.commpy)
 
 
 if __name__ == '__main__':
