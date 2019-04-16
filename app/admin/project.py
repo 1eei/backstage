@@ -1,6 +1,6 @@
 from . import admin
 from app import db
-from flask import render_template, flash, request
+from flask import render_template, flash, request, redirect, url_for
 from app.models import Admin, User, Project
 from app.templates.database.forms import ProjectDataForm, AdminDataForm
 from flask_login import login_required
@@ -32,6 +32,20 @@ def project_edit():
     form.type.data = project.type
     form.commpy.data = project.commpy
 
+    if form.validate_on_submit():
+        form = ProjectDataForm()
+        id = request.args.get('id')
+        project = Project.query.filter_by(id=id).first()
+        project.user_id = form.user_id.data
+        project.admin_id = form.admin_id.data
+        project.number = form.number.data
+        project.name = form.name.data
+        project.type = form.type.data
+        project.commpy = form.commpy.data
+        db.session.add(project)
+        db.session.commit()
+        flash('Project数据修改成功!', 'ok')
+
     return render_template('edit/project_edit.html', form=form)
 
 
@@ -42,9 +56,20 @@ def project_admin():
     id = request.args.get('id')
     admin = Admin.query.filter_by(id=id).first()
     form.account.data = admin.account
-    form.pwd.data = admin.pwd
     form.role_id.data = admin.role_id
     form.locked.data = admin._locked
+
+    if form.validate_on_submit():
+        form = AdminDataForm()
+        id = request.args.get('id')
+        admin = Admin.query.filter_by(id=id).first()
+        admin.account = form.account.data
+        admin.pwd = form.pwd.data
+        admin.role_id = form.role_id.data
+        admin.locked = form.locked.data
+        db.session.add(admin)
+        db.session.commit()
+        flash('Admin数据修改成功!', 'ok')
 
     return render_template('edit/project_admin.html', form=form)
 
