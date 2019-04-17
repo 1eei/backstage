@@ -2,9 +2,10 @@
 # -*-coding:utf-8 -*-
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField,SelectField
+from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
-from app.models import Admin,User
+from app.models import Admin, User
+
 
 class AdminDataForm(FlaskForm):
     account = StringField('account', validators=[DataRequired(message="请输入name")],
@@ -89,6 +90,7 @@ class ProjectDataForm(FlaskForm):
 
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 
+
 class ProjectEditForm(FlaskForm):
     name = StringField('项目名称', validators=[DataRequired(message="请输入项目名称")],
                        render_kw={'placeholder': '请输入name', 'class': "layui-input",
@@ -96,7 +98,7 @@ class ProjectEditForm(FlaskForm):
     user_id = SelectField(
         "项目用户",
         coerce=int,
-        choices=[(v.id, v.name) for v in User.query.all()],
+        choices='',
         description="项目用户",
         render_kw={
             'lay-filter': "aihao"
@@ -106,7 +108,7 @@ class ProjectEditForm(FlaskForm):
     admin_id = SelectField(
         "系统用户",
         coerce=int,
-        choices=[(v.id, v.name) for v in Admin.query.all()],
+        choices='',
         description="系统用户",
         render_kw={
             'lay-filter': "aihao"
@@ -118,9 +120,9 @@ class ProjectEditForm(FlaskForm):
 
     type = SelectField('类型',
                        render_kw={
-                            'lay-filter':"aihao"
+                           'lay-filter': "aihao"
                        },
-                       choices=[(1, '智能城市'), (2, '智能生活'), (3, '智能工业'),(4,'商业共享')],
+                       choices=[(1, '智能城市'), (2, '智能生活'), (3, '智能工业'), (4, '商业共享')],
                        description="类型",
                        coerce=int
                        )
@@ -129,8 +131,7 @@ class ProjectEditForm(FlaskForm):
                          render_kw={'placeholder': '请输入commpy (允许为空)', 'class': "layui-input",
                                     'autocomplete': "off"})
 
-    submit = SubmitField('编辑', render_kw={'class': "layui-btn",'id':'close'})
-
+    submit = SubmitField('编辑', render_kw={'class': "layui-btn", 'id': 'close'})
 
 
 class ProductDataForm(FlaskForm):
@@ -245,8 +246,8 @@ class RoleDataForm(FlaskForm):
 
 class OrderDataForm(FlaskForm):
     user_id = StringField('user_id', validators=[DataRequired(message="请输入user_id")],
-                           render_kw={'placeholder': '请输入user_id', 'class': "layui-input",
-                                      'autocomplete': "off"})
+                          render_kw={'placeholder': '请输入user_id', 'class': "layui-input",
+                                     'autocomplete': "off"})
 
     number = StringField('number',
                          render_kw={'placeholder': '请输入number (允许为空)', 'class': "layui-input",

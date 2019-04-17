@@ -21,7 +21,6 @@ def admin_user(page):
     _locked = request.args.get('_locked')
     id = request.args.get('id')
     admin = Admin.query.filter_by(id=id).first()
-    print(id)
 
     if _locked == '1':  # 1 = 启用
         _locked = 0
