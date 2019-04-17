@@ -14,9 +14,7 @@ from flask_login import login_required
 def admin_user(page):
     if page is None:
         page = 1
-    page_data = Project.query.join(Admin).filter(
-        Project.admin_id == Admin.id
-    ).order_by(
+    page_data = Admin.query.order_by(
         Admin.id.asc()
     ).paginate(page=page, per_page=5)
 
