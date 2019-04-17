@@ -1,36 +1,78 @@
 {% extends 'database/base/database_base.html' %}
 
 {% block content %}
+     {% for msg in get_flashed_messages(category_filter=['ok']) %}
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+            </button>
+            {{ msg }}
+        </div>
+    {% endfor %}
     <form class="layui-form" action="{{ url_for('admin.project_edit',id=project.id) }}" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">项目名称</label>
             <div class="layui-input-block">
-               {{ form.name }}
+               {{ form.name(value=project.name) }}
+                {% for err in form.name.errors %}
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
+                        <font style="color: red">
+                            {{ err }}
+                        </font>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">类型</label>
             <div class="layui-input-block">
                {{ form.type }}
+                {% for err in form.type.errors %}
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
+                        <font style="color: red">
+                            {{ err }}
+                        </font>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">项目用户</label>
             <div class="layui-input-block">
                {{ form.user_id }}
+                {% for err in form.user_id.errors %}
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
+                        <font style="color: red">
+                            {{ err }}
+                        </font>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">系统用户</label>
             <div class="layui-input-block">
                {{ form.admin_id }}
+                {% for err in form.admin_id.errors %}
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
+                        <font style="color: red">
+                            {{ err }}
+                        </font>
+                    </div>
+                {% endfor %}
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">公司名称</label>
             <div class="layui-input-block">
-                {{ form.commpy }}
+                {{ form.commpy(value=project.commpy) }}
+                {% for err in form.commpy.errors %}
+                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
+                        <font style="color: red">
+                            {{ err }}
+                        </font>
+                    </div>
+                {% endfor %}
             </div>
         </div>
 {#        <div class="layui-form-item">#}
@@ -171,6 +213,7 @@
                 return false;
             });
         });
+        
     </script>
     <script>
         //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
@@ -179,6 +222,13 @@
             //…
         });
     </script>
+    <script>
+    $(document).ready(function () {
+        $("#close").click(function () {
 
+        });
+        
+    })
+    </script>
 {% endblock %}
 

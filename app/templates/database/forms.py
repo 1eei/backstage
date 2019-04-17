@@ -93,16 +93,10 @@ class ProjectEditForm(FlaskForm):
     name = StringField('项目名称', validators=[DataRequired(message="请输入项目名称")],
                        render_kw={'placeholder': '请输入name', 'class': "layui-input",
                                   'autocomplete': "off"})
-
     user_id = SelectField(
         "项目用户",
-        validators=[
-            DataRequired("请选择项目用户！")
-        ],
-
         coerce=int,
-
-        choices='',
+        choices=[(v.id, v.name) for v in User.query.all()],
         description="项目用户",
         render_kw={
             'lay-filter': "aihao"
@@ -111,13 +105,8 @@ class ProjectEditForm(FlaskForm):
 
     admin_id = SelectField(
         "系统用户",
-        validators=[
-            DataRequired("请选择系统用户！")
-        ],
-
         coerce=int,
-
-        choices='',
+        choices=[(v.id, v.name) for v in Admin.query.all()],
         description="系统用户",
         render_kw={
             'lay-filter': "aihao"
@@ -128,9 +117,6 @@ class ProjectEditForm(FlaskForm):
                                     'autocomplete': "off"})
 
     type = SelectField('类型',
-                       validators=[
-                           DataRequired("请选择类型！")
-                       ],
                        render_kw={
                             'lay-filter':"aihao"
                        },
@@ -143,7 +129,9 @@ class ProjectEditForm(FlaskForm):
                          render_kw={'placeholder': '请输入commpy (允许为空)', 'class': "layui-input",
                                     'autocomplete': "off"})
 
-    submit = SubmitField('编辑', render_kw={'class': "layui-btn"})
+    submit = SubmitField('编辑', render_kw={'class': "layui-btn",'id':'close'})
+
+
 
 class ProductDataForm(FlaskForm):
     name = StringField('name', validators=[DataRequired(message="请输入name")],

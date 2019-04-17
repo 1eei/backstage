@@ -2,7 +2,6 @@ from app import db
 from datetime import datetime
 from flask_login import UserMixin
 
-
 # 用户表
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
@@ -78,7 +77,6 @@ class Admin(db.Model, UserMixin):
     def check_pwd(self, pwd):
         from werkzeug.security import check_password_hash
         return check_password_hash(self.pwd, pwd)
-
 
 # 权限表
 class Auth(db.Model):

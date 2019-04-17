@@ -19,7 +19,7 @@ def project_list(page):
     return render_template('project_list.html', page_data=page_data)
 
 
-@admin.route('/project_edit/<int:id>', methods=['GET', 'POST'])
+@admin.route('/project_edit/<int:id>', methods=['GET','POST'])
 # @login_required
 def project_edit(id=None):
     # form = ProjectDataForm()
@@ -45,27 +45,34 @@ def project_edit(id=None):
     #     db.session.add(project)
     #     db.session.commit()
     #     flash('Project数据修改成功!', 'ok')
-    project = Project.query.get_or_404(int(id))
-    form = ProjectEditForm()
-    if request.method == 'GET':
-        form.user_id.choices = [(v.id,v.name) for v in User.query.all ()]
-        form.admin_id.choices = [(v.id,v.name) for v in Admin.query.all ()]
-        form.name.data = project.name
-        form.commpy.data = project.commpy
-    if form.validate_on_submit():
-        form.user_id.data = project.user_id
-        form.admin_id.data =project.admin_id
-        form.name.data = project.name
-        form.commpy.data = project.commpy
 
+    project = Project.query.get_or_404(int(id))
+    form = ProjectEditForm(user_id=project.user_id,admin_id=project.admin_id,type=project.type)
+    # if request.method == 'GET':
+    #     form.user_id.data = project.user_id
+    #     form.admin_id.data = project.admin_id
+    #     form.type.data = project.type
+    if form.validate_on_submit():
+        # form.user_id.data = project.user_id
+        # form.admin_id.data = project.admin_id
+        # form.name.data = project.name
+        # form.type.data = project.type
+        # form.commpy.data = project.commpy
+        # print(project.name)
+        data = form.data
+        project.user_id = data['user_id']
+        project.admin_id = data['admin_id']
+        project.type = data['type']
+        project.commpy = data['commpy']
+        project.name = data['name']
         db.session.add(project)
         db.session.commit()
-        flash("project数据修改成功")
-        return redirect(url_for('admin.project_list'))
+        flash("project数据修改成功","ok")
+
     return render_template('edit/project_form.html', form=form,project=project)
 
 
-@admin.route('/project_admin', methods=['GET', 'POST'])
+@admin.route('/project_admin', methods=['GET','POST'])
 # @login_required
 def project_admin():
     form = AdminDataForm()
@@ -90,7 +97,7 @@ def project_admin():
     return render_template('edit/project_admin.html', form=form)
 
 
-@admin.route('/project_add', methods=['GET', 'POST'])
+@admin.route('/project_add', methods=['GET','POST'])
 # @login_required
 def project_add():
     form = ProjectDataForm()
