@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     login_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 最后登陆时间
     _locked = db.Column(db.SmallInteger, nullable=False, default=True)  # 禁用/启用
 
-    projects = db.relationship('Project', backref='project', uselist=False)
+    projects = db.relationship('Project', backref='user', uselist=False)
     order_tables = db.relationship('OrderTable', backref='user')
 
     def __repr__(self):

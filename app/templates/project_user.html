@@ -69,10 +69,11 @@
                             <th class="layui-elip">所属项目</th>
                             <th class="layui-elip">注册时间</th>
                             <th class="layui-elip">最后登录时间</th>
-                            <th class="layui-elip"v>状态</th>
+                            <th class="layui-elip" v>状态</th>
                             <th class="layui-elip">操作</th>
                         </tr>
                         {% for v in page_data.items %}
+
                             <tr>
                                 <td>
                                     <p class="layui-elip">{{ v.id }}</p>
@@ -90,7 +91,7 @@
                                     <p class="layui-elip">{{ v.wechat }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip" style="color: red">所属项目</p>
+                                    <p class="layui-elip">{{ v.projects.name }}</p>
                                 </td>
                                 <td>
                                     <p class="layui-elip">{{ v.regist_time }}</p>

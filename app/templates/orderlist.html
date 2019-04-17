@@ -112,7 +112,7 @@
                         <tr>
                             <th class="layui-elip">订单编号</th>
                             <th class="layui-elip">项目/公司</th>
-                            <th class="layui-elip">产品</th>
+                            <th class="layui-elip">产品id</th>
                             <th class="layui-elip">设备名称</th>
                             <th class="layui-elip">订单金额</th>
                             <th class="layui-elip">生成时间</th>
@@ -127,13 +127,18 @@
                                     <p class="layui-elip">{{ v.id }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip" style="color:red;">公司</p>
+                                    <p class="layui-elip">{{ v.user.projects.commpy }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip" style="color:red;">产品</p>
+                                    {% for i in v.user.projects.admins.projects.devices %}
+                                        <p class="layui-elip">{{ i.product_id }}</p>
+                                    {% endfor %}
+
                                 </td>
                                 <td>
-                                    <p class="layui-elip" style="color: red">设备名称</p>
+                                    {% for i in v.user.projects.admins.projects.devices %}
+                                        <p class="layui-elip">{{ i.name }}</p>
+                                    {% endfor %}
                                 </td>
                                 <td>
                                     <p class="layui-elip">{{ v.money }}</p>
