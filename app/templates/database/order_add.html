@@ -11,10 +11,10 @@
     <form class="layui-form" method="post" id="form-data" novalidate>
 
         <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">admin_id:</div>
+            <div class="layui-col-md2" style="margin-top: 7px">user_id:</div>
             <div class="layui-col-md10">
-                {{ form.admin_id }}
-                {% for err in form.admin_id.errors %}
+                {{ form.user_id }}
+                {% for err in form.user_id.errors %}
                     <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
                         <font style="color: red">
                             {{ err }}

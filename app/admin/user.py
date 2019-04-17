@@ -2,7 +2,7 @@
 # -*-coding:utf-8 -*-
 from . import admin
 from app import db
-from flask import render_template, flash
+from flask import render_template, flash, redirect, url_for
 from app.models import User
 from app.templates.database.forms import UserDataForm, DeviceDataForm
 from werkzeug.security import generate_password_hash
@@ -52,5 +52,5 @@ def user_add():
         db.session.add(user)
         db.session.commit()
         flash('User数据添加成功!', 'ok')
-
+        return redirect(url_for('admin.user_add'))
     return render_template('database/user_add.html', form=form)

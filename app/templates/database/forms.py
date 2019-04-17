@@ -4,6 +4,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
+# from app.models import Admin
+#
+# admin = Admin.query.all()
 
 
 class AdminDataForm(FlaskForm):
@@ -14,6 +17,10 @@ class AdminDataForm(FlaskForm):
     pwd = StringField('pwd', validators=[DataRequired(message="请输入pwd")],
                       render_kw={'placeholder': '请输入pwd', 'class': "layui-input",
                                  'autocomplete': "off"})
+
+    name = StringField('name',
+                       render_kw={'placeholder': '请输入name', 'class': "layui-input",
+                                  'autocomplete': "off"})
 
     role_id = StringField('role_id', validators=[DataRequired(message="请输入role_id")],
                           render_kw={'placeholder': '请输入role_id', 'class': "layui-input",
@@ -91,6 +98,27 @@ class ProductDataForm(FlaskForm):
                        render_kw={'placeholder': '请输入name', 'class': "layui-input",
                                   'autocomplete': "off"})
 
+    is_gateway = StringField('is_gateway', validators=[DataRequired(message="请输入is_gateway")],
+                             render_kw={'placeholder': '请输入is_gateway', 'class': "layui-input",
+                                        'autocomplete': "off"})
+
+    networking = StringField('networking', validators=[DataRequired(message="请输入networking")],
+                             render_kw={'placeholder': '请输入networking', 'class': "layui-input",
+                                        'autocomplete': "off"})
+
+    data_format = StringField('data_format', validators=[DataRequired(message="请输入data_format")],
+                              render_kw={'placeholder': '请输入data_format', 'class': "layui-input",
+                                         'autocomplete': "off"})
+
+    is_authen = StringField('is_authen', validators=[DataRequired(message="请输入is_authen")],
+                            render_kw={'placeholder': '请输入is_authen', 'class': "layui-input",
+                                       'autocomplete': "off"})
+
+    authen_id = StringField('authen_id',
+                            render_kw={'placeholder': '请输入authen_id (允许为空)',
+                                       'class': "layui-input",
+                                       'autocomplete': "off"})
+
     product_id = StringField('product_id',
                              render_kw={'placeholder': '请输入product_id (允许为空)',
                                         'class': "layui-input",
@@ -100,6 +128,10 @@ class ProductDataForm(FlaskForm):
                        render_kw={'placeholder': '请输入node (允许为空)', 'class': "layui-input",
                                   'autocomplete': "off"})
 
+    description = StringField('description',
+                              render_kw={'placeholder': '请输入description (允许为空)', 'class': "layui-input",
+                                         'autocomplete': "off"})
+
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 
 
@@ -108,17 +140,17 @@ class DeviceDataForm(FlaskForm):
                        render_kw={'placeholder': '请输入name', 'class': "layui-input",
                                   'autocomplete': "off"})
 
-    project_id = StringField('project_id',validators=[DataRequired(message="请输入project_id")],
+    project_id = StringField('project_id', validators=[DataRequired(message="请输入project_id")],
                              render_kw={'placeholder': '请输入project_id', 'class': "layui-input",
                                         'autocomplete': "off"})
 
-    product_id = StringField('product_id',validators=[DataRequired(message="请输入product_id")],
+    product_id = StringField('product_id', validators=[DataRequired(message="请输入product_id")],
                              render_kw={'placeholder': '请输入product_id', 'class': "layui-input",
                                         'autocomplete': "off"})
 
-    devicegroup_id = StringField('devicegroup_id',validators=[DataRequired(message="devicegroup_id")],
-                                  render_kw={'placeholder': '请输入devicegroup_id', 'class': "layui-input",
-                                             'autocomplete': "off"})
+    devicegroup_id = StringField('devicegroup_id', validators=[DataRequired(message="devicegroup_id")],
+                                 render_kw={'placeholder': '请输入devicegroup_id', 'class': "layui-input",
+                                            'autocomplete': "off"})
 
     number = StringField('number',
                          render_kw={'placeholder': '请输入number (允许为空)', 'class': "layui-input",
@@ -172,9 +204,9 @@ class RoleDataForm(FlaskForm):
 
 
 class OrderDataForm(FlaskForm):
-    admin_id = StringField('admin_id', validators=[DataRequired(message="请输入admin_id")],
-                       render_kw={'placeholder': '请输入admin_id', 'class': "layui-input",
-                                  'autocomplete': "off"})
+    user_id = StringField('user_id', validators=[DataRequired(message="请输入user_id")],
+                           render_kw={'placeholder': '请输入user_id', 'class': "layui-input",
+                                      'autocomplete': "off"})
 
     number = StringField('number',
                          render_kw={'placeholder': '请输入number (允许为空)', 'class': "layui-input",

@@ -1,6 +1,6 @@
 from . import admin
 from app import db
-from flask import render_template, flash
+from flask import render_template, flash, redirect, url_for
 from app.models import DeviceGroup
 from app.templates.database.forms import DeviceGroupDataForm
 from flask_login import login_required
@@ -36,5 +36,5 @@ def device_group_add():
         db.session.add(device_group)
         db.session.commit()
         flash('DeviceGroup数据添加成功!', 'ok')
-
+        return redirect(url_for('admin.device_group_add'))
     return render_template('database/device_group_add.html', form=form)

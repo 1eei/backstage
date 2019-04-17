@@ -2,7 +2,7 @@
 # -*-coding:utf-8 -*-
 from . import admin
 from app import db
-from flask import render_template, flash
+from flask import render_template, flash, redirect, url_for
 from app.models import OrderTable
 from app.templates.database.forms import OrderDataForm
 from flask_login import login_required
@@ -24,13 +24,13 @@ def orderlist(page):
 def order_add():
     form = OrderDataForm()
     if form.validate_on_submit():
-        admin_id = form.admin_id.data
+        user_id = form.user_id.data
         number = form.number.data
         money = int(form.money.data)
         pay_method = form.pay_method.data
         stats = form.stats.data
 
-        order = OrderTable(admin_id=admin_id,
+        order = OrderTable(user_id=user_id,
                            number=number,
                            money=money,
                            pay_method=pay_method,
@@ -39,5 +39,5 @@ def order_add():
         db.session.add(order)
         db.session.commit()
         flash('Order数据添加成功!', 'ok')
-
+        return redirect(url_for('admin.order_add'))
     return render_template('database/order_add.html', form=form)

@@ -3,7 +3,7 @@
 
 from . import admin
 from app import db
-from flask import render_template, flash
+from flask import render_template, flash, redirect, url_for
 from app.models import Role
 from app.templates.database.forms import RoleDataForm
 from flask_login import login_required
@@ -23,5 +23,5 @@ def role_add():
         db.session.add(role)
         db.session.commit()
         flash('Auth数据添加成功!', 'ok')
-
+        return redirect(url_for('admin.role_add'))
     return render_template('database/role_add.html', form=form)

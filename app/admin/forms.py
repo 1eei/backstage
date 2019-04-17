@@ -3,7 +3,6 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, ValidationError
 from app.models import Admin
 
-
 class LoginForm(FlaskForm):
     account = StringField('account', validators=[DataRequired(message="请输入用户名")],
                           render_kw={'placeholder': '请输入用户名', 'autocomplete': "off"})

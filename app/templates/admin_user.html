@@ -69,14 +69,15 @@
                     <table cellspacing="0" class="container-table">
                         <tr>
                             <th class="layui-elip">序列</th>
-                            <th class="layui-elip">管理员</th>
+                            <th class="layui-elip">管理员/账号</th>
                             <th class="layui-elip">密码</th>
                             <th class="layui-elip">姓名</th>
                             <th class="layui-elip">所属项目</th>
                             <th class="layui-elip">注册时间</th>
                             <th class="layui-elip">最后登录时间</th>
+                            <th class="layui-elip">编辑</th>
                             <th class="layui-elip">权限</th>
-                            <th class="layui-elip">状态</th>
+                            <th class="layui-elip">当前状态</th>
                             <th class="layui-elip">操作</th>
                         </tr>
                         {% for v in page_data.items %}
@@ -87,8 +88,8 @@
                                 <td>
                                     <p class="layui-elip">{{ v.admin.account }}</p>
                                 </td>
-                                <td style="width:200px">
-                                    <p style="width:200px">{{ v.admin.pwd }}</p>
+                                <td>
+                                    <p class="layui-elip">******</p>
                                 </td>
                                 <td>
                                     <p class="layui-elip">{{ v.admin.name }}</p>
@@ -103,12 +104,30 @@
                                     <p class="layui-elip">{{ v.admin.login_time }}</p>
                                 </td>
                                 <td>
+                                    <div class="layui-btn layui-btn-warm edit">编辑</div>
+                                </td>
+                                <td>
                                     <div class="layui-btn layui-btn-normal power">权限</div>
                                 </td>
                                 <td>
-                                    <div class="layui-btn layui-btn-primary">
-                                        <a href="" id="button">禁用</a>
-                                    </div>
+                                    {% set id = v.admin.id %}
+                                    {% set _locked = v.admin._locked %}
+                                    {% set page = page_data.page %}
+                                    {% if _locked == 1 %}
+                                        <p class="layui-elip">
+                                            <a href="{{ url_for('admin.admin_user',page=page,id=id,_locked=_locked) }}"
+                                               class="layui-btn" id="button">
+                                                启用
+                                            </a>
+                                        </p>
+                                    {% elif _locked == 0 %}
+                                        <p class="layui-elip">
+                                            <a href="{{ url_for('admin.admin_user',page=page,id=id,_locked=_locked) }}"
+                                               class="layui-btn layui-btn-danger" id="button">
+                                                禁用
+                                            </a>
+                                        </p>
+                                    {% endif %}
                                 </td>
                                 <td>
                                     <div class="pub-button-group">
@@ -140,7 +159,7 @@
                     layer.open({
                         type: 2,
                         area: ['60%', '70%'],
-                        title: '修改权限',
+                        title: '权限',
                         content: '{{ url_for('admin.admin_power_form') }}',
                     });
                 });
@@ -156,13 +175,34 @@
                     layer.open({
                         type: 2,
                         area: ['60%', '70%'],
-                        title: '添加用户/编辑',
+                        title: '添加用户',
                         content: '{{ url_for('admin.admin_add') }}',
+                    });
+                });
+            }
+        )
+    </script>
+
+    <script>
+
+
+        $(document).ready(
+            function () {
+                $(".edit").click(function () {
+                    layer.open({
+                        type: 2,
+                        area: ['60%', '70%'],
+                        title: '编辑',
+                        {% for v in page_data.items %}
+                            {% set id = v.admin.id %}
+                            content: '{{ url_for('admin.admin_edit',id=id) }}',
+                        {% endfor %}
                     });
                 });
 
             }
         )
+
     </script>
 
     <script>

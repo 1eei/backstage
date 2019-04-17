@@ -1,7 +1,7 @@
 from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for
-from app.models import Admin, User, Project
+from app.models import Admin, Project
 from app.templates.database.forms import ProjectDataForm, AdminDataForm
 from flask_login import login_required
 
@@ -14,7 +14,7 @@ def project_list(page):
     page_data = Project.query.join(Admin).filter(
         Project.admin_id == Admin.id
     ).order_by(
-        Project.id.asc()
+        Admin.id.asc()
     ).paginate(page=page, per_page=5)
     return render_template('project_list.html', page_data=page_data)
 
@@ -45,7 +45,7 @@ def project_edit():
         db.session.add(project)
         db.session.commit()
         flash('Project数据修改成功!', 'ok')
-
+        redirect(url_for('admin.project_edit'))
     return render_template('edit/project_edit.html', form=form)
 
 
@@ -96,5 +96,5 @@ def project_add():
         db.session.add(project)
         db.session.commit()
         flash('Project数据添加成功!', 'ok')
-
+        return redirect(url_for('admin.project_add'))
     return render_template('database/project_add.html', form=form)

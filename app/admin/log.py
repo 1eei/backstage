@@ -2,7 +2,7 @@
 # -*-coding:utf-8 -*-
 from . import admin
 from app import db
-from flask import render_template, flash
+from flask import render_template, flash, redirect, url_for
 from app.models import TestLog
 from app.templates.database.forms import TestLogDataForm
 from datetime import datetime
@@ -48,5 +48,5 @@ def testlog_add():
         db.session.add(testlog)
         db.session.commit()
         flash('Testlog数据添加成功!', 'ok')
-
+        return redirect(url_for('admin.testlog_add'))
     return render_template('database/testlog_add.html', form=form)

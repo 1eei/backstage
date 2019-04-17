@@ -118,7 +118,7 @@
                             <th class="layui-elip">生成时间</th>
                             <th class="layui-elip">结束时间</th>
                             <th class="layui-elip">状态</th>
-                            <th class="layui-elip">客户</th>
+                            <th class="layui-elip">客户id</th>
                             <th class="layui-elip">支付方式</th>
                         </tr>
                         {% for v in page_data.items %}
@@ -127,10 +127,10 @@
                                     <p class="layui-elip">{{ v.id }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip">公司</p>
+                                    <p class="layui-elip" style="color:red;">公司</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip">产品</p>
+                                    <p class="layui-elip" style="color:red;">产品</p>
                                 </td>
                                 <td>
                                     <p class="layui-elip" style="color: red">设备名称</p>
@@ -148,7 +148,7 @@
                                     <p class="layui-elip">{{ v.stats }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip">{{ v.admin_id }}</p>
+                                    <p class="layui-elip">{{ v.user_id }}</p>
                                 </td>
                                 <td>
                                     <p class="layui-elip">{{ v.pay_method }}</p>

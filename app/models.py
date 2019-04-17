@@ -32,7 +32,7 @@ class User(db.Model, UserMixin):
 class OrderTable(db.Model):
     __tablename__ = 'order_table'
     id = db.Column(db.Integer, primary_key=True)  # 序号
-    admin_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     number = db.Column(db.String(64), unique=True)  # 订单编号
     money = db.Column(db.DECIMAL())  # 订单金额
     pay_method = db.Column(db.String(12))  # 支付方式
@@ -143,6 +143,12 @@ class Product(db.Model):
     product_id = db.Column(db.String(50))  # 产品编号
     name = db.Column(db.String(16), unique=True, nullable=False)  # 产品名
     node = db.Column(db.String(25))  # 产品类型
+    is_gateway = db.Column(db.String(2), nullable=False)  # 是否接入网关
+    networking = db.Column(db.String(64), nullable=False)  # 联网方式
+    data_format = db.Column(db.String(64), nullable=False)  # 数据格式
+    is_authen = db.Column(db.String(2), nullable=False)  # 是否单向ID认证
+    authen_id = db.Column(db.String(64))  # 认证ID
+    description = db.Column(db.String(255))  # 产品说明
     create_time = db.Column(db.DateTime, index=True, default=datetime.now)
 
     devices = db.relationship('Device', backref='product')
