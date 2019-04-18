@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     order_tables = db.relationship('OrderTable', backref='user')
 
     def __repr__(self):
-        return 'name:%r' % self.name
+        return '<User %r>' % self.name
 
     def check_pwd(self, pwd):
         from werkzeug.security import check_password_hash
@@ -41,7 +41,7 @@ class OrderTable(db.Model):
     end_time = db.Column(db.DateTime, index=True)  # 结束时间
 
     def __repr__(self):
-        return 'number:%r' % self.number
+        return '<OrderTable %r>' % self.number
 
 
 # 角色表
@@ -55,7 +55,7 @@ class Role(db.Model):
     admin_id = db.relationship('Admin', backref='role')
 
     def __repr__(self):
-        return 'name:%r' % self.name
+        return '<Role %r>' % self.name
 
 
 # 管理员表
@@ -73,7 +73,7 @@ class Admin(db.Model, UserMixin):
     projects = db.relationship('Project', backref='admin', uselist=False)
 
     def __repr__(self):
-        return 'name:%r' % self.name
+        return '<Admin %r>' % self.name
 
     def check_pwd(self, pwd):
         from werkzeug.security import check_password_hash
@@ -89,7 +89,7 @@ class Auth(db.Model):
     create_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 创建时间
 
     def __repr__(self):
-        return 'name:%r' % self.name
+        return '<Auth %r>' % self.name
 
 
 # 设备组表
@@ -102,7 +102,7 @@ class DeviceGroup(db.Model):
     devices = db.relationship('Device', backref='DeviceGroup')
 
     def __repr__(self):
-        return 'name:%r' % self.name
+        return '<DeviceGroup %r>' % self.name
 
 
 # 设备表
@@ -121,7 +121,7 @@ class Device(db.Model):
     online_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 最后上线时间
 
     def __repr__(self):
-        return 'name:%r,_active:%r' % (self.name, self._active)
+        return '<Device %r>' % self.name
 
 
 # 测试日志
@@ -133,7 +133,7 @@ class TestLog(db.Model):
     report_time = db.Column(db.DateTime, index=True)  # 上报时间
 
     def __repr__(self):
-        return 'id:%r' % self.id
+        return '<TestLog %r>' % self.id
 
 
 # 产品表
@@ -154,7 +154,7 @@ class Product(db.Model):
     devices = db.relationship('Device', backref='product')
 
     def __repr__(self):
-        return 'name:%r' % self.name
+        return '<Product %r>' % self.name
 
 
 # 项目表
@@ -174,8 +174,18 @@ class Project(db.Model):
     devices = db.relationship('Device', backref='project')
 
     def __repr__(self):
-        return 'user_id:%r,admin_id:%r,number:%r,name:%r,type:%r,commpy:%r' % (
-            self.user_id, self.admin_id, self.number, self.name, self.type, self.commpy)
+        return '<Project %r>' % self.name
+
+    @property
+    def type_desc(self):
+        type_mapping = {
+            "1": "智能城市",
+            "2": "智能生活",
+            "3": "智能工业",
+            "4": "商业共享"
+
+        }
+        return type_mapping[str(self.type)]
 
 
 if __name__ == '__main__':
