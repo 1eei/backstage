@@ -101,9 +101,10 @@
                                                 shade: 0.6,
                                                 maxmin: true,
                                                 moveOut: true,
-                                                area: ['50%', '30%'],
+                                                area: ['50%', '40%'],
                                                 title: '编辑分组',
-                                                content: '{{ url_for('admin.group_edit') }}',
+                                                {% set id=v.id %}
+                                                content: '{{ url_for('admin.group_edit',id=id) }}',
                                                 });">编辑
                                         </div>
                                         <div class="pub-button pub-button-danger">删除</div>

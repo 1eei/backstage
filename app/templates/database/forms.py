@@ -31,6 +31,26 @@ class AdminDataForm(FlaskForm):
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 
 
+class AdminEditForm(FlaskForm):
+    account = StringField('account', validators=[DataRequired(message="必填字段")],
+                          render_kw={'placeholder': '', 'class': "layui-input",
+                                     'autocomplete': "off"})
+
+    pwd = StringField('pwd', validators=[DataRequired(message="必填字段")],
+                      render_kw={'placeholder': '', 'class': "layui-input",
+                                 'autocomplete': "off"})
+
+    name = StringField('name',
+                       render_kw={'placeholder': '', 'class': "layui-input",
+                                  'autocomplete': "off"})
+
+    role_id = StringField('role_id', validators=[DataRequired(message="必填字段")],
+                          render_kw={'placeholder': '', 'class': "layui-input",
+                                     'autocomplete': "off"})
+
+    submit = SubmitField('提交', render_kw={'class': "layui-btn"})
+
+
 class UserDataForm(FlaskForm):
     account = StringField('account', validators=[DataRequired(message="必填字段")],
                           render_kw={'placeholder': '', 'class': "layui-input",
@@ -134,6 +154,37 @@ class ProjectEditForm(FlaskForm):
     submit = SubmitField('编辑', render_kw={'class': "layui-btn", 'id': 'close'})
 
 
+class ProjectAdminEditForm(FlaskForm):
+    account = StringField('account', validators=[DataRequired(message="必填字段")],
+                          render_kw={'placeholder': '', 'class': "layui-input",
+                                     'autocomplete': "off"})
+
+    pwd = StringField('pwd', validators=[DataRequired(message="必填字段")],
+                      render_kw={'placeholder': '', 'class': "layui-input",
+                                 'autocomplete': "off"})
+
+    role_id = SelectField(
+        "角色id",
+        coerce=int,
+        choices='',
+        description="角色id",
+        render_kw={
+            'lay-filter': "aihao"
+        },
+    )
+
+    locked = SelectField('类型',
+                         render_kw={
+                             'lay-filter': "aihao"
+                         },
+                         choices=[(1, '智能城市'), (2, '智能生活'), (3, '智能工业'), (4, '商业共享')],
+                         description="类型",
+                         coerce=int
+                         )
+
+    submit = SubmitField('提交', render_kw={'class': "layui-btn"})
+
+
 class ProductDataForm(FlaskForm):
     name = StringField('name', validators=[DataRequired(message="必填字段")],
                        render_kw={'placeholder': '', 'class': "layui-input",
@@ -176,6 +227,27 @@ class ProductDataForm(FlaskForm):
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 
 
+class ProductEditForm(FlaskForm):
+    name = StringField('产品名称', validators=[DataRequired(message="必填字段")],
+                       render_kw={'placeholder': '', 'class': "layui-input",
+                                  'autocomplete': "off"})
+    product_id = SelectField(
+        "产品id",
+        coerce=int,
+        choices='',
+        description="产品id",
+        render_kw={
+            'lay-filter': "aihao"
+        },
+    )
+
+    node = StringField('node',
+                       render_kw={'placeholder': '允许为空', 'class': "layui-input",
+                                  'autocomplete': "off"})
+
+    submit = SubmitField('编辑', render_kw={'class': "layui-btn"})
+
+
 class DeviceDataForm(FlaskForm):
     name = StringField('name', validators=[DataRequired(message="必填字段")],
                        render_kw={'placeholder': '', 'class': "layui-input",
@@ -208,6 +280,70 @@ class DeviceDataForm(FlaskForm):
     active = StringField('_active', validators=[DataRequired(message="必填字段")],
                          render_kw={'placeholder': '0=未激活,1=激活', 'class': "layui-input",
                                     'autocomplete': "off"})
+
+    submit = SubmitField('提交', render_kw={'class': "layui-btn"})
+
+
+class DeviceEditForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired(message="必填字段")],
+                       render_kw={'placeholder': '', 'class': "layui-input",
+                                  'autocomplete': "off"})
+
+    project_id = SelectField(
+        "设备所属项目id",
+        coerce=int,
+        choices='',
+        description="设备所属项目id",
+        render_kw={
+            'lay-filter': "aihao"
+        },
+    )
+
+    product_id = SelectField(
+        "设备所属产品id",
+        coerce=int,
+        choices='',
+        description="设备所属产品id",
+        render_kw={
+            'lay-filter': "aihao"
+        },
+    )
+
+    devicegroup_id = SelectField(
+        "设备所属设备组id",
+        coerce=int,
+        choices='',
+        description="设备所属设备组id",
+        render_kw={
+            'lay-filter': "aihao"
+        },
+    )
+
+    number = StringField('number',
+                         render_kw={'placeholder': '允许为空', 'class': "layui-input",
+                                    'autocomplete': "off"})
+
+    node = StringField('node',
+                       render_kw={'placeholder': '允许为空', 'class': "layui-input",
+                                  'autocomplete': "off"})
+
+    online = SelectField('在线状态',
+                         render_kw={
+                             'lay-filter': "aihao"
+                         },
+                         choices=[(0, '离线'), (1, '在线'), (2, '异常')],
+                         description="类型",
+                         coerce=int
+                         )
+
+    active = SelectField('在线状态',
+                         render_kw={
+                             'lay-filter': "aihao"
+                         },
+                         choices=[(0, '禁用'), (1, '启用')],
+                         description="类型",
+                         coerce=int
+                         )
 
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 

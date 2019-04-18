@@ -14,28 +14,14 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">管理员账号:</label>
                 <div class="layui-input-block">
-                    {{ form.account }}
-                    {% for err in form.account.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
+                    {{ form.account(value=admin.account) }}
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">管理员密码:</label>
                 <div class="layui-input-block">
-                    {{ form.pwd }}
-                    {% for err in form.pwd.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
+                    {{ form.pwd(value=admin.pwd) }}
                 </div>
             </div>
 
@@ -43,13 +29,6 @@
                 <label class="layui-form-label">角色id:</label>
                 <div class="layui-input-block">
                     {{ form.role_id }}
-                    {% for err in form.role_id.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
                 </div>
             </div>
 

@@ -82,7 +82,8 @@
                                                 moveOut: true,
                                                 area: ['50%', '45%'],
                                                 title: '编辑产品',
-                                                content: '{{ url_for('admin.product_edit') }}',
+                                                {% set id = v.id %}
+                                                content: '{{ url_for('admin.product_edit',id=id) }}',
                                                 });">编辑
                                         </div>
                                         <div class="pub-button pub-button-danger" onclick="return del()">删除</div>

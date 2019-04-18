@@ -130,7 +130,8 @@
                                                 moveOut: true,
                                                 area: ['50%', '60%'],
                                                 title: '编辑设备信息',
-                                                content: '{{ url_for('admin.device_edit') }}',
+                                                {% set id = v.id %}
+                                                content: '{{ url_for('admin.device_edit',id=id) }}',
                                                 });">编辑
                                         </div>
                                         <div class="pub-button pub-button-danger">删除</div>

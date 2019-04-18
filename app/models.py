@@ -159,13 +159,6 @@ class Product(db.Model):
 
 # 项目表
 class Project(db.Model):
-    '''
-    type:类型
-    "1": "智能城市",
-            "2": "智能生活",
-            "3": "智能工业",
-            "4": "商业共享"
-    '''
     __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True)  # 序号
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -183,17 +176,6 @@ class Project(db.Model):
     def __repr__(self):
         return 'user_id:%r,admin_id:%r,number:%r,name:%r,type:%r,commpy:%r' % (
             self.user_id, self.admin_id, self.number, self.name, self.type, self.commpy)
-
-    @property
-    def type_desc(self):
-        type_mapping = {
-            "1": "智能城市",
-            "2": "智能生活",
-            "3": "智能工业",
-            "4": "商业共享"
-
-        }
-        return type_mapping[str(self.type)]
 
 
 if __name__ == '__main__':

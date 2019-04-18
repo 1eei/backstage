@@ -1,8 +1,8 @@
 from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for
-from app.models import Device
-from app.templates.database.forms import DeviceDataForm
+from app.models import Device, Project, Product, DeviceGroup
+from app.templates.database.forms import DeviceDataForm, DeviceEditForm
 from flask_login import login_required
 
 
@@ -33,11 +33,31 @@ def devices_list(page):
     return render_template('devices_list.html', page_data=page_data)
 
 
-@admin.route('/device_edit')
+@admin.route('/device_edit', methods=["GET", "POST"])
 # @login_required
 def device_edit():
-    form = DeviceDataForm()
-    return render_template('edit/device_edit.html', form=form)
+    id = request.args.get('id')
+    device = Device.query.get_or_404(id)
+    form = DeviceEditForm(project_id=device.project_id, product_id=device.product_id,
+                          devicegroup_id=device.devicegroup_id, online=device._online, active=device._active)
+    if request.method == 'GET' or request.method == 'POST':
+        form.project_id.choices = [(v.id, v.name) for v in Project.query.all()]
+        form.product_id.choices = [(v.id, v.name) for v in Product.query.all()]
+        form.devicegroup_id.choices = [(v.id, v.name) for v in DeviceGroup.query.all()]
+    if form.validate_on_submit():
+        data = form.data
+        device.name = data['name']
+        device.project_id = data['project_id']
+        device.product_id = data['product_id']
+        device.devicegroup_id = data['devicegroup_id']
+        device.number = data['number']
+        device.node = data['node']
+        device._online = data['online']
+        device._active = data['active']
+        db.session.add(device)
+        db.session.commit()
+        flash("项目表数据修改成功", "ok")
+    return render_template('edit/device_edit.html', form=form, device=device)
 
 
 @admin.route('/device_add', methods=['GET', 'POST'])

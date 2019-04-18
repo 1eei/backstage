@@ -4,7 +4,7 @@ from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for
 from app.models import Admin, Project
-from app.templates.database.forms import AdminDataForm, AuthDataForm
+from app.templates.database.forms import AdminDataForm, AuthDataForm, AdminEditForm
 from werkzeug.security import generate_password_hash
 from flask_login import login_required
 
@@ -43,31 +43,23 @@ def admin_power_form():
     return render_template('edit/admin_power_form.html', form=form)
 
 
-@admin.route('/admin_edit')
+@admin.route('/admin_edit', methods=['GET', 'POST'])
 # @login_required
 def admin_edit():
-    form = AdminDataForm()
     id = request.args.get('id')
-    admin = Admin.query.filter_by(id=id).first()
-    form.account.data = admin.account
-    form.pwd.data = admin.pwd
-    form.name.data = admin.name
-    form.role_id.data = admin.role_id
-
+    admin = Admin.query.get_or_404(id)
+    form = AdminEditForm()
     if form.validate_on_submit():
-        form = AdminDataForm()
-        id = request.args.get('id')
-        admin = Admin.query.filter_by(id=id).first()
-        admin.account = form.account.data
-        admin.pwd = form.pwd.data
-        admin.name = form.name.data
-        admin.role_id = form.role_id.data
-
+        data = form.data
+        admin.account = data['account']
+        admin.pwd = data['pwd']
+        admin.name = data['name']
+        admin.role_id = data['role_id']
         db.session.add(admin)
         db.session.commit()
-        flash('管理员表数据修改成功!', 'ok')
-        redirect(url_for('admin.project_edit'))
-    return render_template('edit/admin_edit.html', form=form)
+        flash("管理员表数据修改成功", "ok")
+
+    return render_template('edit/admin_edit.html', form=form, admin=admin)
 
 
 @admin.route('/admin_add', methods=['GET', 'POST'])

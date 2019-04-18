@@ -1,6 +1,6 @@
 from . import admin
 from app import db
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from app.models import DeviceGroup
 from app.templates.database.forms import DeviceGroupDataForm
 from flask_login import login_required
@@ -17,11 +17,19 @@ def group(page):
     return render_template('group.html', page_data=page_data)
 
 
-@admin.route('/group_edit')
+@admin.route('/group_edit', methods=['GET', 'POST'])
 # @login_required
 def group_edit():
+    id = request.args.get('id')
+    group = DeviceGroup.query.get_or_404(id)
     form = DeviceGroupDataForm()
-    return render_template('edit/group_edit.html', form=form)
+    if form.validate_on_submit():
+        data = form.data
+        group.name = data['name']
+        db.session.add(group)
+        db.session.commit()
+        flash("项目组表数据修改成功", "ok")
+    return render_template('edit/group_edit.html', form=form, group=group)
 
 
 @admin.route('/group_add', methods=['GET', 'POST'])

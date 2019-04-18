@@ -1,8 +1,8 @@
 from . import admin
 from app import db
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from app.models import Product
-from app.templates.database.forms import ProductDataForm
+from app.templates.database.forms import ProductDataForm, ProductEditForm
 from flask_login import login_required
 
 
@@ -20,8 +20,21 @@ def product_list(page):
 @admin.route('/product_edit', methods=["GET", "POST"])
 # @login_required
 def product_edit():
-    form = ProductDataForm()
-    return render_template('edit/product_edit.html', form=form)
+    id = request.args.get('id')
+    print(id)
+    product = Product.query.get_or_404(id)
+    form = ProductEditForm(product_id=product.product_id)
+    if request.method == 'GET' or request.method == 'POST':
+        form.product_id.choices = [(v.id, v.name) for v in Product.query.all()]
+    if form.validate_on_submit():
+        data = form.data
+        product.name = data['name']
+        product.product_id = data['product_id']
+        product.node = data['node']
+        db.session.add(product)
+        db.session.commit()
+        flash("产品表数据修改成功", "ok")
+    return render_template('edit/product_edit.html', form=form, product=product)
 
 
 @admin.route('/product_add', methods=['GET', 'POST'])

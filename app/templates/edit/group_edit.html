@@ -14,14 +14,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">设备组名称:</label>
                 <div class="layui-input-block">
-                    {{ form.name }}
-                    {% for err in form.name.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
+                    {{ form.name(value=group.name) }}
                 </div>
             </div>
 

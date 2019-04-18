@@ -14,14 +14,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">设备名称:</label>
                 <div class="layui-input-block">
-                    {{ form.name }}
-                    {% for err in form.name.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
+                    {{ form.name(value=device.name) }}
                 </div>
             </div>
 
@@ -29,13 +22,6 @@
                 <label class="layui-form-label">所属项目id:</label>
                 <div class="layui-input-block">
                     {{ form.project_id }}
-                    {% for err in form.project_id.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
                 </div>
             </div>
 
@@ -43,41 +29,27 @@
                 <label class="layui-form-label">所属产品id:</label>
                 <div class="layui-input-block">
                     {{ form.product_id }}
-                    {% for err in form.product_id.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">所属设备组id:</label>
                 <div class="layui-input-block">
-                    {{ form.devicegroup_id }}
-                    {% for err in form.devicegroup_id.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
+                    {{ form.devicegroup_id(value=device.devicegroup_id) }}
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">设备编号:</label>
                 <div class="layui-input-block">
-                    {{ form.number }}
+                    {{ form.number(value=device.number) }}
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">节点:</label>
                 <div class="layui-input-block">
-                    {{ form.node }}
+                    {{ form.node(value=device.node) }}
                 </div>
             </div>
 
@@ -85,13 +57,6 @@
                 <label class="layui-form-label">在线状态:</label>
                 <div class="layui-input-block">
                     {{ form.online }}
-                    {% for err in form.online.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
                 </div>
             </div>
 
@@ -99,13 +64,6 @@
                 <label class="layui-form-label">激活状态:</label>
                 <div class="layui-input-block">
                     {{ form.active }}
-                    {% for err in form.active.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
                 </div>
             </div>
 
