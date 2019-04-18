@@ -2,7 +2,7 @@
 # -*-coding:utf-8 -*-
 from . import admin
 from app import db
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from app.models import User
 from app.templates.database.forms import UserDataForm, DeviceDataForm
 from werkzeug.security import generate_password_hash
@@ -17,6 +17,22 @@ def project_user(page):
     page_data = User.query.order_by(
         User.id.asc()
     ).paginate(page=page, per_page=5)
+
+    _locked = request.args.get('_locked')
+    id = request.args.get('id')
+    user = User.query.filter_by(id=id).first()
+
+    if _locked == '1':  # 1 = 启用
+        _locked = 0
+        user._locked = _locked
+        db.session.add(user)
+        db.session.commit()
+    elif _locked == '0':  # 0= 禁用
+        _locked = 1
+        user._locked = _locked
+        db.session.add(user)
+        db.session.commit()
+
     return render_template('project_user.html', page_data=page_data)
 
 

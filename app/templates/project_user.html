@@ -100,7 +100,24 @@
                                     <p class="layui-elip">{{ v.login_time }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip">{{ v._locked }}</p>
+                                    {% set id = v.id %}
+                                    {% set _locked = v._locked %}
+                                    {% set page = page_data.page %}
+                                    {% if _locked == 1 %}
+                                        <p class="layui-elip">
+                                            <a href="{{ url_for('admin.project_user',page=page,id=id,_locked=_locked) }}"
+                                               class="layui-btn" id="button">
+                                                启用中
+                                            </a>
+                                        </p>
+                                    {% elif _locked == 0 %}
+                                        <p class="layui-elip">
+                                            <a href="{{ url_for('admin.project_user',page=page,id=id,_locked=_locked) }}"
+                                               class="layui-btn layui-btn-danger" id="button">
+                                                禁用中
+                                            </a>
+                                        </p>
+                                    {% endif %}
                                 </td>
                                 <td>
                                     <div class="pub-button-group">

@@ -129,14 +129,14 @@
                                         <p class="layui-elip">
                                             <a href="{{ url_for('admin.admin_user',page=page,id=id,_locked=_locked) }}"
                                                class="layui-btn" id="button">
-                                                启用
+                                                启用中
                                             </a>
                                         </p>
                                     {% elif _locked == 0 %}
                                         <p class="layui-elip">
                                             <a href="{{ url_for('admin.admin_user',page=page,id=id,_locked=_locked) }}"
                                                class="layui-btn layui-btn-danger" id="button">
-                                                禁用
+                                                禁用中
                                             </a>
                                         </p>
                                     {% endif %}
