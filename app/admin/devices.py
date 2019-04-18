@@ -11,7 +11,9 @@ from flask_login import login_required
 def devices_list(page):
     if page is None:
         page = 1
-    page_data = Device.query.order_by(
+    page_data = Device.query.join(Product).filter(
+        Product.id == Device.product_id
+    ).order_by(
         Device.id.asc()
     ).paginate(page=page, per_page=5)
 
