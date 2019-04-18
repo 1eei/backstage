@@ -2,9 +2,14 @@
 # -*-coding:utf-8 -*-
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField
+from wtforms import StringField, SubmitField, SelectField, PasswordField
+from wtforms.widgets.core import PasswordInput
 from wtforms.validators import DataRequired
 from app.models import Admin, User
+
+
+class MyPasswordField(PasswordField):
+    widget = PasswordInput(hide_value=False)
 
 
 class AdminDataForm(FlaskForm):
@@ -154,34 +159,32 @@ class ProjectEditForm(FlaskForm):
     submit = SubmitField('编辑', render_kw={'class': "layui-btn", 'id': 'close'})
 
 
-class ProjectAdminEditForm(FlaskForm):
+class AdminEditForm(FlaskForm):
     account = StringField('account', validators=[DataRequired(message="必填字段")],
                           render_kw={'placeholder': '', 'class': "layui-input",
                                      'autocomplete': "off"})
 
-    pwd = StringField('pwd', validators=[DataRequired(message="必填字段")],
-                      render_kw={'placeholder': '', 'class': "layui-input",
-                                 'autocomplete': "off"})
+    pwd = MyPasswordField('pwd', validators=[DataRequired(message="必填字段")],
+                          render_kw={'placeholder': '', 'class': "layui-input",
+                                     'autocomplete': "off"})
 
     role_id = SelectField(
         "角色id",
-        coerce=int,
         choices='',
+        coerce=int,
         description="角色id",
         render_kw={
-            'lay-filter': "aihao"
+            'lay-filter': "aihao",
         },
     )
+    locked = SelectField(
+        "locked",
+        choices='',
+        coerce=int,
+        render_kw={
 
-    locked = SelectField('类型',
-                         render_kw={
-                             'lay-filter': "aihao"
-                         },
-                         choices=[(1, '智能城市'), (2, '智能生活'), (3, '智能工业'), (4, '商业共享')],
-                         description="类型",
-                         coerce=int
-                         )
-
+        },
+    )
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 
 

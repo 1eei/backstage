@@ -89,7 +89,6 @@
                                 </td>
                                 <td>
                                     {% set pid = v.id %}
-                                    {% set aid = v.admin.id %}
                                     {% set page = page_data.page %}
                                     <div class="pub-button-group">
                                         <div class="pub-button pub-button-primary"
@@ -115,6 +114,7 @@
                                                      moveOut: true,
                                                      area: ['50%', '60%'],
                                                      title: '管理/操作员列表',
+                                                     {% set aid = v.admin.id %}
                                                      content: '{{ url_for('admin.project_admin',id=aid) }}'
                                                      });">管理员
                                         </div>
