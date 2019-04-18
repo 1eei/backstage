@@ -1,123 +1,121 @@
-{% extends 'database/base/database_base.html' %}
+{% extends 'base/add_base.html' %}
 
 {% block content %}
-    {% for msg in get_flashed_messages(category_filter=['ok']) %}
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
-            </button>
-            {{ msg }}
-        </div>
-    {% endfor %}
-    <form class="layui-form" method="post" id="form-data" novalidate>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">name:</div>
-            <div class="layui-col-md10">
-                {{ form.name }}
-                {% for err in form.name.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
+    <div class="layui-container" style="padding: 30px">
+        {% for msg in get_flashed_messages(category_filter=['ok']) %}
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+                </button>
+                {{ msg }}
             </div>
-        </div>
+        {% endfor %}
+        <form class="layui-form" method="post" id="form-data" novalidate>
 
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">is_gateway:</div>
-            <div class="layui-col-md10">
-                {{ form.is_gateway }}
-                {% for err in form.is_gateway.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">networking:</div>
-            <div class="layui-col-md10">
-                {{ form.networking }}
-                {% for err in form.networking.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">data_format:</div>
-            <div class="layui-col-md10">
-                {{ form.data_format }}
-                {% for err in form.data_format.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">is_authen:</div>
-            <div class="layui-col-md10">
-                {{ form.is_authen }}
-                {% for err in form.is_authen.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">authen_id:</div>
-            <div class="layui-col-md10">
-                {{ form.authen_id }}
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">description:</div>
-            <div class="layui-col-md10">
-                {{ form.description }}
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">product_id:</div>
-            <div class="layui-col-md10">{{ form.product_id }}</div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">node:</div>
-            <div class="layui-col-md10">{{ form.node }}</div>
-        </div>
-
-        <div class="layui-row layui-col-space30">
-            <div class="layui-col-md4"></div>
-
-            <div class="layui-col-md2">
-                {{ form.submit }}
-            </div>
-            <div class="layui-col-md2">
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品名称:</label>
+                <div class="layui-input-block">
+                    {{ form.name }}
+                    {% for err in form.name.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
 
-            <div class="layui-col-md4"></div>
-            {{ form.csrf_token }}
-        </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否接入网关:</label>
+                <div class="layui-input-block">
+                    {{ form.is_gateway }}
+                    {% for err in form.is_gateway.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
 
-    </form>
+            <div class="layui-form-item">
+                <label class="layui-form-label">网络连接方式:</label>
+                <div class="layui-input-block">
+                    {{ form.networking }}
+                    {% for err in form.networking.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">数据类型:</label>
+                <div class="layui-input-block">
+                    {{ form.data_format }}
+                    {% for err in form.data_format.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否id认证:</label>
+                <div class="layui-input-block">
+                    {{ form.is_authen }}
+                    {% for err in form.is_authen.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">认证id:</label>
+                <div class="layui-input-block">
+                    {{ form.authen_id }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品id:</label>
+                <div class="layui-input-block">
+                    {{ form.product_id }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品描述:</label>
+                <div class="layui-input-block">
+                    {{ form.description }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品节点:</label>
+                <div class="layui-input-block">
+                    {{ form.node }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    {{ form.submit }}
+                    {{ form.csrf_token }}
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}

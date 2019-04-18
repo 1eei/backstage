@@ -41,7 +41,7 @@ def login():
         '''
         login_user(admin, form.remember_me.data)
         return redirect(request.args.get('next') or url_for('admin.index'))
-    return render_template('Login.html', form=form)
+    return render_template('login.html', form=form)
 
 
 @admin.route('/logout')
@@ -53,10 +53,6 @@ def logout():
 # @admin.route('/admin_form')
 # def admin_form():
 #     return render_template('edit/admin_form.html')
-#
-# @admin.route('/project_form')
-# def project_form():
-#     return render_template('edit/project_form.html')
 #
 # @admin.route('/device_form')
 # def device_form():

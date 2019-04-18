@@ -22,6 +22,6 @@ def auth_add():
 
         db.session.add(auth)
         db.session.commit()
-        flash('Auth数据添加成功!', 'ok')
+        flash('权限表数据添加成功!', 'ok')
         return redirect(url_for('admin.auth_add'))
     return render_template('database/auth_add.html', form=form)

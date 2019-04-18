@@ -1,39 +1,39 @@
-{% extends 'database/base/database_base.html' %}
+{% extends 'base/add_base.html' %}
 
 {% block content %}
-    {% for msg in get_flashed_messages(category_filter=['ok']) %}
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
-            </button>
-            {{ msg }}
-        </div>
-    {% endfor %}
-    <form class="layui-form" method="post" id="form-data" novalidate>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">name:</div>
-            <div class="layui-col-md10">
-                {{ form.name }}
-                {% for err in form.name.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
+    <div class="layui-container" style="padding: 30px">
+        {% for msg in get_flashed_messages(category_filter=['ok']) %}
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+                </button>
+                {{ msg }}
             </div>
-        </div>
+        {% endfor %}
+        <form class="layui-form" method="post" id="form-data" novalidate>
 
-        <div class="layui-row layui-col-space30">
-            <div class="layui-col-md5"></div>
-
-            <div class="layui-col-md2">
-                {{ form.submit }}
+            <div class="layui-form-item">
+                <label class="layui-form-label">设备组名称:</label>
+                <div class="layui-input-block">
+                    {{ form.name }}
+                    {% for err in form.name.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="layui-col-md5"></div>
-            {{ form.csrf_token }}
-        </div>
-    </form>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    {{ form.submit }}
+                    {{ form.csrf_token }}
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}
 
 {% block js %}

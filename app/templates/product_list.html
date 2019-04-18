@@ -76,7 +76,11 @@
                                     <div class="pub-button-group">
                                         <div class="pub-button pub-button-primary" onclick="layer.open({
                                                 type: 2,
-                                                area: ['60%', '70%'],
+                                                shadeClose: false,
+                                                shade: 0.6,
+                                                maxmin: true,
+                                                moveOut: true,
+                                                area: ['50%', '45%'],
                                                 title: '编辑产品',
                                                 content: '{{ url_for('admin.product_edit') }}',
                                                 });">编辑
@@ -107,7 +111,11 @@
                 $("#creat").click(function () {
                     layer.open({
                         type: 2,
-                        area: ['60%', '80%'],
+                        shadeClose: false,
+                        shade: 0.6,
+                        maxmin: true,
+                        moveOut: true,
+                        area: ['50%', '60%'],
                         title: '创建产品',
                         content: '{{ url_for('admin.product_add') }}',
                     });

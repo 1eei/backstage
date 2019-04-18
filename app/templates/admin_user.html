@@ -108,7 +108,11 @@
                                 <td>
                                     <div class="layui-btn layui-btn-warm edit" onclick="layer.open({
                                             type: 2,
-                                            area: ['60%', '70%'],
+                                            shadeClose: false,
+                                            shade: 0.6,
+                                            maxmin: true,
+                                            moveOut : true,
+                                            area: ['50%', '60%'],
                                             title: '编辑',
                                             content: '{{ url_for('admin.admin_edit',id=v.id) }}',
                                             });">编辑
@@ -166,7 +170,11 @@
                 $(".power").click(function () {
                     layer.open({
                         type: 2,
-                        area: ['60%', '70%'],
+                        shadeClose: false,
+                        shade: 0.6,
+                        maxmin: true,
+                        moveOut: true,
+                        area: ['50%', '30%'],
                         title: '权限',
                         content: '{{ url_for('admin.admin_power_form') }}',
                     });
@@ -182,7 +190,11 @@
                 $("#creat").click(function () {
                     layer.open({
                         type: 2,
-                        area: ['60%', '70%'],
+                        shadeClose: false,
+                        shade: 0.6,
+                        maxmin: true,
+                        moveOut: true,
+                        area: ['50%', '60%'],
                         title: '添加用户',
                         content: '{{ url_for('admin.admin_add') }}',
                     });

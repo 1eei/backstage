@@ -12,18 +12,19 @@
         <form class="layui-form" method="post" id="form-data" novalidate>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">日志内容:</label>
+                <label class="layui-form-label">设备组名称:</label>
                 <div class="layui-input-block">
-                    {{ form.content }}
+                    {{ form.name }}
+                    {% for err in form.name.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
 
-            <div class="layui-form-item">
-                <label class="layui-form-label">发生原因:</label>
-                <div class="layui-input-block">
-                    {{ form.cause }}
-                </div>
-            </div>
 
             <div class="layui-form-item">
                 <div class="layui-input-block">
@@ -35,5 +36,3 @@
         </form>
     </div>
 {% endblock %}
-
-

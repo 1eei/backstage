@@ -38,6 +38,6 @@ def order_add():
 
         db.session.add(order)
         db.session.commit()
-        flash('Order数据添加成功!', 'ok')
+        flash('订单表数据添加成功!', 'ok')
         return redirect(url_for('admin.order_add'))
     return render_template('database/order_add.html', form=form)

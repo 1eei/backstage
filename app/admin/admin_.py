@@ -65,7 +65,7 @@ def admin_edit():
 
         db.session.add(admin)
         db.session.commit()
-        flash('Admin数据修改成功!', 'ok')
+        flash('管理员表数据修改成功!', 'ok')
         redirect(url_for('admin.project_edit'))
     return render_template('edit/admin_edit.html', form=form)
 
@@ -89,6 +89,6 @@ def admin_add():
 
         db.session.add(admin)
         db.session.commit()
-        flash('Admin数据添加成功!', 'ok')
+        flash('管理员表数据添加成功!', 'ok')
         return redirect(url_for('admin.admin_add'))
     return render_template('database/admin_add.html', form=form)

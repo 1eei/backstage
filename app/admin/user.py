@@ -51,6 +51,6 @@ def user_add():
 
         db.session.add(user)
         db.session.commit()
-        flash('User数据添加成功!', 'ok')
+        flash('用户表数据添加成功!', 'ok')
         return redirect(url_for('admin.user_add'))
     return render_template('database/user_add.html', form=form)

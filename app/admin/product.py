@@ -51,6 +51,6 @@ def product_add():
 
         db.session.add(product)
         db.session.commit()
-        flash('Product数据添加成功!', 'ok')
+        flash('产品表数据添加成功!', 'ok')
         return redirect(url_for('admin.product_add'))
     return render_template('database/product_add.html', form=form)

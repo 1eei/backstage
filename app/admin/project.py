@@ -36,9 +36,9 @@ def project_edit(id=None):
         project.name = data['name']
         db.session.add(project)
         db.session.commit()
-        flash("project数据修改成功", "ok")
+        flash("项目表数据修改成功", "ok")
 
-    return render_template('edit/project_form.html', form=form, project=project)
+    return render_template('edit/project_edit.html', form=form, project=project)
 
 
 @admin.route('/project_admin', methods=['GET', 'POST'])
@@ -48,6 +48,7 @@ def project_admin():
     id = request.args.get('id')
     admin = Admin.query.filter_by(id=id).first()
     form.account.data = admin.account
+    form.pwd.data = admin.pwd
     form.role_id.data = admin.role_id
     form.locked.data = admin._locked
 
@@ -61,7 +62,7 @@ def project_admin():
         admin.locked = form.locked.data
         db.session.add(admin)
         db.session.commit()
-        flash('Admin数据修改成功!', 'ok')
+        flash('管理员表数据修改成功!', 'ok')
 
     return render_template('edit/project_admin.html', form=form)
 
@@ -87,6 +88,6 @@ def project_add():
 
         db.session.add(project)
         db.session.commit()
-        flash('Project数据添加成功!', 'ok')
+        flash('项目表数据添加成功!', 'ok')
         return redirect(url_for('admin.project_add'))
     return render_template('database/project_add.html', form=form)

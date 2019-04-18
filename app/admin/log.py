@@ -47,6 +47,6 @@ def testlog_add():
 
         db.session.add(testlog)
         db.session.commit()
-        flash('Testlog数据添加成功!', 'ok')
+        flash('日志表数据添加成功!', 'ok')
         return redirect(url_for('admin.testlog_add'))
     return render_template('database/testlog_add.html', form=form)

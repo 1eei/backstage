@@ -1,123 +1,122 @@
-{% extends 'database/base/database_base.html' %}
+{% extends 'base/add_base.html' %}
 
 {% block content %}
-    {% for msg in get_flashed_messages(category_filter=['ok']) %}
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
-            </button>
-            {{ msg }}
-        </div>
-    {% endfor %}
-    <form class="layui-form" method="post" id="form-data" novalidate>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">name:</div>
-            <div class="layui-col-md10">
-                {{ form.name }}
-                {% for err in form.name.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
+    <div class="layui-container" style="padding: 30px">
+        {% for msg in get_flashed_messages(category_filter=['ok']) %}
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+                </button>
+                {{ msg }}
             </div>
-        </div>
+        {% endfor %}
+        <form class="layui-form" method="post" id="form-data" novalidate>
 
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">project_id:</div>
-            <div class="layui-col-md10">
-                {{ form.project_id }}
-                {% for err in form.project_id.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">product_id:</div>
-            <div class="layui-col-md10">
-                {{ form.product_id }}
-                {% for err in form.product_id.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">devicegroup_id:</div>
-            <div class="layui-col-md10">
-                {{ form.devicegroup_id }}
-                {% for err in form.devicegroup_id.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">number:</div>
-            <div class="layui-col-md10">{{ form.number }}</div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">node:</div>
-            <div class="layui-col-md10">{{ form.node }}</div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">online:</div>
-            <div class="layui-col-md10">
-                {{ form.online }}
-                {% for err in form.online.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-col-md2" style="margin-top: 7px">active:</div>
-            <div class="layui-col-md10">
-                {{ form.active }}
-                {% for err in form.active.errors %}
-                    <div class="layui-col-md12" style="margin: 5px 0 -10px 5px">
-                        <font style="color: red">
-                            {{ err }}
-                        </font>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="layui-row layui-col-space30">
-            <div class="layui-col-md4"></div>
-
-            <div class="layui-col-md2">
-                {{ form.submit }}
-            </div>
-            <div class="layui-col-md2">
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <div class="layui-form-item">
+                <label class="layui-form-label">设备名称:</label>
+                <div class="layui-input-block">
+                    {{ form.name }}
+                    {% for err in form.name.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
 
-            <div class="layui-col-md4"></div>
-            {{ form.csrf_token }}
-        </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属项目id:</label>
+                <div class="layui-input-block">
+                    {{ form.project_id }}
+                    {% for err in form.project_id.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
 
-    </form>
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属产品id:</label>
+                <div class="layui-input-block">
+                    {{ form.product_id }}
+                    {% for err in form.product_id.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属设备组id:</label>
+                <div class="layui-input-block">
+                    {{ form.devicegroup_id }}
+                    {% for err in form.devicegroup_id.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">设备编号:</label>
+                <div class="layui-input-block">
+                    {{ form.number }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">设备节点:</label>
+                <div class="layui-input-block">
+                    {{ form.node }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">在线状态:</label>
+                <div class="layui-input-block">
+                    {{ form.online }}
+                    {% for err in form.online.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">激活状态:</label>
+                <div class="layui-input-block">
+                    {{ form.active }}
+                    {% for err in form.active.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    {{ form.submit }}
+                    {{ form.csrf_token }}
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}
 

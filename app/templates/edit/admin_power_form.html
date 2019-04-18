@@ -1,26 +1,27 @@
-{% extends 'database/base/database_base.html' %}
+{% extends 'base/add_base.html' %}
 
 {% block content %}
-    <div class="layui-form-item">
-        <div class="layui-col-md2" style="margin-top: 7px">修改权限:</div>
-        <div class="layui-col-md10">
-            <form class="layui-form" action="">
-                <input type="checkbox" name="like[write]" title="产品列表">
-                <input type="checkbox" name="like[read]" title="设备列表">
-                <input type="checkbox" name="like[dai]" title="设备详情">
-                <input type="checkbox" name="like[dai]" title="实时监控">
-            </form>
-        </div>
+    <div class="layui-container" style="padding: 30px">
+        <form class="layui-form" method="post" id="form-data" novalidate>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">修改权限:</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="like[write]" title="产品列表">
+                    <input type="checkbox" name="like[read]" title="设备列表">
+                    <input type="checkbox" name="like[dai]" title="设备详情">
+                    <input type="checkbox" name="like[dai]" title="实时监控">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    {{ form.submit }}
+                    {{ form.csrf_token }}
+                </div>
+            </div>
+        </form>
     </div>
-
-    <div class="layui-row layui-col-space30">
-        <div class="layui-col-md5"></div>
-
-        <div class="layui-col-md2">
-            {{ form.submit }}
-        </div>
-        <div class="layui-col-md5"></div>
-        {{ form.csrf_token }}
     </div>
 {% endblock %}
 

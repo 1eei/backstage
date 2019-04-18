@@ -81,8 +81,8 @@
                                 <td>
                                     <p class="layui-elip">{{ v.account }}</p>
                                 </td>
-                                <td style="width: 200px">
-                                    <p style="width: 200px">******</p>
+                                <td>
+                                    <p>******</p>
                                 </td>
                                 <td>
                                     <p class="layui-elip">{{ v.name }}</p>
@@ -106,7 +106,11 @@
                                     <div class="pub-button-group">
                                         <div class="pub-button pub-button-primary" onclick="layer.open({
                                                 type: 2,
-                                                area: ['60%', '70%'],
+                                                shadeClose: false,
+                                                shade: 0.6,
+                                                maxmin: true,
+                                                moveOut: true,
+                                                area: ['50%', '60%'],
                                                 title: '绑定设备',
                                                 content: '{{ url_for('admin.user_binding_device') }}',
                                                 });">

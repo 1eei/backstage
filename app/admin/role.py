@@ -22,6 +22,6 @@ def role_add():
 
         db.session.add(role)
         db.session.commit()
-        flash('Auth数据添加成功!', 'ok')
+        flash('角色表数据添加成功!', 'ok')
         return redirect(url_for('admin.role_add'))
     return render_template('database/role_add.html', form=form)

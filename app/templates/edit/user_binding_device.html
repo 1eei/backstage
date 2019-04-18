@@ -1,37 +1,36 @@
-{% extends 'database/base/database_base.html' %}
+{% extends 'base/add_base.html' %}
 
 {% block content %}
+    <div class="layui-container" style="padding: 30px">
+        <form class="layui-form" method="post" id="form-data" novalidate>
 
-
-    <div class="layui-form-item">
-        <div class="layui-col-md2" style="margin-top: 7px;">请绑定设备:</div>
-        <div class="layui-col-md10">
-            <form class="layui-form" action="">
-                <div class="layui-form-item">
-                    <div class="layui-input-block">
-                        <select name="city" lay-verify="required">
-                            <option value=""></option>
-                            <option value="0">共享充电宝</option>
-                        </select>
-                    </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">请绑定设备:</label>
+                <div class="layui-input-block">
+                    <select name="city" lay-verify="required">
+                        <option value=""></option>
+                        <option value="1">11</option>
+                        <option value="2">22</option>
+                        <option value="3">33</option>
+                        <option value="4">44</option>
+                        <option value="5">55</option>
+                    </select>
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    {{ form.submit }}
+                    {{ form.csrf_token }}
+                </div>
+            </div>
+        </form>
     </div>
-
-
-
-    <div class="layui-row layui-col-space30">
-        <div class="layui-col-md5"></div>
-
-        <div class="layui-col-md2">
-            {{ form.submit }}
-        </div>
-
-        <div class="layui-col-md5"></div>
-        {{ form.csrf_token }}
     </div>
 {% endblock %}
+
+
+
 
 {% block js %}
 

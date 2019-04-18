@@ -97,7 +97,11 @@
                                     <div class="pub-button-group">
                                         <div class="pub-button pub-button-primary" onclick="layer.open({
                                                 type: 2,
-                                                area: ['60%', '70%'],
+                                                shadeClose: false,
+                                                shade: 0.6,
+                                                maxmin: true,
+                                                moveOut: true,
+                                                area: ['50%', '30%'],
                                                 title: '编辑分组',
                                                 content: '{{ url_for('admin.group_edit') }}',
                                                 });">编辑
@@ -128,9 +132,13 @@
                 $("#creat").click(function () {
                     layer.open({
                         type: 2,
-                        area: ['60%', '70%'],
+                        shadeClose: false,
+                        shade: 0.6,
+                        maxmin: true,
+                        moveOut: true,
+                        area: ['50%', '30%'],
                         title: '新建分组',
-                        content: '{{ url_for('admin.device_group_add') }}',
+                        content: '{{ url_for('admin.group_add') }}',
                     });
                 })
             }

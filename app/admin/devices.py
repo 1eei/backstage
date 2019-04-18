@@ -65,6 +65,6 @@ def device_add():
 
         db.session.add(device)
         db.session.commit()
-        flash('Device数据添加成功!', 'ok')
+        flash('设备表数据添加成功!', 'ok')
         return redirect(url_for('admin.device_add'))
     return render_template('database/device_add.html', form=form)
