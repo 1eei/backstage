@@ -3,8 +3,8 @@
 from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for
-from app.models import Admin, Project
-from app.templates.database.forms import AdminDataForm, AuthDataForm, AdminEditForm
+from app.models import Admin, Project,Role
+from app.templates.database.forms import AdminDataForm, AuthDataForm, AdminEditDataForm
 from werkzeug.security import generate_password_hash
 from flask_login import login_required
 
@@ -47,8 +47,10 @@ def admin_power_form():
 # @login_required
 def admin_edit():
     id = request.args.get('id')
-    admin = Admin.query.get_or_404(id)
-    form = AdminEditForm()
+    admin = Admin.query.filter_by(id=id).first()
+    form = AdminEditDataForm(role_id=admin.role_id)
+    if request.method == 'GET' or request.method == 'POST':
+        form.role_id.choices = [(v.id, v.name) for v in Role.query.all()]
     if form.validate_on_submit():
         data = form.data
         admin.account = data['account']

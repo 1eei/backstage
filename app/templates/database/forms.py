@@ -36,7 +36,7 @@ class AdminDataForm(FlaskForm):
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 
 
-class AdminEditForm(FlaskForm):
+class AdminEditDataForm(FlaskForm):
     account = StringField('account', validators=[DataRequired(message="必填字段")],
                           render_kw={'placeholder': '', 'class': "layui-input",
                                      'autocomplete': "off"})
@@ -49,9 +49,15 @@ class AdminEditForm(FlaskForm):
                        render_kw={'placeholder': '', 'class': "layui-input",
                                   'autocomplete': "off"})
 
-    role_id = StringField('role_id', validators=[DataRequired(message="必填字段")],
-                          render_kw={'placeholder': '', 'class': "layui-input",
-                                     'autocomplete': "off"})
+    role_id = SelectField(
+        "角色id",
+        choices='',
+        coerce=int,
+        description="角色id",
+        render_kw={
+            'lay-filter': "aihao",
+        },
+    )
 
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 
