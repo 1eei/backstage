@@ -357,6 +357,20 @@ class DeviceEditForm(FlaskForm):
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 
 
+class UserBindingDeviceForm(FlaskForm):
+    name = SelectField(
+        "绑定设备",
+        coerce=str,
+        choices='',
+        description="绑定设备",
+        render_kw={
+            'lay-filter': "aihao"
+        },
+    )
+
+    submit = SubmitField('提交', render_kw={'class': "layui-btn"})
+
+
 class DeviceGroupDataForm(FlaskForm):
     name = StringField('name', validators=[DataRequired(message="必填字段")],
                        render_kw={'placeholder': '', 'class': "layui-input",
