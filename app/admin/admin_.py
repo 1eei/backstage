@@ -51,15 +51,25 @@ def admin_edit():
     form = AdminEditDataForm(role_id=admin.role_id)
     if request.method == 'GET' or request.method == 'POST':
         form.role_id.choices = [(v.id, v.name) for v in Role.query.all()]
+    if request.method == 'GET':
+        form.pwd.data = '******'
     if form.validate_on_submit():
         data = form.data
-        admin.account = data['account']
-        admin.pwd = data['pwd']
-        admin.name = data['name']
-        admin.role_id = data['role_id']
-        db.session.add(admin)
-        db.session.commit()
-        flash("管理员表数据修改成功", "ok")
+        if data['pwd'] == '******':
+            admin.name = data['name']
+            admin.role_id = data['role_id']
+            admin.account = data['account']
+            db.session.add(admin)
+            db.session.commit()
+            flash("管理员表数据修改成功", "ok")
+        else:
+            admin.name = data['name']
+            admin.role_id = data['role_id']
+            admin.account = data['account']
+            admin.pwd = generate_password_hash(data['pwd'])
+            db.session.add(admin)
+            db.session.commit()
+            flash("管理员表数据修改成功", "ok")
 
     return render_template('edit/admin_edit.html', form=form, admin=admin)
 
@@ -68,12 +78,16 @@ def admin_edit():
 # @login_required
 def admin_add():
     form = AdminDataForm()
+
+    if request.method == 'GET' or request.method == 'POST':
+        form.role_id.choices = [(v.id, v.name) for v in Role.query.all()]
+        form.locked.choices = [(0, '禁用'), (1, '启用')]
     if form.validate_on_submit():
         account = form.account.data
         pwd = form.pwd.data
         name = form.name.data
         role_id = form.role_id.data
-        _locked = int(form.locked.data)
+        _locked = form.locked.data
         admin = Admin(account=account,
                       pwd=generate_password_hash(pwd),
                       name=name,

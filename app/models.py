@@ -43,6 +43,26 @@ class OrderTable(db.Model):
     def __repr__(self):
         return '<OrderTable %r>' % self.number
 
+    @property
+    def pay_method_desc(self):
+        pay_method_mapping = {
+            "0": "微信",
+            "1": "支付宝",
+            "2": "现金",
+            "3": "银行卡"
+        }
+        return pay_method_mapping[str(self.pay_method)]
+
+    @property
+    def stats_desc(self):
+        stats_mapping = {
+            "0": "未支付",
+            "1": "已支付",
+            "2": "退款中",
+            "3": "完成退款"
+        }
+        return stats_mapping[str(self.stats)]
+
 
 # 角色表
 class Role(db.Model):
@@ -123,6 +143,37 @@ class Device(db.Model):
     def __repr__(self):
         return '<Device %r>' % self.name
 
+    '''
+       虚拟字段
+       # 节点类型
+       '''
+
+
+    @property
+    def node_desc(self):
+        node_mapping = {
+            "1": "设备",
+            "2": "路由",
+        }
+        return node_mapping[str(self.node)]
+
+    @property
+    def online_desc(self):
+        online_mapping = {
+            "0": "离线",
+            "1": "在线",
+            "2": "异常"
+        }
+        return online_mapping[str(self._online)]
+
+    @property
+    def active_desc(self):
+        active_mapping = {
+            "0": "离线",
+            "1": "在线",
+            "2": "异常"
+        }
+        return active_mapping[str(self._active)]
 
 # 测试日志
 class TestLog(db.Model):
@@ -142,7 +193,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # 序号
     product_id = db.Column(db.String(50))  # 产品编号
     name = db.Column(db.String(16), unique=True, nullable=False)  # 产品名
-    node = db.Column(db.String(25))  # 产品类型
+    node = db.Column(db.String(25))  # 节点类型
     is_gateway = db.Column(db.SmallInteger, nullable=False)  # 是否接入网关 0=否，1=是
     networking = db.Column(db.String(64), nullable=False)  # 联网方式
     data_format = db.Column(db.String(64), nullable=False)  # 数据格式
@@ -155,6 +206,74 @@ class Product(db.Model):
 
     def __repr__(self):
         return '<Product %r>' % self.name
+
+    '''
+    虚拟字段
+    # 是否接入网关 0=否，1=是
+    '''
+
+    @property
+    def gateway_desc(self):
+        gateway_mapping = {
+            "0": "否",
+            "1": "是",
+        }
+        return gateway_mapping[str(self.is_gateway)]
+
+    '''
+    虚拟字段
+    # 节点类型
+    '''
+
+    @property
+    def node_desc(self):
+        node_mapping = {
+            "1": "设备",
+            "2": "路由",
+        }
+        return node_mapping[str(self.node)]
+
+    '''
+        虚拟字段
+         联网方式
+    '''
+
+    @property
+    def networking_desc(self):
+        networking_mapping = {
+            "0": "WIFI",
+            "1": "蜂窝(2G/3G/4G)",
+            "2": "以太网",
+            "3": "LoRaWAN",
+            "4": "其他"
+        }
+        return networking_mapping[str(self.networking)]
+
+    '''
+    虚拟字段
+    数据格式
+    '''
+
+    @property
+    def data_format_desc(self):
+        data_format_mapping = {
+            "0": "滴咚物理网标准协议",
+            "1": "定制标准协议",
+        }
+        return data_format_mapping[str(self.data_format)]
+
+    '''
+    虚拟字段
+    是否单向ID认证 0=否，1=是
+    '''
+
+    @property
+    def authen_desc(self):
+        authen_mapping = {
+            "0": "否",
+            "1": "是",
+        }
+        return authen_mapping[str(self.is_authen)]
 
 
 # 项目表
@@ -183,7 +302,6 @@ class Project(db.Model):
             "2": "智能生活",
             "3": "智能工业",
             "4": "商业共享"
-
         }
         return type_mapping[str(self.type)]
 

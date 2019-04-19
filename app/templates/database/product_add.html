@@ -89,7 +89,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">产品id:</label>
+                <label class="layui-form-label">产品编号:</label>
                 <div class="layui-input-block">
                     {{ form.product_id }}
                 </div>
@@ -118,4 +118,20 @@
             </div>
         </form>
     </div>
+{% endblock %}
+{% block js %}
+    <script src="{{ url_for('static',filename='./js/layui/layui.all.js') }}"></script>
+    <script>
+        //Demo
+        layui.use('form', function () {
+            var form = layui.form;
+
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
+
 {% endblock %}

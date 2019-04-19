@@ -21,7 +21,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">管理员密码:</label>
                 <div class="layui-input-block">
-                    {{ form.pwd(value=admin.pwd) }}
+                    {{ form.pwd }}
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">角色名称:</label>
                 <div class="layui-input-block">
-                    {{ form.role_id }}
+                    {{ form.role_id(value=admin.role_id) }}
                 </div>
             </div>
 

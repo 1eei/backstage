@@ -2,7 +2,7 @@ from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for
 from app.models import Admin, Project, User,Role
-from app.templates.database.forms import ProjectDataForm, ProjectEditForm, AdminEditForm
+from app.templates.database.forms import ProjectDataForm, AdminEditForm
 from flask_login import login_required
 from werkzeug.security import generate_password_hash
 
@@ -25,7 +25,7 @@ def project_list(page):
 def project_edit():
     id = request.args.get('id')
     project = Project.query.get_or_404(id)
-    form = ProjectEditForm(user_id=project.user_id, admin_id=project.admin_id, type=project.type)
+    form = ProjectDataForm(user_id=project.user_id, admin_id=project.admin_id, type=project.type)
     if request.method == 'GET' or request.method == 'POST':
         form.user_id.choices = [(v.id, v.name) for v in User.query.all()]
         form.admin_id.choices = [(v.id, v.name) for v in Admin.query.all()]
@@ -84,6 +84,10 @@ def project_admin():
 # @login_required
 def project_add():
     form = ProjectDataForm()
+
+    if request.method == 'GET' or request.method == 'POST':
+        form.user_id.choices = [(v.id, v.name) for v in User.query.all()]
+        form.admin_id.choices = [(v.id, v.name) for v in Admin.query.all()]
     if form.validate_on_submit():
         name = form.name.data
         user_id = form.user_id.data

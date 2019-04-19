@@ -3,7 +3,7 @@
 from . import admin
 from app import db
 from flask import render_template, flash, redirect, url_for
-from app.models import OrderTable,Project
+from app.models import OrderTable,Project,User
 from app.templates.database.forms import OrderDataForm
 from flask_login import login_required
 
@@ -13,7 +13,11 @@ from flask_login import login_required
 def orderlist(page):
     if page is None:
         page = 1
-    page_data = OrderTable.query.order_by(
+    page_data = OrderTable.query.join(
+        User
+    ).filter(
+        User.id==OrderTable.user_id
+    ).order_by(
         OrderTable.id.asc()
     ).paginate(page=page, per_page=5)
 

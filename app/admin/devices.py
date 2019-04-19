@@ -2,7 +2,7 @@ from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for
 from app.models import Device, Project, Product, DeviceGroup
-from app.templates.database.forms import DeviceDataForm, DeviceEditForm
+from app.templates.database.forms import DeviceDataForm
 from flask_login import login_required
 
 
@@ -51,12 +51,13 @@ def devices_list(page):
 def device_edit():
     id = request.args.get('id')
     device = Device.query.get_or_404(id)
-    form = DeviceEditForm(project_id=device.project_id, product_id=device.product_id,
+    form = DeviceDataForm(project_id=device.project_id, product_id=device.product_id,
                           devicegroup_id=device.devicegroup_id, online=device._online, active=device._active)
     if request.method == 'GET' or request.method == 'POST':
         form.project_id.choices = [(v.id, v.name) for v in Project.query.all()]
         form.product_id.choices = [(v.id, v.name) for v in Product.query.all()]
         form.devicegroup_id.choices = [(v.id, v.name) for v in DeviceGroup.query.all()]
+        form.node.choices = [(1, '设备'), (2, '路由')]
     if form.validate_on_submit():
         data = form.data
         device.name = data['name']
@@ -77,6 +78,13 @@ def device_edit():
 # @login_required
 def device_add():
     form = DeviceDataForm()
+
+    if request.method == 'GET' or request.method == 'POST':
+        form.project_id.choices = [(v.id, v.name) for v in Project.query.all()]
+        form.product_id.choices = [(v.id, v.name) for v in Product.query.all()]
+        form.devicegroup_id.choices = [(v.id, v.name) for v in DeviceGroup.query.all()]
+        form.node.choices = [(1, '设备'), (2, '路由')]
+
     if form.validate_on_submit():
         name = form.name.data
         project_id = int(form.project_id.data)

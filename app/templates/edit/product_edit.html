@@ -14,21 +14,98 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">产品名称:</label>
                 <div class="layui-input-block">
-                    {{ form.name(value=product.name) }}
+                    {{ form.name }}
+                    {% for err in form.name.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">产品id:</label>
+                <label class="layui-form-label">是否接入网关:</label>
+                <div class="layui-input-block">
+                    {{ form.is_gateway }}
+                    {% for err in form.is_gateway.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">网络连接方式:</label>
+                <div class="layui-input-block">
+                    {{ form.networking }}
+                    {% for err in form.networking.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">数据类型:</label>
+                <div class="layui-input-block">
+                    {{ form.data_format }}
+                    {% for err in form.data_format.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否id认证:</label>
+                <div class="layui-input-block">
+                    {{ form.is_authen }}
+                    {% for err in form.is_authen.errors %}
+                        <div style="margin: 5px 0 -10px 5px">
+                            <font style="color: red">
+                                {{ err }}
+                            </font>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">认证id:</label>
+                <div class="layui-input-block">
+                    {{ form.authen_id }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品编号:</label>
                 <div class="layui-input-block">
                     {{ form.product_id }}
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">节点:</label>
+                <label class="layui-form-label">产品描述:</label>
                 <div class="layui-input-block">
-                    {{ form.node(value=product.node) }}
+                    {{ form.description }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品节点:</label>
+                <div class="layui-input-block">
+                    {{ form.node }}
                 </div>
             </div>
 
@@ -42,8 +119,6 @@
         </form>
     </div>
 {% endblock %}
-
-
 {% block js %}
 
     <script>
@@ -60,5 +135,3 @@
     </script>
 
 {% endblock %}
-
-
