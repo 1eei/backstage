@@ -20,22 +20,21 @@
             </div>
             <div class="devices-group">
                 <select class="pub-select">
-                    <option value="0">Volvo</option>
-                    <option value="1">Saab</option>
-                    <option value="2">Opel</option>
-                    <option value="3">Audi</option>
+                    <option>登录时间</option>
+                    {% for v in admin_all %}
+                        <option value="{{ v.id }}">{{ v.login_time }}</option>
+                    {% endfor %}
                 </select>
                 <select class="pub-select">
-                    <option value="0">共享充电宝</option>
-                    <option value="1">Saab</option>
-                    <option value="2">Opel</option>
-                    <option value="3">Audi</option>
+                    <option>全部设备</option>
+                    {% for v in device_all %}
+                        <option value="{{ v.id }}">{{ v.name }}</option>
+                    {% endfor %}
                 </select>
                 <select class="pub-select">
-                    <option value="0">全部</option>
-                    <option value="1">Saab</option>
-                    <option value="2">Opel</option>
-                    <option value="3">Audi</option>
+                    <option>启用状态</option>
+                    <option value="0">禁用</option>
+                    <option value="1">启用</option>
                 </select>
                 <div class="search-group">
                     <div class="search-group-left" style="margin-left:20px;margin-top: -20px">
@@ -47,11 +46,11 @@
                                 </div>
                             </div>
                             <div class="pub-button-group">
-                            <div class="pub-button pub-button-primary pub-button-margin" id="creat"
-                                 style="margin-left: 35%">
-                                创建用户
+                                <div class="pub-button pub-button-primary pub-button-margin" id="creat"
+                                     style="margin-left: 35%">
+                                    创建用户
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>

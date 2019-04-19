@@ -2,14 +2,29 @@
 # -*-coding:utf-8 -*-
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, PasswordField,TextAreaField
+from app.models import Admin
+from wtforms import StringField, SubmitField, SelectField, PasswordField, TextAreaField, BooleanField, ValidationError
 from wtforms.widgets.core import PasswordInput
 from wtforms.validators import DataRequired
-from app.models import Admin, User
 
 
 class MyPasswordField(PasswordField):
     widget = PasswordInput(hide_value=False)
+
+
+class LoginForm(FlaskForm):
+    account = StringField('account', validators=[DataRequired(message="请输入用户名")],
+                          render_kw={'placeholder': '请输入用户名', 'autocomplete': "off"})
+    pwd = PasswordField('pwd', validators=[DataRequired(message="请输入密码")],
+                        render_kw={'placeholder': '请输入密码', 'autocomplete': "off"})
+    remember_me = BooleanField('remember_Me', default=False)
+    submit = SubmitField('登录')
+
+    def validate_account(self, field):
+        account = field.data
+        admin = Admin.query.filter_by(account=account).count()
+        if admin == 0:
+            raise ValidationError("账号不存在")
 
 
 class AdminDataForm(FlaskForm):
@@ -18,11 +33,11 @@ class AdminDataForm(FlaskForm):
                                      'autocomplete': "off"})
 
     pwd = MyPasswordField('pwd', validators=[DataRequired(message="必填字段")],
-                      render_kw={'placeholder': '', 'class': "layui-input",
-                                 'autocomplete': "off"})
+                          render_kw={'placeholder': '', 'class': "layui-input",
+                                     'autocomplete': "off"})
 
     name = StringField('name',
-                       render_kw={'placeholder': '', 'class': "layui-input",
+                       render_kw={'placeholder': '允许为空', 'class': "layui-input",
                                   'autocomplete': "off"})
 
     role_id = SelectField(
@@ -37,8 +52,8 @@ class AdminDataForm(FlaskForm):
 
     locked = SelectField(
         "启用/禁用",
-        choices='',
         coerce=int,
+        choices='',
         description="启用/禁用",
         render_kw={
             'lay-filter': "aihao",
@@ -48,14 +63,14 @@ class AdminDataForm(FlaskForm):
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 
 
-class AdminEditDataForm(FlaskForm):
+class AdminEditForm(FlaskForm):
     account = StringField('account', validators=[DataRequired(message="必填字段")],
                           render_kw={'placeholder': '', 'class': "layui-input",
                                      'autocomplete': "off"})
 
     pwd = MyPasswordField('pwd', validators=[DataRequired(message="必填字段")],
-                      render_kw={'placeholder': '', 'class': "layui-input",
-                                 'autocomplete': "off"})
+                          render_kw={'placeholder': '', 'class': "layui-input",
+                                     'autocomplete': "off"})
 
     name = StringField('name',
                        render_kw={'placeholder': '', 'class': "layui-input",
@@ -79,9 +94,9 @@ class UserDataForm(FlaskForm):
                           render_kw={'placeholder': '', 'class': "layui-input",
                                      'autocomplete': "off"})
 
-    pwd = StringField('id', validators=[DataRequired(message="必填字段")],
-                      render_kw={'placeholder': '', 'class': "layui-input",
-                                 'autocomplete': "off"})
+    pwd = MyPasswordField('id', validators=[DataRequired(message="必填字段")],
+                          render_kw={'placeholder': '', 'class': "layui-input",
+                                     'autocomplete': "off"})
 
     phone = StringField('phone', validators=[DataRequired(message="必填字段")],
                         render_kw={'placeholder': '', 'class': "layui-input",
@@ -99,13 +114,17 @@ class UserDataForm(FlaskForm):
                          render_kw={'placeholder': '允许为空', 'class': "layui-input",
                                     'autocomplete': "off"})
 
-    locked = StringField('_locked', validators=[DataRequired(message="请输入_locked")],
-                         render_kw={'placeholder': '0=禁用,1=启用', 'class': "layui-input",
-                                    'autocomplete': "off"})
+    locked = SelectField(
+        "启用/禁用",
+        choices='',
+        coerce=int,
+        description="启用/禁用",
+        render_kw={
+            'lay-filter': "aihao",
+        },
+    )
 
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
-
-
 
 
 class ProjectDataForm(FlaskForm):
@@ -148,35 +167,6 @@ class ProjectDataForm(FlaskForm):
                          render_kw={'placeholder': '允许为空', 'class': "layui-input",
                                     'autocomplete': "off"})
 
-    submit = SubmitField('编辑', render_kw={'class': "layui-btn", 'id': 'close'})
-
-
-class AdminEditForm(FlaskForm):
-    account = StringField('account', validators=[DataRequired(message="必填字段")],
-                          render_kw={'placeholder': '', 'class': "layui-input",
-                                     'autocomplete': "off"})
-
-    pwd = MyPasswordField('pwd', validators=[DataRequired(message="必填字段")],
-                          render_kw={'placeholder': '', 'class': "layui-input",
-                                     'autocomplete': "off"})
-
-    role_id = SelectField(
-        "角色id",
-        choices='',
-        coerce=int,
-        description="角色id",
-        render_kw={
-            'lay-filter': "aihao",
-        },
-    )
-    locked = SelectField(
-        "locked",
-        choices='',
-        coerce=int,
-        render_kw={
-
-        },
-    )
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 
 
@@ -223,9 +213,9 @@ class ProductDataForm(FlaskForm):
                                        'autocomplete': "off"})
 
     product_id = StringField('产品编号',
-                            render_kw={'placeholder': '允许为空',
-                                       'class': "layui-input",
-                                       'autocomplete': "off"})
+                             render_kw={'placeholder': '允许为空',
+                                        'class': "layui-input",
+                                        'autocomplete': "off"})
 
     node = SelectField(
         "产品节点",
@@ -236,14 +226,10 @@ class ProductDataForm(FlaskForm):
     )
 
     description = TextAreaField('产品描述',
-                              render_kw={'placeholder': '允许为空', 'class': "layui-input",
-                                         'autocomplete': "off"})
+                                render_kw={'placeholder': '允许为空', 'class': "layui-input",
+                                           'autocomplete': "off"})
 
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
-
-
-
-
 
 
 class DeviceDataForm(FlaskForm):
@@ -319,7 +305,7 @@ class DeviceDataForm(FlaskForm):
 class UserBindingDeviceForm(FlaskForm):
     name = SelectField(
         "绑定设备",
-        coerce=str,
+        coerce=int,
         choices='',
         description="绑定设备",
         render_kw={
@@ -363,25 +349,43 @@ class RoleDataForm(FlaskForm):
 
 
 class OrderDataForm(FlaskForm):
-    user_id = StringField('user_id', validators=[DataRequired(message="必填字段")],
-                          render_kw={'placeholder': '', 'class': "layui-input",
-                                     'autocomplete': "off"})
+    money = StringField('money', validators=[DataRequired(message="必填字段")],
+                        render_kw={'placeholder': '', 'class': "layui-input",
+                                   'autocomplete': "off"})
 
     number = StringField('number',
                          render_kw={'placeholder': '允许为空', 'class': "layui-input",
                                     'autocomplete': "off"})
 
-    money = StringField('money',
-                        render_kw={'placeholder': '允许为空', 'class': "layui-input",
-                                   'autocomplete': "off"})
+    user_id = SelectField(
+        "所属用户id",
+        coerce=int,
+        choices='',
+        description="所属用户id",
+        render_kw={
+            'lay-filter': "aihao"
+        },
+    )
 
-    pay_method = StringField('pay_method',
-                             render_kw={'placeholder': '允许为空', 'class': "layui-input",
-                                        'autocomplete': "off"})
+    pay_method = SelectField(
+        "支付方式",
+        coerce=int,
+        choices='',
+        description="支付方式",
+        render_kw={
+            'lay-filter': "aihao"
+        },
+    )
 
-    stats = StringField('stats',
-                        render_kw={'placeholder': '允许为空', 'class': "layui-input",
-                                   'autocomplete': "off"})
+    stats = SelectField(
+        "订单状态",
+        coerce=int,
+        choices='',
+        description="订单状态",
+        render_kw={
+            'lay-filter': "aihao"
+        },
+    )
 
     submit = SubmitField('提交', render_kw={'class': "layui-btn"})
 

@@ -2,10 +2,9 @@
 # -*-coding:utf-8 -*-
 from . import admin
 from app import db
-from flask import render_template, flash, redirect, url_for
-from app.models import OrderTable,Project,User
-from app.templates.database.forms import OrderDataForm
-from flask_login import login_required
+from flask import render_template, flash, redirect, url_for, request
+from app.models import OrderTable, Project, User
+from app.forms import OrderDataForm
 
 
 @admin.route('/orderlist/<int:page>', methods=["GET"])
@@ -16,7 +15,7 @@ def orderlist(page):
     page_data = OrderTable.query.join(
         User
     ).filter(
-        User.id==OrderTable.user_id
+        User.id == OrderTable.user_id
     ).order_by(
         OrderTable.id.asc()
     ).paginate(page=page, per_page=5)
@@ -34,16 +33,21 @@ def orderlist(page):
 # @login_required
 def order_add():
     form = OrderDataForm()
+
+    if request.method == 'GET' or request.method == 'POST':
+        form.user_id.choices = [(v.id, v.name) for v in User.query.all()]
+        form.pay_method.choices = [(0, '微信'), (1, '支付宝'), (2, '现金'), (3, '银行卡')]
+        form.stats.choices = [(0, '未支付'), (1, '已支付'), (2, '退款中'), (3, '完成退款')]
+
     if form.validate_on_submit():
-        user_id = form.user_id.data
+        money = form.money.data
         number = form.number.data
-        money = int(form.money.data)
+        user_id = form.user_id.data
         pay_method = form.pay_method.data
         stats = form.stats.data
-
-        order = OrderTable(user_id=user_id,
+        order = OrderTable(money=money,
                            number=number,
-                           money=money,
+                           user_id=user_id,
                            pay_method=pay_method,
                            stats=stats)
 
@@ -51,4 +55,4 @@ def order_add():
         db.session.commit()
         flash('订单表数据添加成功!', 'ok')
         return redirect(url_for('admin.order_add'))
-    return render_template('database/order_add.html', form=form)
+    return render_template('add/order_add.html', form=form)

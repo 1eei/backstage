@@ -5,8 +5,7 @@ from . import admin
 from app import db
 from flask import render_template, flash, redirect, url_for
 from app.models import Auth
-from app.templates.database.forms import AuthDataForm
-from flask_login import login_required
+from app.forms import AuthDataForm
 
 
 @admin.route('/auth_add', methods=['GET', 'POST'])
@@ -24,4 +23,4 @@ def auth_add():
         db.session.commit()
         flash('权限表数据添加成功!', 'ok')
         return redirect(url_for('admin.auth_add'))
-    return render_template('database/auth_add.html', form=form)
+    return render_template('add/auth_add.html', form=form)

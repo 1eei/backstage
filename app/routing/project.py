@@ -1,9 +1,8 @@
 from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for
-from app.models import Admin, Project, User,Role
-from app.templates.database.forms import ProjectDataForm, AdminEditForm
-from flask_login import login_required
+from app.models import Admin, Project, User, Role
+from app.forms import ProjectDataForm, AdminDataForm
 from werkzeug.security import generate_password_hash
 
 
@@ -48,7 +47,7 @@ def project_edit():
 def project_admin():
     id = request.args.get('id')
     admin = Admin.query.filter_by(id=id).first()
-    form = AdminEditForm(role_id=admin.role_id, locked=admin._locked)
+    form = AdminDataForm(role_id=admin.role_id, locked=admin._locked)
     if request.method == 'GET' or request.method == 'POST':
         form.role_id.choices = [(v.id, v.name) for v in Role.query.all()]
         form.locked.choices = [(0, '禁用'), (1, '启用')]
@@ -107,4 +106,4 @@ def project_add():
         db.session.commit()
         flash('项目表数据添加成功!', 'ok')
         return redirect(url_for('admin.project_add'))
-    return render_template('database/project_add.html', form=form)
+    return render_template('add/project_add.html', form=form)

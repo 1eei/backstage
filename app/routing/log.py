@@ -4,9 +4,8 @@ from . import admin
 from app import db
 from flask import render_template, flash, redirect, url_for
 from app.models import TestLog, Device, Product, DeviceGroup
-from app.templates.database.forms import TestLogDataForm
+from app.forms import TestLogDataForm
 from datetime import datetime
-from flask_login import login_required
 
 
 @admin.route('/log_server/<int:page>', methods=["GET"])
@@ -73,4 +72,4 @@ def testlog_add():
         db.session.commit()
         flash('日志表数据添加成功!', 'ok')
         return redirect(url_for('admin.testlog_add'))
-    return render_template('database/testlog_add.html', form=form)
+    return render_template('add/testlog_add.html', form=form)

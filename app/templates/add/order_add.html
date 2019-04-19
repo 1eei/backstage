@@ -12,10 +12,10 @@
         <form class="layui-form" method="post" id="form-data" novalidate>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">管理员账号:</label>
+                <label class="layui-form-label">订单金额:</label>
                 <div class="layui-input-block">
-                    {{ form.account }}
-                    {% for err in form.account.errors %}
+                    {{ form.money }}
+                    {% for err in form.money.errors %}
                         <div style="margin: 5px 0 -10px 5px">
                             <font style="color: red">
                                 {{ err }}
@@ -26,51 +26,31 @@
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">管理员密码:</label>
+                <label class="layui-form-label">订单编号:</label>
                 <div class="layui-input-block">
-                    {{ form.pwd }}
-                    {% for err in form.pwd.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
+                    {{ form.number }}
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">管理员姓名:</label>
+                <label class="layui-form-label">所属用户id:</label>
                 <div class="layui-input-block">
-                    {{ form.name }}
+                    {{ form.user_id }}
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">交易方式:</label>
+                <div class="layui-input-block">
+                    {{ form.pay_method }}
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">角色id:</label>
+                <label class="layui-form-label">订单状态:</label>
                 <div class="layui-input-block">
-                    {{ form.role_id }}
-                    {% for err in form.role_id.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">启用/禁用:</label>
-                <div class="layui-input-block">
-                    {{ form.locked }}
-                    {% for err in form.locked.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
+                    {{ form.stats }}
                 </div>
             </div>
 
@@ -84,6 +64,7 @@
         </form>
     </div>
 {% endblock %}
+
 {% block js %}
     <script>
         //Demo
@@ -98,5 +79,3 @@
         });
     </script>
 {% endblock %}
-
-

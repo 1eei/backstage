@@ -92,7 +92,11 @@
                                     <p class="layui-elip">{{ v.create_time }}</p>
                                 </td>
                                 <td>
-                                    <p class="layui-elip" style="color: red">设备数</p>
+                                    <p class="layui-elip" style="font-size: 1.2em">
+                                        <span style="font-weight: bold;color: orange">{{ device_count }}&nbsp;</span>/
+                                        <span style="color: green">{{ device_active }}&nbsp;</span>/
+                                        <span style="color: skyblue">{{ device_online }}&nbsp;</span>
+                                    </p>
                                 </td>
                                 <td>
                                     <div class="pub-button-group">

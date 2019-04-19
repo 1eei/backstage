@@ -12,7 +12,7 @@
         <form class="layui-form" method="post" id="form-data" novalidate>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">设备名称:</label>
+                <label class="layui-form-label">产品名称:</label>
                 <div class="layui-input-block">
                     {{ form.name }}
                     {% for err in form.name.errors %}
@@ -26,86 +26,58 @@
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">所属项目id:</label>
+                <label class="layui-form-label">是否接入网关:</label>
                 <div class="layui-input-block">
-                    {{ form.project_id }}
-                    {% for err in form.project_id.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
+                    {{ form.is_gateway }}
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">所属产品id:</label>
+                <label class="layui-form-label">网络连接方式:</label>
+                <div class="layui-input-block">
+                    {{ form.networking }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">数据类型:</label>
+                <div class="layui-input-block">
+                    {{ form.data_format }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否id认证:</label>
+                <div class="layui-input-block">
+                    {{ form.is_authen }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">认证id:</label>
+                <div class="layui-input-block">
+                    {{ form.authen_id }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">产品编号:</label>
                 <div class="layui-input-block">
                     {{ form.product_id }}
-                    {% for err in form.product_id.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">所属设备组id:</label>
+                <label class="layui-form-label">产品描述:</label>
                 <div class="layui-input-block">
-                    {{ form.devicegroup_id }}
-                    {% for err in form.devicegroup_id.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
+                    {{ form.description }}
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">设备编号:</label>
-                <div class="layui-input-block">
-                    {{ form.number }}
-                </div>
-            </div>
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">设备节点:</label>
+                <label class="layui-form-label">产品节点:</label>
                 <div class="layui-input-block">
                     {{ form.node }}
-                </div>
-            </div>
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">在线状态:</label>
-                <div class="layui-input-block">
-                    {{ form.online }}
-                    {% for err in form.online.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">激活状态:</label>
-                <div class="layui-input-block">
-                    {{ form.active }}
-                    {% for err in form.active.errors %}
-                        <div style="margin: 5px 0 -10px 5px">
-                            <font style="color: red">
-                                {{ err }}
-                            </font>
-                        </div>
-                    {% endfor %}
                 </div>
             </div>
 
@@ -119,9 +91,8 @@
         </form>
     </div>
 {% endblock %}
-
 {% block js %}
-
+    <script src="{{ url_for('static',filename='./js/layui/layui.all.js') }}"></script>
     <script>
         //Demo
         layui.use('form', function () {

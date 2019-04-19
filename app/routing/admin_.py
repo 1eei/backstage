@@ -3,10 +3,9 @@
 from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for
-from app.models import Admin, Project,Role
-from app.templates.database.forms import AdminDataForm, AuthDataForm, AdminEditDataForm
+from app.models import Admin, Role, Device
+from app.forms import AdminDataForm, AuthDataForm, AdminEditForm
 from werkzeug.security import generate_password_hash
-from flask_login import login_required
 
 
 @admin.route('/admin_user/<int:page>', methods=['GET', 'POST'])
@@ -17,6 +16,9 @@ def admin_user(page):
     page_data = Admin.query.order_by(
         Admin.id.asc()
     ).paginate(page=page, per_page=5)
+
+    admin_all = Admin.query.all()
+    device_all = Device.query.all()
 
     _locked = request.args.get('_locked')
     id = request.args.get('id')
@@ -33,7 +35,10 @@ def admin_user(page):
         db.session.add(admin)
         db.session.commit()
 
-    return render_template('admin_user.html', page_data=page_data)
+    return render_template('admin_user.html',
+                           page_data=page_data,
+                           admin_all=admin_all,
+                           device_all=device_all)
 
 
 @admin.route('/admin_power_form')
@@ -48,7 +53,7 @@ def admin_power_form():
 def admin_edit():
     id = request.args.get('id')
     admin = Admin.query.filter_by(id=id).first()
-    form = AdminEditDataForm(role_id=admin.role_id)
+    form = AdminEditForm(role_id=admin.role_id)
     if request.method == 'GET' or request.method == 'POST':
         form.role_id.choices = [(v.id, v.name) for v in Role.query.all()]
     if request.method == 'GET':
@@ -82,6 +87,7 @@ def admin_add():
     if request.method == 'GET' or request.method == 'POST':
         form.role_id.choices = [(v.id, v.name) for v in Role.query.all()]
         form.locked.choices = [(0, '禁用'), (1, '启用')]
+
     if form.validate_on_submit():
         account = form.account.data
         pwd = form.pwd.data
@@ -99,4 +105,4 @@ def admin_add():
         db.session.commit()
         flash('管理员表数据添加成功!', 'ok')
         return redirect(url_for('admin.admin_add'))
-    return render_template('database/admin_add.html', form=form)
+    return render_template('add/admin_add.html', form=form)

@@ -12,10 +12,10 @@
         <form class="layui-form" method="post" id="form-data" novalidate>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">所属用户id:</label>
+                <label class="layui-form-label">项目名称:</label>
                 <div class="layui-input-block">
-                    {{ form.user_id }}
-                    {% for err in form.user_id.errors %}
+                    {{ form.name }}
+                    {% for err in form.name.errors %}
                         <div style="margin: 5px 0 -10px 5px">
                             <font style="color: red">
                                 {{ err }}
@@ -26,30 +26,39 @@
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">订单编号:</label>
+                <label class="layui-form-label">所属用户id:</label>
+                <div class="layui-input-block">
+                    {{ form.user_id }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属管理员id:</label>
+                <div class="layui-input-block">
+                    {{ form.admin_id }}
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">项目类型:</label>
+                <div class="layui-input-block">
+                    {{ form.type }}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">项目编号:</label>
                 <div class="layui-input-block">
                     {{ form.number }}
                 </div>
             </div>
 
-            <div class="layui-form-item">
-                <label class="layui-form-label">订单金额:</label>
-                <div class="layui-input-block">
-                    {{ form.money }}
-                </div>
-            </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">交易方式:</label>
+                <label class="layui-form-label">公司:</label>
                 <div class="layui-input-block">
-                    {{ form.pay_method }}
-                </div>
-            </div>
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">订单状态:</label>
-                <div class="layui-input-block">
-                    {{ form.stats }}
+                    {{ form.commpy }}
                 </div>
             </div>
 
@@ -62,5 +71,22 @@
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static',filename='./js/layui/layui.all.js') }}"></script>
+    <script>
+        //Demo
+        layui.use('form', function () {
+            var form = layui.form;
+
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
+
 {% endblock %}
 

@@ -2,8 +2,7 @@ from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for
 from app.models import Device, Project, Product, DeviceGroup
-from app.templates.database.forms import DeviceDataForm
-from flask_login import login_required
+from app.forms import DeviceDataForm
 
 
 @admin.route('/devices_list/<int:page>', methods=["GET", "POST"])
@@ -107,4 +106,4 @@ def device_add():
         db.session.commit()
         flash('设备表数据添加成功!', 'ok')
         return redirect(url_for('admin.device_add'))
-    return render_template('database/device_add.html', form=form)
+    return render_template('add/device_add.html', form=form)
