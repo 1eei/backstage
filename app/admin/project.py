@@ -15,7 +15,7 @@ def project_list(page):
     page_data = Project.query.join(Admin).filter(
         Project.admin_id == Admin.id
     ).order_by(
-        Admin.id.asc()
+        Project.id.asc()
     ).paginate(page=page, per_page=5)
     return render_template('project_list.html', page_data=page_data)
 

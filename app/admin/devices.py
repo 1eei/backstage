@@ -26,7 +26,6 @@ def devices_list(page):
     device_online = Device.query.filter_by(_online=1).count()
     device_active = Device.query.filter_by(_active=1).count()
 
-    print(device_active)
     if _active == '1':  # 1 = 启用
         _active = 0
         device._active = _active
