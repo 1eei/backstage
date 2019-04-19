@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField,SelectField
 from wtforms.validators import DataRequired, ValidationError
 from app.models import Admin
 
@@ -16,6 +16,8 @@ class LoginForm(FlaskForm):
         admin = Admin.query.filter_by(account=account).count()
         if admin == 0:
             raise ValidationError("账号不存在")
+
+
 
 
 

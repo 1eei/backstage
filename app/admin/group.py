@@ -1,7 +1,7 @@
 from . import admin
 from app import db
 from flask import render_template, flash, redirect, url_for, request
-from app.models import DeviceGroup
+from app.models import DeviceGroup, Device
 from app.templates.database.forms import DeviceGroupDataForm
 from flask_login import login_required
 
@@ -14,7 +14,18 @@ def group(page):
     page_data = DeviceGroup.query.order_by(
         DeviceGroup.id.asc()
     ).paginate(page=page, per_page=5)
-    return render_template('group.html', page_data=page_data)
+
+    device_all = Device.query.all()
+    device_count = Device.query.count()
+    device_online = Device.query.filter_by(_online=1).count()
+    device_active = Device.query.filter_by(_active=1).count()
+
+    return render_template('group.html',
+                           page_data=page_data,
+                           device_count=device_count,
+                           device_all=device_all,
+                           device_online=device_online,
+                           device_active=device_active)
 
 
 @admin.route('/group_edit', methods=['GET', 'POST'])

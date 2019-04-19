@@ -60,13 +60,12 @@
             </div>
         </div>
         <div class="container-card">
-            <!-- <div class="head">
-                <p>项目用户</p>
-            </div> -->
             <div class="devices-group">
                 <select class="pub-select">
                     <option value="0">全部项目</option>
-                    <option value="1">星辰共享充电宝</option>
+                    {% for v in project_all %}
+                        <option value="{{ v.id }}">{{ v.name }}</option>
+                    {% endfor %}
                 </select>
                 <select class="pub-select">
                     <option value="0">一小时</option>
@@ -76,17 +75,21 @@
                     <option value="4">本年</option>
                 </select>
                 <select class="pub-select">
+                    <option>订单状态</option>
                     <option value="0">未支付</option>
                     <option value="1">已支付</option>
                     <option value="2">退款中</option>
                     <option value="3">完成退款</option>
                 </select>
                 <select class="pub-select">
+                    <option>支付方式</option>
                     <option value="0">微信支付</option>
                     <option value="1">支付宝</option>
+                    <option value="2">现金</option>
+                    <option value="3">银行卡</option>
                 </select>
                 <div class="search-group">
-                    <div class="search-group-left" style="margin-left:20px;">
+                    <div class="search-group-left" style="margin-left:20px;margin-top: -20px">
                         <div class="search-input">
                             <input type="text" placeholder="请输入客户姓名">
                             <div class="pub-button-group">
@@ -97,7 +100,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="container-full">

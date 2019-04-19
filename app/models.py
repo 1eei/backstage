@@ -34,9 +34,9 @@ class OrderTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # 序号
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     number = db.Column(db.String(64), unique=True)  # 订单编号
-    money = db.Column(db.DECIMAL())  # 订单金额
-    pay_method = db.Column(db.String(12))  # 支付方式
-    stats = db.Column(db.SmallInteger)  # 订单状态
+    money = db.Column(db.DECIMAL(), nullable=False)  # 订单金额
+    pay_method = db.Column(db.SmallInteger, nullable=False)  # 支付方式 0=微信，1=支付宝，2=现金，3=银行卡
+    stats = db.Column(db.SmallInteger, nullable=False)  # 订单状态 0=未支付，1=已支付，2=退款中，3=完成退款
     start_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 开始时间
     end_time = db.Column(db.DateTime, index=True)  # 结束时间
 
@@ -143,10 +143,10 @@ class Product(db.Model):
     product_id = db.Column(db.String(50))  # 产品编号
     name = db.Column(db.String(16), unique=True, nullable=False)  # 产品名
     node = db.Column(db.String(25))  # 产品类型
-    is_gateway = db.Column(db.String(2), nullable=False)  # 是否接入网关
+    is_gateway = db.Column(db.SmallInteger, nullable=False)  # 是否接入网关 0=否，1=是
     networking = db.Column(db.String(64), nullable=False)  # 联网方式
     data_format = db.Column(db.String(64), nullable=False)  # 数据格式
-    is_authen = db.Column(db.String(2), nullable=False)  # 是否单向ID认证
+    is_authen = db.Column(db.SmallInteger, nullable=False)  # 是否单向ID认证 0=否，1=是
     authen_id = db.Column(db.String(64))  # 认证ID
     description = db.Column(db.String(255))  # 产品说明
     create_time = db.Column(db.DateTime, index=True, default=datetime.now)

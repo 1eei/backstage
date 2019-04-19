@@ -9,7 +9,16 @@ from flask_login import login_required, login_user, logout_user
 # @login_required
 def index():
     data = Project.query.all()
-    return render_template('index.html', data=data)
+    admin = Admin.query.all()
+    return render_template('index.html', data=data, admin=admin)
+
+
+@admin.route('/admin_base')
+# @login_required
+def admin_base():
+    data = Project.query.all()
+    admindata = Admin.query.all()
+    return render_template('base/admin_base.html', data=data, admindata=admindata)
 
 
 @admin.route('/login', methods=['GET', 'POST'])
@@ -48,7 +57,6 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('admin.login'))
-
 
 # @admin.route('/admin_form')
 # def admin_form():

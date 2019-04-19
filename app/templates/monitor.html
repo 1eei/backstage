@@ -25,34 +25,38 @@
             <div class="head">
                 <p>实时监控</p>
             </div>
+
             <div class="devices-group">
-                <select class="pub-select">
-                    <option value="0">Volvo</option>
-                    <option value="1">Saab</option>
-                    <option value="2">Opel</option>
-                    <option value="3">Audi</option>
-                </select>
                 <div class="devices-info">
+                    <div style="border-left: none;margin-left: -30px">
+                        <select class="pub-select">
+                            <option value="0">全部设备</option>
+                            {% for v in device_all %}
+                                <option value="{{ v.id }}">{{ v.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                     <div>
                         <p>设备总数</p>
-                        <p>0</p>
+                        <p>{{ device_count }}</p>
                     </div>
                     <div>
                         <div>
                             <div class="circular"></div>
-                            <div>激活设备</div>
+                            <div>正在启用</div>
                         </div>
-                        <p>0</p>
+                        <p>{{ device_active }}</p>
                     </div>
                     <div>
                         <div>
                             <div class="circular"></div>
-                            <div>设备在线</div>
+                            <div>在线设备</div>
                         </div>
-                        <p>0</p>
+                        <p>{{ device_online }}</p>
                     </div>
                 </div>
             </div>
+
             <div style="width: 80%;height: auto" id="canvas">
                 <h3>实时在线设备</h3>
                 <canvas id="line" width="600" height="200"></canvas>

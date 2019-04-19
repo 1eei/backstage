@@ -21,6 +21,12 @@ def devices_list(page):
     id = request.args.get('id')
     device = Device.query.filter_by(id=id).first()
 
+    device_all = Device.query.all()
+    device_count = Device.query.count()
+    device_online = Device.query.filter_by(_online=1).count()
+    device_active = Device.query.filter_by(_active=1).count()
+
+    print(device_active)
     if _active == '1':  # 1 = 启用
         _active = 0
         device._active = _active
@@ -32,7 +38,12 @@ def devices_list(page):
         db.session.add(device)
         db.session.commit()
 
-    return render_template('devices_list.html', page_data=page_data)
+    return render_template('devices_list.html',
+                           page_data=page_data,
+                           device_all=device_all,
+                           device_count=device_count,
+                           device_online=device_online,
+                           device_active=device_active)
 
 
 @admin.route('/device_edit', methods=["GET", "POST"])

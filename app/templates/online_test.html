@@ -19,18 +19,24 @@
                 <p>在线测试</p>
             </div>
             <div class="devices-group">
-                调试设备：
+                调试：
                 <select class="pub-select">
-                    <option value="0">全部产品</option>
-                    <option value="1">Saab</option>
-                    <option value="2">Opel</option>
-                    <option value="3">Audi</option>
+                    <option value="0">全部设备组</option>
+                    {% for v in group_all %}
+                        <option value="{{ v.id }}">{{ v.name }}</option>
+                    {% endfor %}
+                </select>
+                <select class="pub-select">
+                    <option value="0">全部设备</option>
+                    {% for v in device_all %}
+                        <option value="{{ v.id }}">{{ v.name }}</option>
+                    {% endfor %}
                 </select>
                 <select class="pub-select">
                     <option value="0">全部产品</option>
-                    <option value="1">Saab</option>
-                    <option value="2">Opel</option>
-                    <option value="3">Audi</option>
+                    {% for v in product_all %}
+                        <option value="{{ v.id }}">{{ v.name }}</option>
+                    {% endfor %}
                 </select>
             </div>
 

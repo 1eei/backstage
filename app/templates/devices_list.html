@@ -18,34 +18,38 @@
             <div class="head">
                 <p>设备管理</p>
             </div>
+
             <div class="devices-group">
-                <select class="pub-select">
-                    <option value="0">Volvo</option>
-                    <option value="1">Saab</option>
-                    <option value="2">Opel</option>
-                    <option value="3">Audi</option>
-                </select>
                 <div class="devices-info">
+                    <div style="border-left: none;margin-left: -30px">
+                        <select class="pub-select">
+                            <option value="0">全部设备</option>
+                            {% for v in device_all %}
+                                <option value="{{ v.id }}">{{ v.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                     <div>
                         <p>设备总数</p>
-                        <p>0</p>
+                        <p>{{ device_count }}</p>
                     </div>
                     <div>
                         <div>
                             <div class="circular"></div>
-                            <div>激活设备</div>
+                            <div>正在启用</div>
                         </div>
-                        <p>0</p>
+                        <p>{{ device_active }}</p>
                     </div>
                     <div>
                         <div>
                             <div class="circular"></div>
-                            <div>设备在线</div>
+                            <div>在线设备</div>
                         </div>
-                        <p>0</p>
+                        <p>{{ device_online }}</p>
                     </div>
                 </div>
             </div>
+
 
             <div class="container-full">
                 <form action="" method="post">
@@ -59,13 +63,10 @@
                                         搜索
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="search-group-right">
-                            <div class="pub-button-group">
-
-                                <div class="pub-button pub-button-primary pub-button-margin" id="creat">
-                                    添加设备
+                                <div class="pub-button-group" style="margin-left: 10px">
+                                    <div class="pub-button pub-button-primary" id="creat">
+                                        添加设备
+                                    </div>
                                 </div>
                             </div>
                         </div>

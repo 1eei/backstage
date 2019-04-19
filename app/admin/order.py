@@ -3,7 +3,7 @@
 from . import admin
 from app import db
 from flask import render_template, flash, redirect, url_for
-from app.models import OrderTable
+from app.models import OrderTable,Project
 from app.templates.database.forms import OrderDataForm
 from flask_login import login_required
 
@@ -16,7 +16,14 @@ def orderlist(page):
     page_data = OrderTable.query.order_by(
         OrderTable.id.asc()
     ).paginate(page=page, per_page=5)
-    return render_template('orderlist.html', page_data=page_data)
+
+    project_all = Project.query.all()
+    order_all = OrderTable.query.all()
+
+    return render_template('orderlist.html',
+                           page_data=page_data,
+                           project_all=project_all,
+                           order_all=order_all)
 
 
 @admin.route('/order_add', methods=['GET', 'POST'])
