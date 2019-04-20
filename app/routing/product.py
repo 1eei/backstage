@@ -1,12 +1,13 @@
 from . import admin
 from app import db
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session
 from app.models import Product
 from app.forms import ProductDataForm
+from flask_login import login_required
 
 
 @admin.route('/product_list/<int:page>', methods=["GET"])
-# @login_required
+@login_required
 def product_list(page):
     if page is None:
         page = 1
@@ -14,14 +15,20 @@ def product_list(page):
         Product.id.asc()
     ).paginate(page=page, per_page=5)
 
+    # 保存管理员名字和角色id
+    session_admin = session['admin']
+    session_role_id = session['role']
+
     product_count = Product.query.count()
     return render_template('product_list.html',
                            page_data=page_data,
-                           product_count=product_count)
+                           product_count=product_count,
+                           session_admin=session_admin,
+                           session_role_id=session_role_id)
 
 
 @admin.route('/product_edit', methods=["GET", "POST"])
-# @login_required
+@login_required
 def product_edit():
     id = request.args.get('id')
     print(id)
@@ -48,7 +55,7 @@ def product_edit():
 
 
 @admin.route('/product_add', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def product_add():
     form = ProductDataForm()
     if request.method == 'GET' or request.method == 'POST':
@@ -87,7 +94,7 @@ def product_add():
 
 
 @admin.route('/product_delete', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def product_delete():
     id = request.args.get('id')
     page = request.args.get('page')

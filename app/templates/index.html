@@ -17,44 +17,73 @@
         <div class="container-card">
             <div class="row-card">
                 <div class="card-item">
-                    <h1>1451212</h1>
-                    <p>设备数量</p>
-                    <span>100%</span>
+                    <h1>设备数量</h1>
+                    <p>Number OF Devices</p>
+                    <span>70%</span>
                     <div class="Bar">
                         <div style="width:70%;" class="bar1">
                         </div>
                     </div>
-                    <span>本月增长10个用户</span>
+                    <p>本月增长
+                        <span style="white-space: nowrap;
+                        display: inline-block;
+                        font-size: 1em">
+                            200
+                        </span>
+                        台设备
+                    </p>
                 </div>
                 <div class="card-item">
-                    <h1>1451212</h1>
-                    <p>注册用户</p>
-                    <span>100%</span>
+                    <h1>注册用户</h1>
+                    <p>Registered Users</p>
+                    <span>30%</span>
                     <div class="Bar">
                         <div style="width:30%;" class="bar2">
                         </div>
                     </div>
-                    <span>本月增长10个用户</span>
+                    <p>本月增长
+                        <span style="white-space: nowrap;
+                        display: inline-block;
+                        font-size: 1em">
+                            10
+                        </span>
+                        台用户
+                    </p>
                 </div>
                 <div class="card-item">
-                    <h1>1451212</h1>
-                    <p>项目数量</p>
-                    <span>100%</span>
+                    <h1>项目数量</h1>
+                    <p>Number OF Items</p>
+
+                    <span>70%</span>
                     <div class="Bar">
                         <div style="width:70%;" class="bar3">
                         </div>
                     </div>
-                    <span>本月增长10个用户</span>
+                    <p>本月增长
+                        <span style="white-space: nowrap;
+                        display: inline-block;
+                        font-size: 1em">
+                            100
+                        </span>
+                        台项目
+                    </p>
                 </div>
                 <div class="card-item">
-                    <h1>1451212</h1>
-                    <p>数据吞吐量(G)</p>
-                    <span>100%</span>
+                    <h1>数据吞吐量(G)</h1>
+                    <p>Data Throughput(G)</p>
+                    <span>70%</span>
                     <div class="Bar">
                         <div style="width:70%;" class="bar4">
                         </div>
                     </div>
-                    <span>本月增长10个用户</span>
+                    <p>本月增长
+                        <span style="white-space: nowrap;
+                        display: inline-block;
+                        font-size: 1em">
+                            150
+                        </span>
+                        G
+                    </p>
                 </div>
             </div>
 
@@ -66,34 +95,29 @@
                     <h1>设备使用率</h1>
                     <div class="card2-foot">
                         <p>
-                            本周增<span>20</span>
-                            台
+                            本周增<span>20</span>台
                         </p>
                     </div>
                 </div>
                 <div class="card2-content">
                     <div class="card2-item">
                         <canvas id="myLineChart" width="400" height="330"></canvas>
-
                     </div>
                     <h1>设备在线时长</h1>
                     <div class="card2-foot">
                         <p>
-                            本周平台时长<span>20</span>
-                            小时
+                            本周平台时长<span>50</span>小时
                         </p>
                     </div>
                 </div>
                 <div class="card2-content">
                     <div class="card2-item">
                         <canvas id="myBubbleChart" width="400" height="330"></canvas>
-
                     </div>
                     <h1>设备分布</h1>
                     <div class="card2-foot">
                         <p>
-                            涉及<span>20</span>
-                            城市
+                            涉及<span>18</span>城市
                         </p>
                     </div>
                 </div>
@@ -110,7 +134,7 @@
                                     <th class="layui-elip">创建时间</th>
                                     <th class="layui-elip">设备量</th>
                                 </tr>
-                                {% for v in data %}
+                                {% for v in project %}
                                     <tr>
                                         <td>
                                             <p class="layui-elip">{{ v.name }}</p>
@@ -120,7 +144,7 @@
                                         </td>
                                         <td>
                                             <div class="Bar">
-                                                <div style="width:70%;" class="bar4"></div>
+                                                <div style="width:80%;" class="bar4"></div>
                                             </div>
                                         </td>
                                     </tr>
@@ -151,9 +175,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 {% endblock %}

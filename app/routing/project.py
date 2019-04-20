@@ -1,13 +1,14 @@
 from . import admin
 from app import db
-from flask import render_template, flash, request, redirect, url_for
+from flask import render_template, flash, request, redirect, url_for, session
 from app.models import Admin, Project, User, Role
 from app.forms import ProjectDataForm, AdminDataForm
 from werkzeug.security import generate_password_hash
+from flask_login import login_required
 
 
 @admin.route('/project_list/<int:page>', methods=["GET"])
-# @login_required
+@login_required
 def project_list(page):
     if page is None:
         page = 1
@@ -16,11 +17,19 @@ def project_list(page):
     ).order_by(
         Project.id.asc()
     ).paginate(page=page, per_page=5)
-    return render_template('project_list.html', page_data=page_data)
+
+    # 保存管理员名字和角色id
+    session_admin = session['admin']
+    session_role_id = session['role']
+
+    return render_template('project_list.html',
+                           page_data=page_data,
+                           session_admin=session_admin,
+                           session_role_id=session_role_id)
 
 
 @admin.route('/project_edit', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def project_edit():
     id = request.args.get('id')
     project = Project.query.get_or_404(id)
@@ -43,7 +52,7 @@ def project_edit():
 
 
 @admin.route('/project_admin', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def project_admin():
     id = request.args.get('id')
     admin = Admin.query.filter_by(id=id).first()
@@ -80,7 +89,7 @@ def project_admin():
 
 
 @admin.route('/project_add', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def project_add():
     form = ProjectDataForm()
 
@@ -110,7 +119,7 @@ def project_add():
 
 
 @admin.route('/project_delete', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def project_delete():
     id = request.args.get('id')
     page = request.args.get('page')

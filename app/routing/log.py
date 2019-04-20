@@ -2,20 +2,25 @@
 # -*-coding:utf-8 -*-
 from . import admin
 from app import db
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, session
 from app.models import TestLog, Device, Product, DeviceGroup
 from app.forms import TestLogDataForm
 from datetime import datetime
+from flask_login import login_required
 
 
 @admin.route('/log_server/<int:page>', methods=["GET"])
-# @login_required
+@login_required
 def log_server(page):
     if page is None:
         page = 1
     page_data = TestLog.query.order_by(
         TestLog.id.asc()
     ).paginate(page=page, per_page=5)
+
+    # 保存管理员名字和角色id
+    session_admin = session['admin']
+    session_role_id = session['role']
 
     device_all = Device.query.all()
     device_count = Device.query.count()
@@ -25,12 +30,18 @@ def log_server(page):
                            page_data=page_data,
                            device_all=device_all,
                            device_count=device_count,
-                           device_online=device_online)
+                           device_online=device_online,
+                           session_admin=session_admin,
+                           session_role_id=session_role_id)
 
 
 @admin.route('/monitor', methods=["GET"])
-# @login_required
+@login_required
 def monitor():
+    # 保存管理员名字和角色id
+    session_admin = session['admin']
+    session_role_id = session['role']
+
     device_all = Device.query.all()
     device_count = Device.query.count()
     device_online = Device.query.filter_by(_online=1).count()
@@ -39,12 +50,18 @@ def monitor():
                            device_count=device_count,
                            device_all=device_all,
                            device_online=device_online,
-                           device_active=device_active)
+                           device_active=device_active,
+                           session_admin=session_admin,
+                           session_role_id=session_role_id)
 
 
 @admin.route('/online_test', methods=["GET"])
-# @login_required
+@login_required
 def online_test():
+    # 保存管理员名字和角色id
+    session_admin = session['admin']
+    session_role_id = session['role']
+
     device_all = Device.query.all()
     product_all = Product.query.all()
     group_all = DeviceGroup.query.all()
@@ -52,11 +69,13 @@ def online_test():
     return render_template('online_test.html',
                            group_all=group_all,
                            device_all=device_all,
-                           product_all=product_all)
+                           product_all=product_all,
+                           session_admin=session_admin,
+                           session_role_id=session_role_id)
 
 
 @admin.route('/testlog_add', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def testlog_add():
     form = TestLogDataForm()
     if form.validate_on_submit():

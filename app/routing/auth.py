@@ -6,10 +6,11 @@ from app import db
 from flask import render_template, flash, redirect, url_for
 from app.models import Auth
 from app.forms import AuthDataForm
+from flask_login import login_required
 
 
 @admin.route('/auth_add', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def auth_add():
     form = AuthDataForm()
     if form.validate_on_submit():

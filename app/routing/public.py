@@ -1,8 +1,23 @@
 from . import admin
 from flask import render_template, redirect, url_for, flash, request, session
 from app.forms import LoginForm
-from app.models import Admin, Project, Role
+from app.models import Admin, Project
 from flask_login import login_user, logout_user, login_required
+
+
+@admin.route('/')
+@login_required
+def index():
+    project = Project.query.all()
+
+    # 保存管理员名字和角色id
+    session_admin = session['admin']
+    session_role_id = session['role']
+
+    return render_template('index.html',
+                           project=project,
+                           session_admin=session_admin,
+                           session_role_id=session_role_id)
 
 
 @admin.route('/login', methods=['GET', 'POST'])
@@ -32,6 +47,8 @@ def login():
         当用户点击记住密码，在下次打开浏览器时无需登录，
         否则，就要登录
         '''
+        session['admin'] = admin.account
+        session['role'] = admin.role_id
         login_user(admin, form.remember_me.data)
         return redirect(request.args.get('next') or url_for('admin.index'))
     return render_template('login.html', form=form)
@@ -41,11 +58,3 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('admin.login'))
-
-
-@admin.route('/')
-# @login_required
-def index():
-    admin = Admin.query.filter_by(id=1).all()
-    role = Role.query.filter_by(id=1).all()
-    return render_template('index.html', admin=admin, role=role)

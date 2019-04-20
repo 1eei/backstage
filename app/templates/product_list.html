@@ -91,11 +91,11 @@
                                     <div class="pub-button-group">
                                         <div class="pub-button pub-button-primary" onclick="layer.open({
                                                 type: 2,
-                                                shadeClose: false,
+                                                shadeClose: true,
                                                 shade: 0.6,
                                                 maxmin: true,
                                                 moveOut: true,
-                                                area: ['50%', '45%'],
+                                                area: ['50%', '60%'],
                                                 title: '编辑产品',
                                                 {% set id = v.id %}
                                                 content: '{{ url_for('admin.product_edit',id=id) }}',
@@ -135,7 +135,7 @@
                 $("#creat").click(function () {
                     layer.open({
                         type: 2,
-                        shadeClose: false,
+                        shadeClose: true,
                         shade: 0.6,
                         maxmin: true,
                         moveOut: true,

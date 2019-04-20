@@ -2,20 +2,25 @@
 # -*-coding:utf-8 -*-
 from . import admin
 from app import db
-from flask import render_template, flash, request, redirect, url_for
+from flask import render_template, flash, request, redirect, url_for, session
 from app.models import Admin, Role, Device
 from app.forms import AdminDataForm, AuthDataForm, AdminEditForm
 from werkzeug.security import generate_password_hash
+from flask_login import login_required
 
 
 @admin.route('/admin_user/<int:page>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def admin_user(page):
     if page is None:
         page = 1
     page_data = Admin.query.order_by(
         Admin.id.asc()
     ).paginate(page=page, per_page=5)
+
+    # 保存管理员名字和角色id
+    session_admin = session['admin']
+    session_role_id = session['role']
 
     admin_all = Admin.query.all()
     device_all = Device.query.all()
@@ -38,7 +43,9 @@ def admin_user(page):
     return render_template('admin_user.html',
                            page_data=page_data,
                            admin_all=admin_all,
-                           device_all=device_all)
+                           device_all=device_all,
+                           session_admin=session_admin,
+                           session_role_id=session_role_id)
 
 
 @admin.route('/admin_power_form')
@@ -80,7 +87,7 @@ def admin_edit():
 
 
 @admin.route('/admin_add', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def admin_add():
     form = AdminDataForm()
 
@@ -109,7 +116,7 @@ def admin_add():
 
 
 @admin.route('/admin_delete', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def admin_delete():
     id = request.args.get('id')
     page = request.args.get('page')

@@ -1,12 +1,13 @@
 from . import admin
 from app import db
-from flask import render_template, flash, request, redirect, url_for
+from flask import render_template, flash, request, redirect, url_for, session
 from app.models import Device, Project, Product, DeviceGroup
 from app.forms import DeviceDataForm
+from flask_login import login_required
 
 
 @admin.route('/devices_list/<int:page>', methods=["GET", "POST"])
-# @login_required
+@login_required
 def devices_list(page):
     if page is None:
         page = 1
@@ -15,6 +16,10 @@ def devices_list(page):
     ).order_by(
         Device.id.asc()
     ).paginate(page=page, per_page=5)
+
+    # 保存管理员名字和角色id
+    session_admin = session['admin']
+    session_role_id = session['role']
 
     id = request.args.get('id')
     _active = request.args.get('_active')
@@ -42,11 +47,13 @@ def devices_list(page):
                            device_all=device_all,
                            device_count=device_count,
                            device_online=device_online,
-                           device_active=device_active)
+                           device_active=device_active,
+                           session_admin=session_admin,
+                           session_role_id=session_role_id)
 
 
 @admin.route('/device_edit', methods=["GET", "POST"])
-# @login_required
+@login_required
 def device_edit():
     id = request.args.get('id')
     device = Device.query.get_or_404(id)
@@ -74,7 +81,7 @@ def device_edit():
 
 
 @admin.route('/device_add', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def device_add():
     form = DeviceDataForm()
 
@@ -111,7 +118,7 @@ def device_add():
 
 
 @admin.route('/device_delete', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def device_delete():
     id = request.args.get('id')
     page = request.args.get('page')

@@ -13,21 +13,13 @@
         <img src="{{ url_for('static',filename='./assets/dingdang.png') }}" alt="">
         <div class="index-head-user">
             <img src="{{ url_for('static',filename='./assets/user.jpg') }}" alt="">
-            {#            <p>#}
-            {#                <span>#}
-            {#                    {% for v in admin %}#}
-            {#                        {{ v.account  | upper}}#}
-            {#                    {% endfor %}#}
-            {#                </span>#}
-            {#                <span>#}
-            {#                    {% for v in role %}#}
-            {#                        {{ v.name }}#}
-            {#                    {% endfor %}#}
-            {#                </span>#}
-            {#            </p>#}
             <p>
-                <span style="color: blue">Admin</span>
-                <span style="color: blue">管理员</span>
+                <span>
+                    {{ session_admin | upper }}
+                </span>
+                <span>
+                    {{ session_role_id }}
+                </span>
             </p>
         </div>
         <button class="layui-btn layui-btn-sm layui-btn-danger" style="margin-left: 10px;margin-top: 5px">

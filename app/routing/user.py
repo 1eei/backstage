@@ -2,20 +2,25 @@
 # -*-coding:utf-8 -*-
 from . import admin
 from app import db
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session
 from app.models import User, Device
 from app.forms import UserDataForm, UserBindingDeviceForm
 from werkzeug.security import generate_password_hash
+from flask_login import login_required
 
 
 @admin.route('/project_user/<int:page>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def project_user(page):
     if page is None:
         page = 1
     page_data = User.query.order_by(
         User.id.asc()
     ).paginate(page=page, per_page=5)
+
+    # 保存管理员名字和角色id
+    session_admin = session['admin']
+    session_role_id = session['role']
 
     _locked = request.args.get('_locked')
     id = request.args.get('id')
@@ -38,12 +43,14 @@ def project_user(page):
     return render_template('project_user.html',
                            page_data=page_data,
                            user_all=user_all,
-                           device_all=device_all)
+                           device_all=device_all,
+                           session_admin=session_admin,
+                           session_role_id=session_role_id)
 
 
 # 绑定设备
 @admin.route('/user_binding_device', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def user_binding_device():
     id = request.args.get('id')
     device = Device.query.get_or_404(id)
@@ -56,7 +63,7 @@ def user_binding_device():
 
 
 @admin.route('/user_add', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def user_add():
     form = UserDataForm()
     if request.method == 'GET' or request.method == 'POST':
@@ -86,7 +93,7 @@ def user_add():
 
 
 @admin.route('/user_delete', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def user_delete():
     id = request.args.get('id')
     page = request.args.get('page')
