@@ -72,6 +72,14 @@
                         </div>
                     </div>
 
+                    {% for msg in get_flashed_messages(category_filter=['ok']) %}
+                        <div class="alert alert-success alert-dismissible" style="margin-top: 10px">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+                            </button>
+                            {{ msg }}
+                        </div>
+                    {% endfor %}
+
                     <table cellspacing="0" class="container-table">
                         <tr>
                             <th class="layui-elip">编码</th>
@@ -135,7 +143,15 @@
                                                 content: '{{ url_for('admin.device_edit',id=id) }}',
                                                 });">编辑
                                         </div>
-                                        <div class="pub-button pub-button-danger">删除</div>
+
+                                        {% set page = page_data.page %}
+                                        <div class="pub-button pub-button-danger"
+                                             onclick="if (confirm('确定要删除吗?')) {
+                                                     return window.location.href='{{ url_for('admin.device_delete',page=page,id=id) }}'
+                                                     } else {
+                                                     alert('操作已取消')
+                                                     }">删除
+                                        </div>
 
                                     </div>
                                 </td>

@@ -16,8 +16,8 @@ def devices_list(page):
         Device.id.asc()
     ).paginate(page=page, per_page=5)
 
-    _active = request.args.get('_active')
     id = request.args.get('id')
+    _active = request.args.get('_active')
     device = Device.query.filter_by(id=id).first()
 
     device_all = Device.query.all()
@@ -30,6 +30,7 @@ def devices_list(page):
         device._active = _active
         db.session.add(device)
         db.session.commit()
+
     elif _active == '0':  # 0= 禁用
         _active = 1
         device._active = _active
@@ -107,3 +108,16 @@ def device_add():
         flash('设备表数据添加成功!', 'ok')
         return redirect(url_for('admin.device_add'))
     return render_template('add/device_add.html', form=form)
+
+
+@admin.route('/device_delete', methods=['GET', 'POST'])
+# @login_required
+def device_delete():
+    id = request.args.get('id')
+    page = request.args.get('page')
+    device = Device.query.get_or_404(id)
+    device.id = id
+    db.session.delete(device)
+    db.session.commit()
+    flash("设备表数据删除成功", "ok")
+    return redirect(url_for('admin.devices_list', page=page))

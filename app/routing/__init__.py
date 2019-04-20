@@ -5,7 +5,7 @@ from flask import Blueprint
 
 admin = Blueprint('admin', __name__)
 
-import app.routing.views
+import app.routing.public
 import app.routing.admin_
 import app.routing.auth
 import app.routing.devices

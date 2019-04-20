@@ -107,3 +107,16 @@ def project_add():
         flash('项目表数据添加成功!', 'ok')
         return redirect(url_for('admin.project_add'))
     return render_template('add/project_add.html', form=form)
+
+
+@admin.route('/project_delete', methods=['GET', 'POST'])
+# @login_required
+def project_delete():
+    id = request.args.get('id')
+    page = request.args.get('page')
+    project = Project.query.get_or_404(id)
+    project.id = id
+    db.session.delete(project)
+    db.session.commit()
+    flash("项目表数据删除成功", "ok")
+    return redirect(url_for('admin.project_list', page=page))

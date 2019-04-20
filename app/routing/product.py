@@ -84,3 +84,16 @@ def product_add():
         flash('产品表数据添加成功!', 'ok')
         return redirect(url_for('admin.product_add'))
     return render_template('add/product_add.html', form=form)
+
+
+@admin.route('/product_delete', methods=['GET', 'POST'])
+# @login_required
+def product_delete():
+    id = request.args.get('id')
+    page = request.args.get('page')
+    product = Product.query.get_or_404(id)
+    product.id = id
+    db.session.delete(product)
+    db.session.commit()
+    flash("产品表数据修改成功", "ok")
+    return redirect(url_for('admin.product_list', page=page))

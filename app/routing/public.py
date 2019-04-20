@@ -1,24 +1,8 @@
 from . import admin
 from flask import render_template, redirect, url_for, flash, request, session
 from app.forms import LoginForm
-from app.models import Admin, Project
+from app.models import Admin, Project, Role
 from flask_login import login_user, logout_user, login_required
-
-
-@admin.route('/')
-# @login_required
-def index():
-    data = Project.query.all()
-    admin = Admin.query.all()
-    return render_template('index.html', data=data, admin=admin)
-
-
-@admin.route('/admin_base')
-# @login_required
-def admin_base():
-    data = Project.query.all()
-    admindata = Admin.query.all()
-    return render_template('base/admin_base.html', data=data, admindata=admindata)
 
 
 @admin.route('/login', methods=['GET', 'POST'])
@@ -57,3 +41,11 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('admin.login'))
+
+
+@admin.route('/')
+# @login_required
+def index():
+    admin = Admin.query.filter_by(id=1).all()
+    role = Role.query.filter_by(id=1).all()
+    return render_template('index.html', admin=admin, role=role)

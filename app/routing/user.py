@@ -83,3 +83,16 @@ def user_add():
         flash('用户表数据添加成功!', 'ok')
         return redirect(url_for('admin.user_add'))
     return render_template('add/user_add.html', form=form)
+
+
+@admin.route('/user_delete', methods=['GET', 'POST'])
+# @login_required
+def user_delete():
+    id = request.args.get('id')
+    page = request.args.get('page')
+    user = User.query.get_or_404(id)
+    user.id = id
+    db.session.delete(user)
+    db.session.commit()
+    flash("用户表数据删除成功", "ok")
+    return redirect(url_for('admin.project_user', page=page))

@@ -132,14 +132,13 @@
                                     <p class="layui-elip">{{ v.user.projects.commpy }}</p>
                                 </td>
                                 <td>
-                                    {% for i in v.user.projects.admins.projects.devices %}
-                                        <p class="layui-elip">{{ i.product_id }}</p>
+                                    {% for i in v.user.projects.devices %}
+                                        <p>{{ i.id }}</p>
                                     {% endfor %}
-
                                 </td>
                                 <td>
-                                    {% for i in v.user.projects.admins.projects.devices %}
-                                        <p class="layui-elip">{{ i.name }}</p>
+                                    {% for i in v.user.projects.devices %}
+                                        <p>{{ i.name }}</p>
                                     {% endfor %}
                                 </td>
                                 <td>

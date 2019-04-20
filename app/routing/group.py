@@ -56,3 +56,16 @@ def group_add():
         flash('设备组表数据添加成功!', 'ok')
         return redirect(url_for('admin.group_add'))
     return render_template('add/group_add.html', form=form)
+
+
+@admin.route('/group_delete', methods=['GET', 'POST'])
+# @login_required
+def group_delete():
+    id = request.args.get('id')
+    page = request.args.get('page')
+    group = DeviceGroup.query.get_or_404(id)
+    group.id = id
+    db.session.delete(group)
+    db.session.commit()
+    flash("项目组表数据删除成功", "ok")
+    return redirect(url_for('admin.group', page=page))

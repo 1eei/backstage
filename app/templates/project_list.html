@@ -24,7 +24,6 @@
                         <div class="search-group-left">
                             <div class="search-title">项目列表</div>
                             <div class="search-input">
-
                                 <input type="text" placeholder="请输入项目名称查询">
                                 <div class="pub-button-group">
                                     <div class="pub-button pub-button-primary ">
@@ -42,6 +41,14 @@
                             </div>
                         </div>
                     </div>
+
+                    {% for msg in get_flashed_messages(category_filter=['ok']) %}
+                        <div class="alert alert-success alert-dismissible" style="margin-top: 10px">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+                            </button>
+                            {{ msg }}
+                        </div>
+                    {% endfor %}
 
                     <table cellspacing="0" class="container-table">
                         <tr>
@@ -102,7 +109,6 @@
                                                      });">编辑
                                         </div>
 
-                                        <div class="pub-button pub-button-danger" onclick="return del()">删除</div>
                                         <div class="pub-button pub-button-primary"
                                              onclick="layer.open({
                                                      type: 2,
@@ -116,6 +122,15 @@
                                                      content: '{{ url_for('admin.project_admin',id=aid) }}'
                                                      });">管理员
                                         </div>
+
+                                        <div class="pub-button pub-button-danger"
+                                             onclick="if (confirm('确定要删除吗?')) {
+                                                     return window.location.href='{{ url_for('admin.project_delete',page=page,id=pid) }}'
+                                                     } else {
+                                                     alert('操作已取消')
+                                                     }">删除
+                                        </div>
+
                                     </div>
                                 </td>
                             </tr>
@@ -178,4 +193,5 @@
             $('#g-2-3').css({"background": "-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)", "color": "#fff"});
         });
     </script>
+
 {% endblock %}

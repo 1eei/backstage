@@ -106,3 +106,16 @@ def admin_add():
         flash('管理员表数据添加成功!', 'ok')
         return redirect(url_for('admin.admin_add'))
     return render_template('add/admin_add.html', form=form)
+
+
+@admin.route('/admin_delete', methods=['GET', 'POST'])
+# @login_required
+def admin_delete():
+    id = request.args.get('id')
+    page = request.args.get('page')
+    admin = Admin.query.get_or_404(id)
+    admin.id = id
+    db.session.delete(admin)
+    db.session.commit()
+    flash("管理员表数据删除成功", "ok")
+    return redirect(url_for('admin.admin_user', page=page))
