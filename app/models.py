@@ -99,6 +99,14 @@ class Admin(db.Model, UserMixin):
         from werkzeug.security import check_password_hash
         return check_password_hash(self.pwd, pwd)
 
+    @property
+    def role_desc(self):
+        stats_mapping = {
+            "1": "普通管理员",
+            "2": "超级管理员",
+        }
+        return stats_mapping[str(self.role_id)]
+
 
 # 权限表
 class Auth(db.Model):
@@ -148,7 +156,6 @@ class Device(db.Model):
        # 节点类型
        '''
 
-
     @property
     def node_desc(self):
         node_mapping = {
@@ -174,6 +181,7 @@ class Device(db.Model):
             "2": "异常"
         }
         return active_mapping[str(self._active)]
+
 
 # 测试日志
 class TestLog(db.Model):

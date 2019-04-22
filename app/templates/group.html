@@ -19,37 +19,6 @@
                 <p>设备管理</p>
             </div>
 
-            <div class="devices-group">
-                <div class="devices-info">
-                    <div style="border-left: none;margin-left: -30px">
-                        <select class="pub-select">
-                            <option value="0">全部设备</option>
-                            {% for v in device_all %}
-                                <option value="{{ v.id }}">{{ v.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div>
-                        <p>设备总数</p>
-                        <p>{{ device_count }}</p>
-                    </div>
-                    <div>
-                        <div>
-                            <div class="circular"></div>
-                            <div>正在启用</div>
-                        </div>
-                        <p>{{ device_active }}</p>
-                    </div>
-                    <div>
-                        <div>
-                            <div class="circular" style="background: #2cff24"></div>
-                            <div>在线设备</div>
-                        </div>
-                        <p>{{ device_online }}</p>
-                    </div>
-                </div>
-            </div>
-
             <div class="container-full">
                 <form action="" method="">
                     <div class="search-group">
@@ -102,8 +71,8 @@
                                 <td>
                                     <p class="layui-elip" style="font-size: 1.2em">
                                         <span style="font-weight: bold;color: orange">{{ device_count }}&nbsp;</span>/
-                                        <span style="color: green">{{ device_active }}&nbsp;</span>/
-                                        <span style="color: skyblue">{{ device_online }}&nbsp;</span>
+                                        <span style="color: deepskyblue">{{ device_active }}&nbsp;</span>/
+                                        <span style="color: green ">{{ device_online }}&nbsp;</span>
                                     </p>
                                 </td>
                                 <td>

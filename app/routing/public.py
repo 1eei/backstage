@@ -48,7 +48,7 @@ def login():
         否则，就要登录
         '''
         session['admin'] = admin.account
-        session['role'] = admin.role_id
+        session['role'] = admin.role_desc
         login_user(admin, form.remember_me.data)
         return redirect(request.args.get('next') or url_for('admin.index'))
     return render_template('login.html', form=form)
