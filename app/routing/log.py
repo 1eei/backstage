@@ -32,7 +32,8 @@ def log_server(page):
                            device_count=device_count,
                            device_online=device_online,
                            session_admin=session_admin,
-                           session_role_id=session_role_id)
+                           session_role_id=session_role_id
+                           )
 
 
 @admin.route('/monitor', methods=["GET"])
@@ -52,7 +53,8 @@ def monitor():
                            device_online=device_online,
                            device_active=device_active,
                            session_admin=session_admin,
-                           session_role_id=session_role_id)
+                           session_role_id=session_role_id
+                           )
 
 
 @admin.route('/online_test', methods=["GET"])
@@ -71,7 +73,8 @@ def online_test():
                            device_all=device_all,
                            product_all=product_all,
                            session_admin=session_admin,
-                           session_role_id=session_role_id)
+                           session_role_id=session_role_id
+                           )
 
 
 @admin.route('/testlog_add', methods=['GET', 'POST'])

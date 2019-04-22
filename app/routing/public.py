@@ -4,6 +4,8 @@ from app.forms import LoginForm
 from app.models import Admin, Project
 from flask_login import login_user, logout_user, login_required
 
+import datetime
+
 
 @admin.route('/')
 @login_required
@@ -17,7 +19,8 @@ def index():
     return render_template('index.html',
                            project=project,
                            session_admin=session_admin,
-                           session_role_id=session_role_id)
+                           session_role_id=session_role_id
+                           )
 
 
 @admin.route('/login', methods=['GET', 'POST'])
@@ -47,9 +50,15 @@ def login():
         当用户点击记住密码，在下次打开浏览器时无需登录，
         否则，就要登录
         '''
+
+        session.permanent_session_lifetime = datetime.timedelta(seconds=24 * 3600 * 31)
+        session.permanent = True
+
         session['admin'] = admin.account
         session['role'] = admin.role_desc
+
         login_user(admin, form.remember_me.data)
+        print(session['user_id'])
         return redirect(request.args.get('next') or url_for('admin.index'))
     return render_template('login.html', form=form)
 

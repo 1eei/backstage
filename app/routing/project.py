@@ -25,7 +25,8 @@ def project_list(page):
     return render_template('project_list.html',
                            page_data=page_data,
                            session_admin=session_admin,
-                           session_role_id=session_role_id)
+                           session_role_id=session_role_id
+                           )
 
 
 @admin.route('/project_edit', methods=['GET', 'POST'])

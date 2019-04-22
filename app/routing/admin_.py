@@ -45,7 +45,8 @@ def admin_user(page):
                            admin_all=admin_all,
                            device_all=device_all,
                            session_admin=session_admin,
-                           session_role_id=session_role_id)
+                           session_role_id=session_role_id
+                           )
 
 
 @admin.route('/admin_power_form')

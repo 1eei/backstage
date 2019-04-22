@@ -45,7 +45,8 @@ def project_user(page):
                            user_all=user_all,
                            device_all=device_all,
                            session_admin=session_admin,
-                           session_role_id=session_role_id)
+                           session_role_id=session_role_id
+                           )
 
 
 # 绑定设备

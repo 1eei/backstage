@@ -24,7 +24,8 @@ def product_list(page):
                            page_data=page_data,
                            product_count=product_count,
                            session_admin=session_admin,
-                           session_role_id=session_role_id)
+                           session_role_id=session_role_id
+                           )
 
 
 @admin.route('/product_edit', methods=["GET", "POST"])

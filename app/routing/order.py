@@ -33,7 +33,8 @@ def orderlist(page):
                            project_all=project_all,
                            order_all=order_all,
                            session_admin=session_admin,
-                           session_role_id=session_role_id)
+                           session_role_id=session_role_id
+                           )
 
 
 @admin.route('/order_add', methods=['GET', 'POST'])

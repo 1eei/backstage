@@ -49,7 +49,8 @@ def devices_list(page):
                            device_online=device_online,
                            device_active=device_active,
                            session_admin=session_admin,
-                           session_role_id=session_role_id)
+                           session_role_id=session_role_id
+                           )
 
 
 @admin.route('/device_edit', methods=["GET", "POST"])
