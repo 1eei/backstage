@@ -50,14 +50,14 @@ def admin_user(page):
 
 
 @admin.route('/admin_power_form')
-# @login_required
+@login_required
 def admin_power_form():
     form = AuthDataForm()
     return render_template('edit/admin_power_form.html', form=form)
 
 
 @admin.route('/admin_edit', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def admin_edit():
     id = request.args.get('id')
     admin = Admin.query.filter_by(id=id).first()
@@ -88,7 +88,7 @@ def admin_edit():
 
 
 @admin.route('/admin_add', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def admin_add():
     form = AdminDataForm()
 
