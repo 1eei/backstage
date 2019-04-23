@@ -60,18 +60,19 @@ $(function () {
         cache: false,
         async: false,
         success: function (BarData) {
-            BarData = BarData[0].data
-            BarResult = BarData;
+            Bar_Data = BarData[0].data
+            Bar_Day = BarData[0].time
+            BarResult = [Bar_Data, Bar_Day];
         }
     });
 
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["1-1", "1-2", "1-3", "1-4", "1-5", "1-6", "1-7"],
+            labels: BarResult[1],
             datasets: [{
                 label: '',
-                data: BarResult,
+                data: BarResult[0],
                 backgroundColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
@@ -118,8 +119,8 @@ $(function () {
         cache: false,
         async: false,
         success: function (BubbleData) {
-            BubbleData = BubbleData[0].data
-            BubbleResult = BubbleData;
+            Bubble_Data = BubbleData[0].data
+            BubbleResult = Bubble_Data;
         }
     });
 
@@ -166,18 +167,19 @@ $(function () {
         cache: false,
         async: false,
         success: function (LineData) {
-            LineData0 = LineData[0].data[0]
-            LineData1 = LineData[0].data[1]
-            LineData2 = LineData[0].data[2]
-            LineData3 = LineData[0].data[3]
-            LineResult = [LineData0, LineData1, LineData2, LineData3];
+            Line_Data0 = LineData[0].data[0]
+            Line_Data1 = LineData[0].data[1]
+            Line_Data2 = LineData[0].data[2]
+            Line_Data3 = LineData[0].data[3]
+            Line_Day = LineData[0].time
+            LineResult = [Line_Data0, Line_Data1, Line_Data2, Line_Data3, Line_Day];
         }
     });
 
     var myLineChart = new Chart(line, {
         type: 'line', // line 表示是 曲线图，当然也可以设置其他的图表类型 如柱形图 : bar  或者其他
         data: {
-            labels: ["1-1", "1-2", "1-3", "1-4", "1-5", "1-6", "1-7"], //按时间段 可以按星期，按月，按年
+            labels: LineResult[4], //按时间段 可以按星期，按月，按年
             datasets: [{
                 fill: false, //是否要显示数据部分阴影面积块
                 borderColor: "rgba(200,187,205,1)", //数据曲线颜色

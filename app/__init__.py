@@ -6,7 +6,6 @@ from flask_wtf.csrf import CSRFProtect, CSRFError
 from flask_login import LoginManager
 from config import config
 
-
 db = SQLAlchemy()
 
 
@@ -46,14 +45,29 @@ def ajax_api(app):
     @app.route('/post_bar_data', methods=['GET', 'POST'])
     def post_bar_data():
         bar_data = []
+
+        now_day = ((datetime.datetime.now() - datetime.timedelta()).strftime("%m-%d"))
+        last1_day = ((datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%m-%d"))
+        last2_day = ((datetime.datetime.now() - datetime.timedelta(days=2)).strftime("%m-%d"))
+        last3_day = ((datetime.datetime.now() - datetime.timedelta(days=3)).strftime("%m-%d"))
+        last4_day = ((datetime.datetime.now() - datetime.timedelta(days=4)).strftime("%m-%d"))
+        last5_day = ((datetime.datetime.now() - datetime.timedelta(days=5)).strftime("%m-%d"))
+        last6_day = ((datetime.datetime.now() - datetime.timedelta(days=6)).strftime("%m-%d"))
+
         data = [80, 10, 10, 10, 10, 10, 80]
-        bar_data.append({"data": data})
+
+        now = [last6_day, last5_day, last4_day, last3_day, last2_day, last1_day, now_day]
+
+        bar_data.append({"data": data,
+                         "time": now})
+
         return json.dumps(bar_data)
 
     # 气泡图数据接口
     @app.route('/post_bubble_data', methods=['GET', 'POST'])
     def post_bubble_data():
         bubble_data = []
+
         data = {'x': 200, 'y': 20, 'r': 20}, \
                {'x': 250, 'y': 25, 'r': 20}, \
                {'x': 300, 'y': 30, 'r': 20}, \
@@ -62,18 +76,34 @@ def ajax_api(app):
                {'x': 450, 'y': 45, 'r': 20}, \
                {'x': 500, 'y': 50, 'r': 20}, \
                {'x': 550, 'y': 55, 'r': 20},
+
         bubble_data.append({"data": data})
+
         return json.dumps(bubble_data)
 
     # 线状图数据接口
     @app.route('/post_line_data', methods=['GET', 'POST'])
     def post_line_data():
         line_data = []
+
+        now_day = ((datetime.datetime.now() - datetime.timedelta()).strftime("%m-%d"))
+        last1_day = ((datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%m-%d"))
+        last2_day = ((datetime.datetime.now() - datetime.timedelta(days=2)).strftime("%m-%d"))
+        last3_day = ((datetime.datetime.now() - datetime.timedelta(days=3)).strftime("%m-%d"))
+        last4_day = ((datetime.datetime.now() - datetime.timedelta(days=4)).strftime("%m-%d"))
+        last5_day = ((datetime.datetime.now() - datetime.timedelta(days=5)).strftime("%m-%d"))
+        last6_day = ((datetime.datetime.now() - datetime.timedelta(days=6)).strftime("%m-%d"))
+
         data = [800, 700, 600, 500, 400, 300, 200], \
                [100, 200, 300, 400, 500, 600, 700], \
                [700, 600, 500, 400, 300, 200, 100], \
                [200, 300, 400, 500, 600, 700, 800]
-        line_data.append({"data": data})
+
+        now = [last6_day, last5_day, last4_day, last3_day, last2_day, last1_day, now_day]
+
+        line_data.append({"data": data,
+                          "time": now})
+
         return json.dumps(line_data)
 
     # 饼状图数据接口
