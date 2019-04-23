@@ -58,7 +58,7 @@ def login():
         session['role'] = admin.role_desc
 
         login_user(admin, form.remember_me.data)
-        print(session['user_id'])
+
         return redirect(request.args.get('next') or url_for('admin.index'))
     return render_template('login.html', form=form)
 

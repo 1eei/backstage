@@ -90,12 +90,13 @@
                 MonitorData0 = MonitorData[0].data[0]
                 MonitorData1 = MonitorData[0].data[1]
                 MonitorData2 = MonitorData[0].data[2]
-                MonitorResult = [MonitorData0, MonitorData1, MonitorData2];
+                Monitortime = MonitorData[0].time
+                MonitorResult = [MonitorData0, MonitorData1, MonitorData2, Monitortime];
             }
         });
         $(function () {
             var data = { //折线图需要为每个数据点设置一标签。这是显示在X轴上。
-                labels: ["9:00", "10:00", "11:00", "11:00", "12:00"],
+                labels: Monitortime,
                 //数据集（y轴数据范围随数据集合中的data中的最大或最小数据而动态改变的）
                 datasets: [{
                     label: '实时在线设备',
@@ -122,7 +123,7 @@
 
         $(function () {
             var data = { //折线图需要为每个数据点设置一标签。这是显示在X轴上。
-                labels: ["13:00", "14:00", "15:00", "16:00", "17:00"],
+                labels: Monitortime,
                 //数据集（y轴数据范围随数据集合中的data中的最大或最小数据而动态改变的）
                 datasets: [{
                     label: '发送到平台的消息量',
@@ -149,7 +150,7 @@
 
         $(function () {
             var data = { //折线图需要为每个数据点设置一标签。这是显示在X轴上。
-                labels: ["18:00", "19:00", "20:00", "21:00", "22:00"],
+                labels: Monitortime,
                 //数据集（y轴数据范围随数据集合中的data中的最大或最小数据而动态改变的）
                 datasets: [{
                     label: '发送到平台的消息量',

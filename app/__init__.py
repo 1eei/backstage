@@ -1,9 +1,11 @@
 import json
+import datetime
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect, CSRFError
 from flask_login import LoginManager
 from config import config
+
 
 db = SQLAlchemy()
 
@@ -86,10 +88,22 @@ def ajax_api(app):
     @app.route('/post_monitor_data', methods=['GET', 'POST'])
     def post_monitor_data():
         monitor_data = []
+
+        now_hour = ((datetime.datetime.now() - datetime.timedelta()).strftime("%H:00"))
+        last1_hour = ((datetime.datetime.now() - datetime.timedelta(minutes=60)).strftime("%H:00"))
+        last2_hour = ((datetime.datetime.now() - datetime.timedelta(minutes=120)).strftime("%H:00"))
+        last3_hour = ((datetime.datetime.now() - datetime.timedelta(minutes=180)).strftime("%H:00"))
+        last4_hour = ((datetime.datetime.now() - datetime.timedelta(minutes=240)).strftime("%H:00"))
+
         data = [80, 79, 83, 93, 84], \
                [84, 93, 82, 73, 80], \
                [10, 20, 30, 40, 50]
-        monitor_data.append({"data": data})
+
+        now = [last4_hour, last3_hour, last2_hour, last1_hour, now_hour]
+
+        monitor_data.append({"data": data,
+                             "time": now})
+
         return json.dumps(monitor_data)
 
 
