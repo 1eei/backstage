@@ -21,7 +21,7 @@ class BaseConfig:
 
 # 开发阶段下的数据库：开发
 class DevelopConfig(BaseConfig):
-    DEBUG = True
+    DEBUG = False
 
 
 # 上线产品阶段数据库：运维

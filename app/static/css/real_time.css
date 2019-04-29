@@ -10,7 +10,7 @@
 
 .container .top,
 .container .bottom {
-    width: 100vw;
+    flex: 1;
     height: 400px;
     display: flex;
 }

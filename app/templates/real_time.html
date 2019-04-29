@@ -13,16 +13,20 @@
 
 
 {% block content %}
-    <div class="container">
-        <div class="top">
-            <div id="TempBar" style="margin-left: 30px">
+    <div class="container-center">
+        <div class="container-card">
+            <div class="container">
+                <div class="top">
+                    <div id="TempBar" style="width: 300px;height: 400px;">
+                    </div>
+                    <div id="TempChart" style="width: 80%;height: 400px;"></div>
+                </div>
+                <div class="bottom">
+                    <div id="HunBar" style="width: 300px;height: 400px;">
+                    </div>
+                    <div id="HunChart" style="width: 80%;height: 400px;"></div>
+                </div>
             </div>
-            <div id="TempChart" style="width:83%; height: 400px;"></div>
-        </div>
-        <div class="bottom">
-            <div id="HunBar" style="margin-left: 30px ">
-            </div>
-            <div id="HunChart" style="width:83%; height: 400px;"></div>
         </div>
     </div>
 {% endblock %}

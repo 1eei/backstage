@@ -3,11 +3,9 @@
 from . import admin
 from flask import render_template, session
 from flask_login import login_required
-import socket, time, socketserver, threading, traceback
-import json,os
-
+import time, socketserver, threading, traceback, json, socket
 from threading import Lock
-from app import socketio,db
+from app import socketio, db
 
 thread_lock = Lock()
 client_addr = []
@@ -81,7 +79,8 @@ class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
     ServerStart = False
     pass
 
-HOST, PORT = "0.0.0.0", 7777
+
+HOST, PORT = "0.0.0.0", 10000
 server = ThreadedTCPServer((HOST, PORT), ThreadedTCPRequestHandler)
 ip, port = server.server_address
 server.ServerStart = False
@@ -96,7 +95,6 @@ def real_time():
     session_admin = session['admin']
     session_role_id = session['role']
 
-
     if len(client_socket) == 0:
 
         if server.ServerStart:
@@ -104,7 +102,6 @@ def real_time():
         else:
             server_thread.start()
             server.ServerStart = True
-
 
     return render_template('real_time.html',
                            session_admin=session_admin,

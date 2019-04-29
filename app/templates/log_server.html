@@ -3,6 +3,7 @@
 
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/bootstrap.min.css') }}">
 {% endblock %}
 
 
@@ -95,6 +96,8 @@
 
 
 {% block js %}
+    <script src="{{ url_for('static',filename='./js/bootstrap.min.js') }}"></script>
+
     <script>
         $(document).ready(function () {
             $('#g-4').addClass('list-item1-active');

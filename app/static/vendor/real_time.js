@@ -170,7 +170,7 @@ var update_hunChart = function (msg) {
 var HunBar = echarts.init(document.getElementById('HunBar'));
 HunBar.setOption({
     title: {
-        // text: 'Temperature'
+        text: 'Hunidity'
     },
     tooltip: {},
     legend: {
