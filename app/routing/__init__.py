@@ -16,3 +16,4 @@ import app.routing.product
 import app.routing.project
 import app.routing.role
 import app.routing.user
+import app.routing.real_time

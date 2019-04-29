@@ -91,11 +91,20 @@
                 <i class="fa fa-street-view"></i>
                 <span>用户管理</span>
                 <p id="g-6-1"><i class="fa fa-sort-asc"></i></p>
-
             </div>
             <p id="g-6-2" class="list-item2">
                 <a href="{{ url_for('admin.admin_user',page=1) }}"><span id="g-6-3">系统用户</span></a>
                 <a href="{{ url_for('admin.project_user',page=1) }}"><span id="g-6-4">项目用户</span></a>
+            </p>
+        </div>
+        <div class="control-list">
+            <div id="g-7" class="list-item1">
+                <i class="fa fa-street-view"></i>
+                <span>实时数据</span>
+                <p id="g-7-1"><i class="fa fa-sort-asc"></i></p>
+            </div>
+            <p id="g-7-2" class="list-item2">
+                <a href="{{ url_for('admin.real_time') }}"><span id="g-7-3">实时温湿度</span></a>
             </p>
         </div>
     </div>
