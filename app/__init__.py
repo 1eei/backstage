@@ -3,11 +3,13 @@ import datetime
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect, CSRFError
+from flask_socketio import SocketIO # 新加入的内容
 from flask_login import LoginManager
 from config import config
 
 db = SQLAlchemy()
-
+async_mode = None
+socketio = SocketIO()
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -16,6 +18,7 @@ def create_app(config_name):
     with app.app_context():
         db.init_app(app)
         db.app = app
+    socketio.init_app(app=app, async_mode=async_mode)  # 新加入的内容
     # 实例化login_user
     from app.models import Admin
     login_manager = LoginManager()
