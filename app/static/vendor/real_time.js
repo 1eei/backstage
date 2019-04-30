@@ -13,7 +13,8 @@ $(document).ready(function () {
 var TempChart = echarts.init(document.getElementById('TempChart'));
 TempChart.setOption({
     title: {
-        text: 'Temperature'
+        text: '实时温度',
+        padding: [20, 0, 0, 110]
     },
     tooltip: {},
     legend: {
@@ -65,7 +66,8 @@ var update_TempChart = function (msg) {
 var TempBar = echarts.init(document.getElementById('TempBar'));
 TempBar.setOption({
     title: {
-        text: 'Temperature'
+        text: '实时温度',
+        padding: [20, 0, 0, 25]
     },
     tooltip: {},
     legend: {
@@ -118,7 +120,8 @@ var update_TempBar = function (msg) {
 var HunChart = echarts.init(document.getElementById('HunChart'));
 HunChart.setOption({
     title: {
-        text: 'Hunidity'
+        text: '实时湿度',
+        padding: [20, 0, 0, 110]
     },
     tooltip: {},
     legend: {
@@ -170,7 +173,8 @@ var update_hunChart = function (msg) {
 var HunBar = echarts.init(document.getElementById('HunBar'));
 HunBar.setOption({
     title: {
-        text: 'Hunidity'
+        text: '实时湿度',
+        padding: [20, 0, 0, 25]
     },
     tooltip: {},
     legend: {
