@@ -3,7 +3,7 @@
 from . import admin
 from flask import render_template, session
 from flask_login import login_required
-import time, socketserver, threading, traceback, json, socket
+import time, socketserver, threading, traceback, json, socket, base64
 from threading import Lock
 from app import socketio, db
 
@@ -33,6 +33,7 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
                 time.sleep(3)
                 try:
                     data = self.request.recv(1024).decode()
+                    data = base64.b64decode(data)
                 except socket.timeout:
                     print(self.ip + ":" + str(self.port) + "接收超时！即将断开连接！")
                     break
