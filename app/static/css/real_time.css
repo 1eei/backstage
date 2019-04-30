@@ -15,9 +15,6 @@
     display: flex;
 }
 
-.container .top {
-    margin-bottom: 20px;
-}
 
 .container #TempBar {
     height: 400px;
