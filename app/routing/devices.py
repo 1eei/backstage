@@ -1,9 +1,10 @@
 from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for, session
-from app.models import Device, Project, Product, DeviceGroup
+from app.models import Device, Project, Product, DeviceGroup, RealTime
 from app.forms import DeviceDataForm
 from flask_login import login_required
+import time
 
 
 @admin.route('/devices_list/<int:page>', methods=["GET", "POST"])
@@ -16,6 +17,15 @@ def devices_list(page):
     ).order_by(
         Device.id.asc()
     ).paginate(page=page, per_page=5)
+
+    # 获取最后上线时间时间戳
+    last_times = RealTime.query.join(Device).filter(
+        Device.number == RealTime.device_number
+    ).order_by(RealTime.times.desc()).first()
+    # 格式化时间戳
+    last_times = last_times.times
+    last_times = time.localtime(last_times)
+    last_times = time.strftime("%Y-%m-%d %H:%M:%S", last_times)
 
     # 保存管理员名字和角色id
     session_admin = session['admin']
@@ -49,7 +59,8 @@ def devices_list(page):
                            device_online=device_online,
                            device_active=device_active,
                            session_admin=session_admin,
-                           session_role_id=session_role_id
+                           session_role_id=session_role_id,
+                           last_times=last_times
                            )
 
 
