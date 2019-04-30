@@ -10,7 +10,7 @@ from flask_login import login_required
 
 
 @admin.route('/role_add', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def role_add():
     form = RoleDataForm()
     if form.validate_on_submit():

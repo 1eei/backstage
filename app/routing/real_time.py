@@ -6,6 +6,7 @@ from flask_login import login_required
 import time, socketserver, threading, traceback, json, socket, base64
 from threading import Lock
 from app import socketio, db
+from app.models import RealTime
 
 thread_lock = Lock()
 client_addr = []
@@ -38,7 +39,6 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
                     print(self.ip + ":" + str(self.port) + "接收超时！即将断开连接！")
                     break
                 if data:
-                    cur_thread = threading.current_thread()
                     data = json.loads(data)
                     times = time.strftime('%H:%M:%S', time.localtime())
 
@@ -49,24 +49,23 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
 
                     socketio.emit('server_response', {'data': [times, humidity, temperature]})
 
-                    # humidity_data = Device(number=number,
-                    #                        attr='humidity',
-                    #                        par=humidity,
-                    #                        times=timestamp
-                    #                        )
-                    #
-                    # temperature_data = Device(number=number,
-                    #                           attr='temperature',
-                    #                           par=temperature,
-                    #                           times=timestamp
-                    #                           )
-                    #
-                    # db.session.add(humidity_data)
-                    # db.session.add(temperature_data)
-                    # db.session.commit()
+                    humidity_data = RealTime(device_number=number,
+                                             attr='humidity',
+                                             par=humidity,
+                                             times=timestamp
+                                             )
 
-                    self.request.sendall(('%s %s %s ' % (time.ctime(), cur_thread.name, data)).encode())
-            except:
+                    temperature_data = RealTime(device_number=number,
+                                                attr='temperature',
+                                                par=temperature,
+                                                times=timestamp
+                                                )
+
+                    db.session.add(humidity_data)
+                    db.session.add(temperature_data)
+                    db.session.commit()
+
+            except BaseException:
                 traceback.print_exc()
                 break
 

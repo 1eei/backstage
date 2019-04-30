@@ -13,6 +13,11 @@ manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 manager.add_command('run', socketio.run(app=app, host='127.0.0.1', port=8888))
 
+
 if __name__ == '__main__':
     # 启动项目
-    manager.run()
+    try:
+        manager.run()
+    except BaseException:
+        pass
+

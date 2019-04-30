@@ -140,13 +140,15 @@ class Device(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     devicegroup_id = db.Column(db.Integer, db.ForeignKey('device_group.id'))
-    number = db.Column(db.String(64))  # 设备编号
-    name = db.Column(db.String(16), unique=True, nullable=False)  # 设备名
+    number = db.Column(db.String(15), unique=True)  # 设备编号
+    name = db.Column(db.String(16), nullable=False)  # 设备名
     node = db.Column(db.String(25))  # 设备类型
     _online = db.Column(db.SmallInteger, nullable=False)  # 设备的是否在线
     _active = db.Column(db.SmallInteger, nullable=False)  # 设备的运行状态
     create_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 创建时间
-    online_time = db.Column(db.DateTime, index=True, default=datetime.now)  # 最后上线时间
+    online_time = db.Column(db.Integer, index=True)  # 最后上线时间
+
+    real_times = db.relationship('RealTime', backref='device')
 
     def __repr__(self):
         return '<Device %r>' % self.name
@@ -181,6 +183,19 @@ class Device(db.Model):
             "2": "异常"
         }
         return active_mapping[str(self._active)]
+
+
+class RealTime(db.Model):
+    __tablename__ = 'real_time'
+
+    id = db.Column(db.Integer, primary_key=True)
+    device_number = db.Column(db.String(15), db.ForeignKey('device.number'))
+    attr = db.Column(db.String(16))  # 设备属姓名
+    par = db.Column(db.String(16))  # 设备属姓值
+    times = db.Column(db.Integer, index=True)  # 时间戳
+
+    def __repr__(self):
+        return '<RealTime %r>' % self.device_number
 
 
 # 测试日志
