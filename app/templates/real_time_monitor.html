@@ -1,0 +1,35 @@
+{% extends 'base/admin_base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/font-awesome.min.css') }}">
+{% endblock %}
+
+
+{% block title %}
+    <title>实时监控</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-center">
+        <div class="container-card">
+            <div class="container" style="margin: 0 auto;margin-top: 10px">
+                <img src="{{ url }}" alt="" style="width: 960px;height: 720px;">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{{ url_for('static',filename='./vendor/jquery/jquery.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#g-7').addClass('list-item1-active');
+            $('#g-7-1').addClass('tog-active');
+            $('#g-7-2').addClass('toggle-item');
+            $('#g-7-4').css({"background": "-webkit-linear-gradient(left,#6d7be0 , #6bc6ea)", "color": "#fff"});
+        });
+    </script>
+{% endblock %}

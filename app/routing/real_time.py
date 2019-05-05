@@ -108,3 +108,19 @@ def real_time():
                            session_role_id=session_role_id,
                            async_mode=socketio.async_mode
                            )
+
+
+@admin.route('/real_time_monitor', methods=['GET', 'POST'])
+@login_required
+def real_time_monitor():
+    # 保存管理员名字和角色id
+    session_admin = session['admin']
+    session_role_id = session['role']
+
+    url = 'http://192.168.122.100:1111/?action=stream'
+
+    return render_template('real_time_monitor.html',
+                           session_admin=session_admin,
+                           session_role_id=session_role_id,
+                           url=url
+                           )

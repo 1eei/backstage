@@ -11,13 +11,16 @@ app = create_app(os.getenv('Flask_CONFIG') or 'development')
 migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
-manager.add_command('run', socketio.run(app=app, host='127.0.0.1', port=8888))
-
 
 if __name__ == '__main__':
-    # 启动项目
     try:
-        manager.run()
+        # 启动项目
+
+        socketio.run(app, host='127.0.0.1', port=8888)
+
+        # 数据库迁移
+
+        # manager.run()
+
     except BaseException:
         pass
-
