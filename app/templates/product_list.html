@@ -60,7 +60,7 @@
                             <th class="layui-elip">产品名称</th>
                             <th class="layui-elip">产品id</th>
                             <th class="layui-elip">节点类型</th>
-                            <th class="layui-elip" style="color:red;">设备总数</th>
+                            <th class="layui-elip">设备总数</th>
                             <th class="layui-elip">添加时间</th>
                             <th class="layui-elip">操作</th>
                         </tr>
@@ -76,13 +76,8 @@
                                     <p class="layui-elip">{{ v.node_desc }}</p>
                                 </td>
                                 <td>
-                                    <p style="color: red">
-                                        {#                                        {% for v in product %}#}
-                                        {#                                            {% for i in v.devices %}#}
-                                        {#                                               {{ i.id }}#}
-                                        {#                                            {% endfor %}#}
-                                        {#                                        {% endfor %}#}
-                                        {{ product_count }}
+                                    <p>
+                                        {{ device_count }}
                                     </p>
                                 </td>
                                 <td>

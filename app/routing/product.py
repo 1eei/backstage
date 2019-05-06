@@ -1,7 +1,7 @@
 from . import admin
 from app import db
 from flask import render_template, flash, redirect, url_for, request, session
-from app.models import Product
+from app.models import Product, Device
 from app.forms import ProductDataForm
 from flask_login import login_required
 
@@ -19,10 +19,13 @@ def product_list(page):
     session_admin = session['admin']
     session_role_id = session['role']
 
-    product_count = Product.query.count()
+    device_count = Product.query.join(Device).filter(
+        Product.id == Device.product_id
+    ).count()
+
     return render_template('product_list.html',
                            page_data=page_data,
-                           product_count=product_count,
+                           device_count=device_count,
                            session_admin=session_admin,
                            session_role_id=session_role_id
                            )
