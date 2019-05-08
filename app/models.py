@@ -34,6 +34,7 @@ class OrderTable(db.Model):
     __tablename__ = 'order_table'
     id = db.Column(db.Integer, primary_key=True)  # 序号
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    device_id = db.Column(db.Integer, db.ForeignKey('device.id'))
     number = db.Column(db.String(64), unique=True)  # 订单编号
     money = db.Column(db.DECIMAL(), nullable=False)  # 订单金额
     pay_method = db.Column(db.SmallInteger, nullable=False)  # 支付方式 0=微信，1=支付宝，2=现金，3=银行卡
@@ -151,6 +152,7 @@ class Device(db.Model):
     online_time = db.Column(db.Integer, index=True)  # 最后上线时间
 
     real_times = db.relationship('RealTime', backref='device')
+    order_tables = db.relationship('OrderTable', backref='device')
 
     def __repr__(self):
         return '<Device %r>' % self.name

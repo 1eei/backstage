@@ -22,10 +22,14 @@ def devices_list(page):
     last_times = RealTime.query.join(Device).filter(
         Device.number == RealTime.device_number
     ).order_by(RealTime.times.desc()).first()
-    # 格式化时间戳
-    last_times = last_times.times
-    last_times = time.localtime(last_times)
-    last_times = time.strftime("%Y-%m-%d %H:%M:%S", last_times)
+
+    if last_times == None:
+        last_times='Null'
+    else:
+        # 格式化时间戳
+        last_times = last_times.times
+        last_times = time.localtime(last_times)
+        last_times = time.strftime("%Y-%m-%d %H:%M:%S", last_times)
 
     # 保存管理员名字和角色id
     session_admin = session['admin']

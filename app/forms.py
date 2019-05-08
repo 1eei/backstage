@@ -377,6 +377,16 @@ class OrderDataForm(FlaskForm):
         },
     )
 
+    device = SelectField(
+        "所属设备",
+        coerce=int,
+        choices='',
+        description="所属设备",
+        render_kw={
+            'lay-filter': "aihao"
+        },
+    )
+
     pay_method = SelectField(
         "支付方式",
         coerce=int,
