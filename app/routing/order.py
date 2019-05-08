@@ -3,7 +3,7 @@
 from . import admin
 from app import db
 from flask import render_template, flash, redirect, url_for, request, session
-from app.models import OrderTable, Project, User
+from app.models import OrderTable, Project, User, Device
 from app.forms import OrderDataForm
 from flask_login import login_required
 
@@ -27,11 +27,17 @@ def orderlist(page):
 
     project_all = Project.query.all()
     order_all = OrderTable.query.all()
+    # device_user = Device.query.all()
+
+    device_user = Device.query.join(User).filter(
+        Device.user_id == User.id
+    )
 
     return render_template('orderlist.html',
                            page_data=page_data,
                            project_all=project_all,
                            order_all=order_all,
+                           device_user=device_user,
                            session_admin=session_admin,
                            session_role_id=session_role_id
                            )

@@ -167,7 +167,7 @@ class ProjectDataForm(FlaskForm):
                          render_kw={'placeholder': '允许为空', 'class': "layui-input",
                                     'autocomplete': "off"})
 
-    submit = SubmitField('提交', render_kw={'class': "layui-btn"})
+    submit = SubmitField('提交', render_kw={'class': "layui-btn", 'id': 'close'})
 
 
 class ProductDataForm(FlaskForm):
@@ -252,6 +252,16 @@ class DeviceDataForm(FlaskForm):
         coerce=int,
         choices='',
         description="设备所属产品id",
+        render_kw={
+            'lay-filter': "aihao"
+        },
+    )
+
+    user_id = SelectField(
+        "设备所属用户id",
+        coerce=int,
+        choices='',
+        description="设备所属用户id",
         render_kw={
             'lay-filter': "aihao"
         },

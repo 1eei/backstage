@@ -1,7 +1,7 @@
 from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for, session
-from app.models import Device, Project, Product, DeviceGroup, RealTime
+from app.models import Device, Project, Product, DeviceGroup, RealTime, User
 from app.forms import DeviceDataForm
 from flask_login import login_required
 import time
@@ -69,11 +69,12 @@ def devices_list(page):
 def device_edit():
     id = request.args.get('id')
     device = Device.query.get_or_404(id)
-    form = DeviceDataForm(project_id=device.project_id, product_id=device.product_id,
+    form = DeviceDataForm(project_id=device.project_id, product_id=device.product_id,user_id=device.user_id,
                           devicegroup_id=device.devicegroup_id, online=device._online, active=device._active)
     if request.method == 'GET' or request.method == 'POST':
         form.project_id.choices = [(v.id, v.name) for v in Project.query.all()]
         form.product_id.choices = [(v.id, v.name) for v in Product.query.all()]
+        form.user_id.choices = [(v.id, v.name) for v in User.query.all()]
         form.devicegroup_id.choices = [(v.id, v.name) for v in DeviceGroup.query.all()]
         form.node.choices = [(1, '设备'), (2, '路由')]
     if form.validate_on_submit():
@@ -81,6 +82,7 @@ def device_edit():
         device.name = data['name']
         device.project_id = data['project_id']
         device.product_id = data['product_id']
+        device.user_id = data['user_id']
         device.devicegroup_id = data['devicegroup_id']
         device.number = data['number']
         device.node = data['node']
@@ -100,6 +102,7 @@ def device_add():
     if request.method == 'GET' or request.method == 'POST':
         form.project_id.choices = [(v.id, v.name) for v in Project.query.all()]
         form.product_id.choices = [(v.id, v.name) for v in Product.query.all()]
+        form.user_id.choices = [(v.id, v.name) for v in User.query.all()]
         form.devicegroup_id.choices = [(v.id, v.name) for v in DeviceGroup.query.all()]
         form.node.choices = [(1, '设备'), (2, '路由')]
 
@@ -107,6 +110,7 @@ def device_add():
         name = form.name.data
         project_id = int(form.project_id.data)
         product_id = int(form.product_id.data)
+        user_id = int(form.user_id.data)
         devicegroup_id = int(form.devicegroup_id.data)
         number = form.number.data
         node = form.node.data
@@ -116,6 +120,7 @@ def device_add():
         device = Device(name=name,
                         project_id=project_id,
                         product_id=product_id,
+                        user_id=user_id,
                         devicegroup_id=devicegroup_id,
                         number=number,
                         node=node,

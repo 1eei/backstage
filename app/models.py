@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
 
     projects = db.relationship('Project', backref='user', uselist=False)
     order_tables = db.relationship('OrderTable', backref='user')
+    devices = db.relationship('Device', backref='user')
 
     def __repr__(self):
         return '<User %r>' % self.name
@@ -139,6 +140,7 @@ class Device(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # 设备编号
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     devicegroup_id = db.Column(db.Integer, db.ForeignKey('device_group.id'))
     number = db.Column(db.String(15), unique=True)  # 设备编号
     name = db.Column(db.String(16), nullable=False)  # 设备名

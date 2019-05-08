@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash
 from flask_login import login_required
 
 
-@admin.route('/project_list/<int:page>', methods=["GET"])
+@admin.route('/project_list/<int:page>', methods=["GET", "POST"])
 @login_required
 def project_list(page):
     if page is None:

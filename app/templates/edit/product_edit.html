@@ -78,7 +78,6 @@
                 <div class="layui-input-block">
                     {{ form.submit }}
                     {{ form.csrf_token }}
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
         </form>
@@ -87,16 +86,7 @@
 {% block js %}
 
     <script>
-        //Demo
-        layui.use('form', function () {
-            var form = layui.form;
-
-            //监听提交
-            form.on('submit(formDemo)', function (data) {
-                layer.msg(JSON.stringify(data.field));
-                return false;
-            });
-        });
+        layui.use('form', function () {});
     </script>
 
 {% endblock %}

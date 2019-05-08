@@ -16,9 +16,7 @@
 </style>
 <body>
 
-
 {% block content %} {% endblock %}
-
 
 </body>
 
@@ -27,13 +25,7 @@
 <script src="{{ url_for('static',filename='./js/layui/layui.js') }}"></script>
 <script src="{{ url_for('static',filename='./js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static',filename='./js/public.js') }}"></script>
+
 {% block js %} {% endblock %}
 
-<script>
-    //JavaScript代码区域
-    layui.use('element', function () {
-        var element = layui.element;
-
-    });
-</script>
 </html>

@@ -106,7 +106,7 @@
                                                      moveOut: true,
                                                      area: ['50%', '60%'],
                                                      title: '项目修改',
-                                                     content: '{{ url_for('admin.project_edit',id=pid) }}'
+                                                     content: '{{ url_for('admin.project_edit',id=pid) }}',
                                                      });">编辑
                                         </div>
 
@@ -159,7 +159,6 @@
             //监听提交
             form.on('submit(formDemo)', function (data) {
                 layer.msg(JSON.stringify(data.field));
-
                 return false;
             });
         });

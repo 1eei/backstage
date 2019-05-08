@@ -50,7 +50,6 @@
                 <div class="layui-input-block">
                     {{ form.submit }}
                     {{ form.csrf_token }}
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
         </form>
@@ -58,32 +57,7 @@
 {% endblock %}
 
 {% block js %}
-
     <script>
-        //Demo
-        layui.use('form', function () {
-            var form = layui.form;
-            //监听提交
-            form.on('submit(formDemo)', function (data) {
-                layer.msg(JSON.stringify(data.field));
-                return false;
-            });
-        });
-
-    </script>
-    <script>
-        //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
-        layui.use('element', function () {
-            var element = layui.element;
-            //…
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $("#close").click(function () {
-
-            });
-
-        })
+        layui.use('form', function () {});
     </script>
 {% endblock %}

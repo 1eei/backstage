@@ -25,7 +25,6 @@
             </div>
         </form>
     </div>
-    </div>
 {% endblock %}
 
 
@@ -34,15 +33,7 @@
 {% block js %}
 
     <script>
-        //Demo
-        layui.use('form', function () {
-            var form = layui.form;
-            //监听提交
-            form.on('submit(formDemo)', function (data) {
-                layer.msg(JSON.stringify(data.field));
-                return false;
-            });
-        });
+        layui.use('form', function () {});
     </script>
 
 {% endblock %}
