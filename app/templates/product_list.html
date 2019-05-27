@@ -21,7 +21,7 @@
             </div>
 
             <div class="container-full">
-                <form action="" method="">
+                <form action="" method="post" >
                     <div class="search-group">
                         <div class="search-group-left">
                             <div class="search-title">产品列表</div>
@@ -76,8 +76,12 @@
                                     <p class="layui-elip">{{ v.node_desc }}</p>
                                 </td>
                                 <td>
-                                    <p>
-                                        {{ device_count }}
+                                    <p class="layui-elip">
+                                        {% for i in device_count %}
+                                            {% if v.id == i.product_id %}
+                                                {{ i.product_id | string | count }}
+                                            {% endif %}
+                                        {% endfor %}
                                     </p>
                                 </td>
                                 <td>

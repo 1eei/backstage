@@ -117,7 +117,6 @@ def real_time_monitor():
     session_admin = session['admin']
     session_role_id = session['role']
 
-
     url = 'http://192.168.122.101:1111/?action=stream'
 
     return render_template('real_time_monitor.html',

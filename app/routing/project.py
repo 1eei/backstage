@@ -1,7 +1,7 @@
 from . import admin
 from app import db
 from flask import render_template, flash, request, redirect, url_for, session
-from app.models import Admin, Project, User, Role
+from app.models import Admin, Project, User, Role, Device
 from app.forms import ProjectDataForm, AdminDataForm
 from werkzeug.security import generate_password_hash
 from flask_login import login_required

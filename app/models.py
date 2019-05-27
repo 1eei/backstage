@@ -35,6 +35,7 @@ class OrderTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # 序号
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     device_id = db.Column(db.Integer, db.ForeignKey('device.id'))
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     number = db.Column(db.String(64), unique=True)  # 订单编号
     money = db.Column(db.DECIMAL(), nullable=False)  # 订单金额
     pay_method = db.Column(db.SmallInteger, nullable=False)  # 支付方式 0=微信，1=支付宝，2=现金，3=银行卡
@@ -318,6 +319,7 @@ class Project(db.Model):
     users = db.relationship('User')
     admins = db.relationship('Admin', backref='project')
     devices = db.relationship('Device', backref='project')
+    order_tables = db.relationship('OrderTable', backref='project')
 
     def __repr__(self):
         return '<Project %r>' % self.name

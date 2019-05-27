@@ -21,6 +21,10 @@ def orderlist(page):
         Device
     ).filter(
         Device.id == OrderTable.device_id
+    ).join(
+        Project
+    ).filter(
+        Project.id == OrderTable.project_id
     ).order_by(
         OrderTable.id.asc()
     ).paginate(page=page, per_page=5)
